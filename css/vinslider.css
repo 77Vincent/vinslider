@@ -1,0 +1,104 @@
+.slider {
+  padding-top: 0 !important;
+  position: relative;
+}
+.slider ul.main {
+  overflow: hidden;
+  height: 917px;
+}
+.slider ul.main li {
+  display: block;
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  display: none;
+}
+.slider ul.main li .img-target .target {
+  height: 675px;
+}
+.slider ul.main li.active {
+  animation: fadeIn 1s;
+}
+.slider ul.main li.inactive {
+  animation: fadeOut 0.5s;
+}
+.slider ul.bullet {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 692px;
+}
+.slider ul.bullet li {
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  background-color: #fff;
+  opacity: 0.8;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 0 !important;
+}
+.slider ul.bullet li.active {
+  background-color: #000;
+}
+.slider ul.controller {
+  position: absolute;
+  top: 31%;
+  left: -2%;
+  width: 104%;
+}
+.slider ul.controller:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.slider ul.controller li {
+  display: inline-block;
+  cursor: pointer;
+}
+.slider ul.controller li:hover {
+  opacity: 0.6;
+}
+.slider ul.controller li:after {
+  font-family: "font-icon";
+  font-size: 15px;
+}
+.slider ul.controller li:first-child {
+  float: left;
+}
+.slider ul.controller li:first-child:after {
+  content: "\e902";
+}
+.slider ul.controller li:last-child {
+  float: right;
+}
+.slider ul.controller li:last-child:after {
+  content: "\e903";
+}
+.slider ul li {
+  list-style: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+img {
+  
+}
