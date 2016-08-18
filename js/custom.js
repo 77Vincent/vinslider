@@ -10,6 +10,9 @@
 
 
 (function() {
+	/*	VINSLIDER
+	*
+	*/
 	var slider1 = document.getElementsByClassName('slider-1');
 	var slider2 = document.getElementsByClassName('slider-2');
 	var slider3 = document.getElementsByClassName('slider-3');
@@ -20,7 +23,7 @@
 	};
 
 	var options2 = {
-	    speed: 4000,
+	    speed: 5000,
 	    mode: 'slide',
 	};
 

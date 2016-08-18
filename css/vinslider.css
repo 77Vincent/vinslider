@@ -42,6 +42,7 @@
 .vinslider ul.bullet {
     text-align: center;
     z-index: 1;
+    margin: 10px 0;
 }
 .vinslider ul.bullet li {
     width: 15px;
@@ -65,8 +66,10 @@
 ***************************************************/
 .vinslider ul.controller {
     z-index: 1;
-    width: 100%;
-    margin: 10px 0;
+    width: 110%;
+    left: -5%;
+    position: absolute;
+    top: 42%;
 }
 .vinslider ul.controller:after {
     content: '';
@@ -76,6 +79,10 @@
 .vinslider ul.controller li {
     display: inline-block;
     cursor: pointer;
+    height: 100%;
+}
+.vinslider ul.controller li:hover {
+    opacity: 0.5;
 }
 .vinslider ul.controller li:after {
     font-size: 30px;
