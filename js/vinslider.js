@@ -6,10 +6,16 @@ var Vinslider = function(target, custom) {
     /*  DEFAULT SETTINGS AND CUSTOM OPTIONS
     *
     */
+
     this.preset = {
         speed: 5000,
         pager: true,
         controller: true,
+        auto: true,
+        multipleItem: false,
+        infinite: true,
+        gutter: 0,
+        percentGutter: false,
         startfrom: 0,
         direction: true,
         mode: 'fade',
@@ -27,7 +33,6 @@ var Vinslider = function(target, custom) {
     /*  DOM
     *
     */
-    this.dotUl;
     this.dot;
     this.controller;
     this.prevBtn;
@@ -35,6 +40,9 @@ var Vinslider = function(target, custom) {
     this.ul = target.children[0];
     this.list = this.ul.children;
     this.timer;
+    this.distance;
+    this.first;
+    this.end;
     /*  SLIDER
     *
     */
@@ -59,6 +67,7 @@ Vinslider.prototype = {
         *
         */
         this.modeInit();
+        this.responsive();
         this.buildController(target);
         this.buildBullet(target);
         /*  RUN VINSLIDER
@@ -80,6 +89,17 @@ Vinslider.prototype = {
                 li.style.opacity = 1;
             }
         }
+    },
+
+    responsive: function() {
+        /*  FOR REAL TIME RESPONSIVE
+        *
+        */
+        var self = this;
+        window.onresize = function() {
+            self.modeInit();
+            self.lifecircle();
+        };
     },
 
     settingOptions: function() {
@@ -125,9 +145,7 @@ Vinslider.prototype = {
             ul.appendChild(li);
         }
 
-        this.dotUl = ul;
         this.dot = ul.children;
-
         if (this.options.pager == false) ul.style.display = 'none';
     },
 
@@ -135,7 +153,6 @@ Vinslider.prototype = {
         /*  BASIC LIFECIRCLE OF A SLIDE
         *
         */
-        var self = this;
         for (i=0; i<this.itemNum; i++) {
             var li = this.list[i];
             var dot = this.dot[i];
@@ -167,8 +184,16 @@ Vinslider.prototype = {
         if ( this.options.mode == 'slide') {
             for (e=0; e<this.itemNum; e++) {
                 var ind  = e - this.curIndex;
+                var gut;
 
-                this.list[e].style.left = this.width * ind + 'px';
+                if (this.options.percentGutter) {
+                    gut = this.width * this.options.gutter;
+                }   else {
+                    gut = this.options.gutter;
+                }
+
+                this.distance = this.width + gut;
+                this.list[e].style.left = (this.width + gut) * ind + 'px';
             }
         }
     },
@@ -187,13 +212,15 @@ Vinslider.prototype = {
 
     autoPlay: function(num) {
         var self = this;
-        this.timer = setInterval(function() {
-            if (self.options.direction) {
-                self.forward();
-            }   else  {
-                self.backward();
-            }
-        }, num);
+        if ( this.options.auto ) {
+            this.timer = setInterval(function() {
+                if (self.options.direction) {
+                    self.forward();
+                }   else  {
+                    self.backward();
+                }
+            }, num);
+        }
     },
 
     resetAutoPlay: function() {
@@ -210,11 +237,13 @@ Vinslider.prototype = {
         *
         */
         this.nextBtn.onclick = function() {
+            self.ifStop();
             self.forward();
             self.resetAutoPlay();
         }
 
         this.prevBtn.onclick = function() {
+            self.ifStop();
             self.backward();
             self.resetAutoPlay();
         }
@@ -238,31 +267,47 @@ Vinslider.prototype = {
         }
     },
 
+    ifStop: function() {
+        this.first = parseInt(this.list[0].style.left) >= 0;
+        this.end = parseInt(this.list[this.itemNum-1].style.left) <= this.ul.clientWidth;
+    },
+
     /*  FUNCTIONS TO MANIPULATE THE SLIDER
     *
     */
     forward: function() {
 
-        if (this.nextIndex < this.itemNum) {
-            this.curLi.className = '';
-            this.nextLi.className = this.options.enableClass;
+        if (this.options.multipleItem && this.end ) {
+            return
         }   else {
-            this.curLi.className = '';
-            this.list[0].className = this.options.enableClass;
+            if (this.nextIndex < this.itemNum) {
+                this.curLi.className = '';
+                this.nextLi.className = this.options.enableClass;
+            }   else {
+                if (this.options.infinite) {
+                    this.curLi.className = '';
+                    this.list[0].className = this.options.enableClass;
+                }
+            }
         }
 
         this.lifecircle();
     },
 
     backward: function() {
-        if (this.prevIndex >= 0) {
-            this.curLi.className = '';
-            this.prevLi.className = this.options.enableClass;
+        if (this.options.multipleItem && this.first ) {
+            return
         }   else {
-            this.curLi.className = '';
-            this.list[this.itemNum-1].className = this.options.enableClass;
+            if (this.prevIndex >= 0) {
+                this.curLi.className = '';
+                this.prevLi.className = this.options.enableClass;
+            }   else {
+                if (this.options.infinite) {
+                    this.curLi.className = '';
+                    this.list[this.itemNum-1].className = this.options.enableClass;
+                }
+            }
         }
-
         this.lifecircle();
     },
 };

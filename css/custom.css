@@ -1,9 +1,50 @@
 section {
-	min-width: 900px;
 	width: 50%;
-	margin: 0 auto;
+	max-width: 900px;
+	margin: 0px auto;
+	padding: 25px 0;
+}
+
+section:first-child {
+	padding-top: 0;
 }
 
 h1 {
 	text-align: center;
+}
+
+p {
+	font-size: 0.9em;
+}
+
+header {
+	width: 100%;
+	background-color: #000;
+	color: #fff;
+	padding: 20px 0;
+}
+
+footer {
+	width: 100%;
+	background-color: #000;
+	color: #fff;
+	padding: 10px 0;
+	text-align: center;
+}
+
+header h1 {
+	margin: 0;
+}
+
+.slider-3 ul.main li {
+	width: 19.8%;
+}
+
+.vinslider ul.main li img {
+	display: none;
+}
+
+.vinslider ul.main li {
+	background-size: cover;
+	background-position: center;
 }
