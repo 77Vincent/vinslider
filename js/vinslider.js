@@ -214,6 +214,7 @@ Vinslider.prototype = {
         var self = this;
         if ( this.options.auto ) {
             this.timer = setInterval(function() {
+                self.ifStop();
                 if (self.options.direction) {
                     self.forward();
                 }   else  {

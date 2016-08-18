@@ -28,7 +28,7 @@
 	    speed: 2000,
 	    mode: 'slide',
 	    auto: true,
-	    infinite: false,
+	    infinite: true,
 	    gutter: 0.02,
 	    percentGutter: true,
 	    multipleItem: true,
