@@ -40,7 +40,6 @@ var Vinslider = function(target, custom) {
     this.ul = target.children[0];
     this.list = this.ul.children;
     this.timer;
-    this.distance;
     this.first;
     this.end;
     /*  SLIDER
@@ -84,7 +83,6 @@ Vinslider.prototype = {
         for (i=0; i<this.itemNum; i++) {
             var li = this.list[i];
             this.width = li.clientWidth;
-
             if ( this.options.mode == 'slide') {
                 li.style.opacity = 1;
             }
@@ -97,6 +95,7 @@ Vinslider.prototype = {
         */
         var self = this;
         window.onresize = function() {
+            
             self.modeInit();
             self.lifecircle();
         };
@@ -192,7 +191,6 @@ Vinslider.prototype = {
                     gut = this.options.gutter;
                 }
 
-                this.distance = this.width + gut;
                 this.list[e].style.left = (this.width + gut) * ind + 'px';
             }
         }

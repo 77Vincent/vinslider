@@ -25,6 +25,7 @@
 	var options2 = {
 	    speed: 5000,
 	    mode: 'slide',
+	    auto: false
 	};
 
 	var options3 = {
