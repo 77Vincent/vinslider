@@ -94,11 +94,12 @@ Vinslider.prototype = {
         *
         */
         var self = this;
-        window.onresize = function() {
-            
+        window.addEventListener('resize',reset);
+
+        function reset() {
             self.modeInit();
             self.lifecircle();
-        };
+        }
     },
 
     settingOptions: function() {
