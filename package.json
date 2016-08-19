@@ -1,18 +1,24 @@
 {
-    "name": "vinslider",
-    "version": "1.0.0",
-    "description": "A light weight, written in native javascript, powerful slider",
-    "keywords": ["slider", "scroller"],
-    "homepage": "www.77webtech.com",
-    "main": "vinslider",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/77Vincent/vinslider.git"
-    },
-    "contributors": {
-        "name": "Vincent Wen",
-        "email": "wentianqi77@outlook.com",
-        "url": "https://www.77webtech.com/"
-    },
-    "license": "MIT",
+  "name": "vinslider",
+  "version": "1.0.0",
+  "description": "A light weight, written in native javascript, powerful slider",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/77Vincent/vinslider.git"
+  },
+  "keywords": [
+    "slider",
+    "scroller",
+    "native"
+  ],
+  "author": "Vincent <wentianqi77@outlook.com> (https://www.77webtech.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/77Vincent/vinslider/issues"
+  },
+  "homepage": "https://github.com/77Vincent/vinslider#readme"
 }
