@@ -1,6 +1,6 @@
 {
   "name": "vinslider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A light weight, written in native javascript, powerful slider",
   "main": "index.js",
   "scripts": {
