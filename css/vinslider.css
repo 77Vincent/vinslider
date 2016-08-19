@@ -8,15 +8,15 @@
     list-style: none;
 }
 /***************************************************  
-    MAIN
+    vinmain
 ***************************************************/
-.vinslider ul.main {
+.vinslider ul.vinmain {
     overflow: hidden;
     position: relative;
     z-index: 0;
     height: 300px;
 }
-.vinslider ul.main li {
+.vinslider ul.vinmain li {
     padding: 0;
     width: 100%;
     height: 100%;
@@ -29,10 +29,10 @@
     -moz-transition: all 1s ease-in-out;
     -o-transition: all 1s ease-in-out;
 }
-.vinslider ul.main li img {
+.vinslider ul.vinmain li img {
     width: 100%;
 }
-.vinslider ul.main li.active {
+.vinslider ul.vinmain li.active {
     opacity: 1;
     left: 0 !important;
 }

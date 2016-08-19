@@ -51,15 +51,15 @@ header h1 {
 	margin: 50px auto;
 }
 
-.slider-3 ul.main li {
+.slider-3 ul.vinmain li {
 	width: 19.8%;
 }
 
-.vinslider ul.main li img {
+.vinslider ul.vinmain li img {
 	display: none;
 }
 
-.vinslider ul.main li {
+.vinslider ul.vinmain li {
 	background-size: cover;
 	background-position: center;
 }
