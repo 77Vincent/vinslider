@@ -90,13 +90,17 @@ Vinslider.prototype = {
     },
 
     responsive: function() {
+        var timeout = false;
         /*  FOR REAL TIME RESPONSIVE
         *
         */
         var self = this;
-        window.addEventListener('resize',reset);
+        window.addEventListener('resize',function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(reset, 300);
+        });
 
-        function reset() {
+        function reset() { 
             self.modeInit();
             self.lifecircle();
         }
