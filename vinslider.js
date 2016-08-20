@@ -85,11 +85,10 @@ Vinslider.prototype = {
         for (e=0; e<this.itemNum; e++) {
             var li = this.list[e];
             var gut;
-            var num;
 
             if (this.options.mode == this.mode.multiple) {
-                num = (this.options.amount <= 1) ? 2 : this.options.amount;
-                this.width = this.ul.clientWidth / num;
+                this.options.amount = (this.options.amount <= 1) ? 2 : this.options.amount;
+                this.width = this.ul.clientWidth / this.options.amount;
             }   else {
                 this.width = this.ul.clientWidth;
             }
@@ -100,7 +99,7 @@ Vinslider.prototype = {
                 gut = this.options.gutter;
             }
 
-            var fix = (this.options.mode == this.mode.multiple) ? gut / (num-1) : 1;
+            var fix = (this.options.mode == this.mode.multiple) ? gut / (this.options.amount-1) : 1;
 
             this.width = this.width + fix;
             li.style.width = this.width - gut + 'px';

@@ -30,7 +30,9 @@
 
 	var options3 = {
 	    speed: 2000,
-	    mode: 'multiple'
+	    mode: 'multiple',
+	    amount: 4,
+	    gutter: 5
 	};
 
 	new Vinslider(slider1[0], options1);
