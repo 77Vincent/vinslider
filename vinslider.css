@@ -18,6 +18,7 @@
 }
 .vinslider ul.vinmain li {
     padding: 0;
+    margin: 0;
     width: 100%;
     height: 100%;
     top: 0;
@@ -39,12 +40,12 @@
 /***************************************************  
     PAGER
 ***************************************************/
-.vinslider ul.bullet {
+.vinslider ul.vinbullet {
     text-align: center;
     z-index: 1;
     margin: 10px 0;
 }
-.vinslider ul.bullet li {
+.vinslider ul.vinbullet li {
     width: 15px;
     height: 15px;
     margin: 0 8px;
@@ -58,44 +59,44 @@
     -moz-transition: all 1s ease-in-out;
     -o-transition: all 1s ease-in-out;
 }
-.vinslider ul.bullet li.active {
+.vinslider ul.vinbullet li.active {
     background-color: #000;
 }
 /***************************************************  
-    CONTROLLER
+    vinCONTROLLER
 ***************************************************/
-.vinslider ul.controller {
+.vinslider ul.vincontroller {
     z-index: 1;
     width: 110%;
     left: -5%;
     position: absolute;
     top: 42%;
 }
-.vinslider ul.controller:after {
+.vinslider ul.vincontroller:after {
     content: '';
     display: block;
     clear: both;
 }
-.vinslider ul.controller li {
+.vinslider ul.vincontroller li {
     display: inline-block;
     cursor: pointer;
     height: 100%;
 }
-.vinslider ul.controller li:hover {
+.vinslider ul.vincontroller li:hover {
     opacity: 0.5;
 }
-.vinslider ul.controller li:after {
+.vinslider ul.vincontroller li:after {
     font-size: 30px;
 }
-.vinslider ul.controller li:first-child {
+.vinslider ul.vincontroller li:first-child {
     float: left;
 }
-.vinslider ul.controller li:first-child:after {
+.vinslider ul.vincontroller li:first-child:after {
     content: "<";
 }
-.vinslider ul.controller li:last-child {
+.vinslider ul.vincontroller li:last-child {
     float: right;
 }
-.vinslider ul.controller li:last-child:after {
+.vinslider ul.vincontroller li:last-child:after {
     content: ">";
 }

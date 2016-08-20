@@ -1,15 +1,11 @@
 {
   "name": "vinslider",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A light weight, written in native javascript, powerful slider",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "file": [
-    "vinslider.css",
-    "vinslider.js"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/77Vincent/vinslider.git"
