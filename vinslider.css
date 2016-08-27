@@ -67,10 +67,7 @@
 ***************************************************/
 .vinslider ul.vincontroller {
     z-index: 1;
-    width: 110%;
-    left: -5%;
-    position: absolute;
-    top: 42%;
+    width: 100%;
 }
 .vinslider ul.vincontroller:after {
     content: '';

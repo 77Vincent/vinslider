@@ -54,7 +54,7 @@ header h1 {
 .vinslider ul:first-child li {
 	background-color: gray;
 	color: white;
-	font-size: 100px;
+	font-size: 50px;
 	font-weight: bold;
 	text-align: center;
 	display: table;
@@ -76,4 +76,7 @@ header h1 {
 .vinslider ul:first-child li {
 	background-size: cover;
 	background-position: center;
+}
+body.lock {
+	overflow: hidden;
 }

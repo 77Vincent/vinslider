@@ -11,11 +11,14 @@ const Vinslider = function(target, custom) {
         infinite: true,
         gutter: 0,
         percentGutter: false,
-        startfrom: 0,
+        startFrom: 0,
         direction: true,
         mode: 'fade',
         enableClass: 'active',
         amount: 1,
+        scrollable: false,
+        vertical: false,
+        moveBy: 1,
     };
     this.custom = custom;
     this.options = this.custom ? this.custom : this.preset;
@@ -36,11 +39,8 @@ const Vinslider = function(target, custom) {
         slide: 'slide',
         multiple: 'multiple',
     }
-    this.classname = {
-        main: 'vinmain',
-        controller: 'vincontroller',
-        pager: 'vinbullet'
-    }
+    this.classname = ['vinmain', 'vincontroller', 'vinbullet'];
+    this.direction = ['left', 'clientWidth', 'width'];
     this.timer;
     this.end;
     this.prevIndex;
@@ -50,7 +50,7 @@ const Vinslider = function(target, custom) {
     this.curLi;
     this.nextLi;
     this.itemNum = this.list.length;
-    this.width;
+    this.size;
     this.ifwrong = false;
     /*  START RUNNING
     *
@@ -66,43 +66,46 @@ Vinslider.prototype = {
         */
         this.modeInit();
         this.responsive();
-        this.buildController(target);
         this.buildBullet(target);
+        this.buildController(target);
         /*  RUN VINSLIDER
         *
         */
-        this.initFunction(this.options.startfrom);
+        this.initFunction(this.options.startFrom);
         this.lifecircle();
         this.autoPlay(this.options.speed);
-        this.asyncEvent();
+        this.userEvent();
     },
 
     modeInit: function() {
         /*  LI WIDTH CALCULATION
         *
         */
-        this.ul.className = this.classname.main;
+        this.ul.className = this.classname[0];
+        if (this.options.vertical) {
+            this.direction = ['top', 'clientHeight', 'height'];
+        }
         for (e=0; e<this.itemNum; e++) {
             var li = this.list[e];
             var gut;
 
             if (this.options.mode == this.mode.multiple) {
                 this.options.amount = (this.options.amount <= 1) ? 2 : this.options.amount;
-                this.width = this.ul.clientWidth / this.options.amount;
+                this.size = this.ul[this.direction[1]] / this.options.amount;
             }   else {
-                this.width = this.ul.clientWidth;
+                this.size = this.ul[this.direction[1]];
             }
 
             if (this.options.percentGutter) {
-                gut = this.width * this.options.gutter;
+                gut = this.size * this.options.gutter;
             }   else {
                 gut = this.options.gutter;
             }
 
             var fix = (this.options.mode == this.mode.multiple) ? gut / (this.options.amount-1) : 1;
 
-            this.width = this.width + fix;
-            li.style.width = this.width - gut + 'px';
+            this.size = this.size + fix;
+            li.style[this.direction[2]] = this.size - gut + 'px';
         } 
         /*  MODE INIT
         *
@@ -158,7 +161,7 @@ Vinslider.prototype = {
 
     buildController: function(target) {
         var ul = document.createElement('ul');
-        ul.className = this.classname.controller;
+        ul.className = this.classname[1];
         target.appendChild(ul);
 
         for (i=0; i<2; i++) {
@@ -175,7 +178,7 @@ Vinslider.prototype = {
 
     buildBullet: function(target) {
         var ul = document.createElement('ul');
-        ul.className = this.classname.pager;
+        ul.className = this.classname[2];
         target.appendChild(ul);
 
         for (i=0; i<this.itemNum; i++) {
@@ -222,7 +225,7 @@ Vinslider.prototype = {
         if ( this.options.mode == this.mode.slide || this.options.mode == this.mode.multiple ) {
             for (e=0; e<this.itemNum; e++) {
                 var ind  = e - this.curIndex;
-                this.list[e].style.left = this.width * ind + 'px';
+                this.list[e].style[this.direction[0]] = this.size * ind + 'px';
             }
         }
     },
@@ -256,7 +259,7 @@ Vinslider.prototype = {
         this.autoPlay(this.options.speed);
     },
 
-    asyncEvent: function() {
+    userEvent: function() {
         /*  USER EVENT
         *
         */
@@ -265,15 +268,34 @@ Vinslider.prototype = {
         *
         */
         this.nextBtn.onclick = function() {
-            self.forward();
+            for (var i = 0; i < self.options.moveBy; i++) {
+                self.forward();
+            }
             self.resetAutoPlay();
         }
 
         this.prevBtn.onclick = function() {
-            self.backward();
+            for (var i = 0; i<self.options.moveBy; i++) {
+                self.backward();
+            }
             self.resetAutoPlay();
         }
+       /*  SCROLL
+        *
+        */
+        if (this.options.scrollable) {
+            this.ul.addEventListener('wheel', function() {
+                var body = document.querySelector('body');
+                body.style.overflow = 'hidden';
 
+                self.forward();
+                self.resetAutoPlay();
+
+                setTimeout(function() {
+                    body.style.overflow = '';
+                }, 1000);
+            });
+        }
        /*  PAGER NAVIGATION
         *
         */
@@ -294,7 +316,7 @@ Vinslider.prototype = {
     },
 
     ifStop: function() {
-        this.end = parseInt(this.list[this.itemNum-1].style.left) < this.ul.clientWidth;
+        this.end = parseInt(this.list[this.itemNum-1].style[this.direction[0]]) < this.ul[this.direction[1]];
     },
 
     /*  FUNCTIONS TO MANIPULATE THE SLIDER
