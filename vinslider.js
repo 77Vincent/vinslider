@@ -246,9 +246,13 @@ Vinslider.prototype = {
         if ( this.options.auto ) {
             this.timer = setInterval(function() {
                 if (self.options.direction) {
-                    self.forward();
+                    for (var i = 0; i < self.options.moveBy; i++) {
+                        self.forward();
+                    }
                 }   else  {
-                    self.backward();
+                    for (var i = 0; i < self.options.moveBy; i++) {
+                        self.backward();
+                    }
                 }
             }, num);
         }
@@ -284,17 +288,20 @@ Vinslider.prototype = {
         *
         */
         if (this.options.scrollable) {
-            this.ul.addEventListener('wheel', function() {
-                var body = document.querySelector('body');
-                body.style.overflow = 'hidden';
-
-                self.forward();
-                self.resetAutoPlay();
-
-                setTimeout(function() {
-                    body.style.overflow = '';
-                }, 1000);
-            });
+            this.ul.onwheel = function(event) {
+                event.preventDefault();
+                if (event.deltaY > 0 || event.deltaX > 0) {
+                    for (var i = 0; i < self.options.moveBy; i++) {
+                        self.forward();
+                    }
+                    self.resetAutoPlay();
+                }   else {
+                    for (var i = 0; i<self.options.moveBy; i++) {
+                        self.backward();
+                    }
+                    self.resetAutoPlay();
+                }
+            };
         }
        /*  PAGER NAVIGATION
         *

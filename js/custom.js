@@ -20,6 +20,7 @@
 	var options1 = {
 	    speed: 4000,
 	    mode: 'fade',
+	    scrollable: true,
 	};
 
 	var options2 = {
@@ -31,12 +32,13 @@
 	var options3 = {
 	    speed: 2000,
 	    mode: 'multiple',
-	    infinite: false,
+	    auto: false,
 	    amount: 4,
 	    gutter: 0.04,
 	    percentGutter: true,
 	    vertical: true,
-	    moveBy: 2,
+	    scrollable: true,
+	    moveBy: 1,
 	};
 
 	new Vinslider(slider1, options1);
