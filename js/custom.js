@@ -38,7 +38,6 @@
 	    percentGutter: true,
 	    vertical: true,
 	    scrollable: true,
-	    moveBy: 1,
 	};
 
 	new Vinslider(slider1, options1);

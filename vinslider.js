@@ -246,13 +246,9 @@ Vinslider.prototype = {
         if ( this.options.auto ) {
             this.timer = setInterval(function() {
                 if (self.options.direction) {
-                    for (var i = 0; i < self.options.moveBy; i++) {
-                        self.forward();
-                    }
+                    self.forward();
                 }   else  {
-                    for (var i = 0; i < self.options.moveBy; i++) {
-                        self.backward();
-                    }
+                    self.backward();
                 }
             }, num);
         }
@@ -272,16 +268,12 @@ Vinslider.prototype = {
         *
         */
         this.nextBtn.onclick = function() {
-            for (var i = 0; i < self.options.moveBy; i++) {
-                self.forward();
-            }
+            self.forward();
             self.resetAutoPlay();
         }
 
         this.prevBtn.onclick = function() {
-            for (var i = 0; i<self.options.moveBy; i++) {
-                self.backward();
-            }
+            self.backward();
             self.resetAutoPlay();
         }
        /*  SCROLL
@@ -291,14 +283,10 @@ Vinslider.prototype = {
             this.ul.onwheel = function(event) {
                 event.preventDefault();
                 if (event.deltaY > 0 || event.deltaX > 0) {
-                    for (var i = 0; i < self.options.moveBy; i++) {
-                        self.forward();
-                    }
+                    self.forward();
                     self.resetAutoPlay();
                 }   else {
-                    for (var i = 0; i<self.options.moveBy; i++) {
-                        self.backward();
-                    }
+                    self.backward();
                     self.resetAutoPlay();
                 }
             };
@@ -330,47 +318,51 @@ Vinslider.prototype = {
     *
     */
     forward: function() {
-        this.ifStop();
-        if ( this.options.mode !== this.mode.multiple ) {
-            if ( this.nextIndex < this.itemNum ) {
-                this.curLi.className = '';
-                this.nextLi.className = this.options.enableClass;
-            }   else {
-                if (this.options.infinite) {
+        for (var i = 0; i < this.options.moveBy; i++) {
+            this.ifStop();
+            if ( this.options.mode !== this.mode.multiple ) {
+                if ( this.nextIndex < this.itemNum ) {
                     this.curLi.className = '';
-                    this.list[0].className = this.options.enableClass;
+                    this.nextLi.className = this.options.enableClass;
+                }   else {
+                    if (this.options.infinite) {
+                        this.curLi.className = '';
+                        this.list[0].className = this.options.enableClass;
+                    }
+                }
+            }   else {
+                if ( !this.end ) {
+                    this.curLi.className = '';
+                    this.nextLi.className = this.options.enableClass;
+                }   else {
+                    if (this.options.infinite) {
+                        this.curLi.className = '';
+                        this.list[0].className = this.options.enableClass;
+                    }
                 }
             }
-        }   else {
-            if ( !this.end ) {
-                this.curLi.className = '';
-                this.nextLi.className = this.options.enableClass;
-            }   else {
-                if (this.options.infinite) {
-                    this.curLi.className = '';
-                    this.list[0].className = this.options.enableClass;
-                }
-            }
+            this.lifecircle();
         }
-        this.lifecircle();
     },
 
     backward: function() {
-        this.ifStop();
-        if ( this.prevIndex >= 0 ) {
-            this.curLi.className = '';
-            this.prevLi.className = this.options.enableClass;
-        }   else {
-            if (this.options.infinite) {
-                if (this.options.mode == this.mode.multiple) {
-                    this.curLi.className = '';
-                    this.list[this.itemNum-this.options.amount].className = this.options.enableClass;
-                }   else {
-                    this.curLi.className = '';
-                    this.list[this.itemNum-1].className = this.options.enableClass;
+        for (var i = 0; i < this.options.moveBy; i++) {
+            this.ifStop();
+            if ( this.prevIndex >= 0 ) {
+                this.curLi.className = '';
+                this.prevLi.className = this.options.enableClass;
+            }   else {
+                if (this.options.infinite) {
+                    if (this.options.mode == this.mode.multiple) {
+                        this.curLi.className = '';
+                        this.list[this.itemNum-this.options.amount].className = this.options.enableClass;
+                    }   else {
+                        this.curLi.className = '';
+                        this.list[this.itemNum-1].className = this.options.enableClass;
+                    }
                 }
             }
+            this.lifecircle();
         }
-        this.lifecircle();
     },
 };
