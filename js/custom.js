@@ -13,9 +13,9 @@
 	/*	VINSLIDER
 	*
 	*/
-	var slider1 = document.getElementsByClassName('slider-1');
-	var slider2 = document.getElementsByClassName('slider-2');
-	var slider3 = document.getElementsByClassName('slider-3');
+	var slider1 = document.querySelector('.slider-1');
+	var slider2 = document.querySelector('.slider-2');
+	var slider3 = document.querySelector('.slider-3');
 
 	var options1 = {
 	    speed: 4000,
@@ -25,7 +25,7 @@
 
 	var options2 = {
 	    speed: 5000,
-	    mode: 'slider',
+	    mode: 'slide',
 	};
 
 	var options3 = {
@@ -35,8 +35,8 @@
 	    gutter: 5
 	};
 
-	new Vinslider(slider1[0], options1);
-	new Vinslider(slider2[0], options2);
-	new Vinslider(slider3[0], options3);
+	new Vinslider(slider1, options1);
+	new Vinslider(slider2, options2);
+	new Vinslider(slider3, options3);
 })();
 

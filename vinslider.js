@@ -1,4 +1,4 @@
-var Vinslider = function(target, custom) {
+const Vinslider = function(target, custom) {
     if (target == undefined) return;
     /*  DEFAULT SETTINGS AND CUSTOM OPTIONS
     *
