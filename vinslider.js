@@ -1,5 +1,5 @@
-const Vinslider = function(target, custom) {
-    if (target == undefined) return;
+const Vinslider = function(selector, custom) {
+    if (selector == undefined) return;
     /*  DEFAULT SETTINGS AND CUSTOM OPTIONS
     *
     */
@@ -29,7 +29,7 @@ const Vinslider = function(target, custom) {
     this.controller;
     this.prevBtn;
     this.nextBtn;
-    this.ul = target.children[0];
+    this.ul = selector.children[0];
     this.list = this.ul.children;
     /*  HELPER
     *
@@ -55,19 +55,19 @@ const Vinslider = function(target, custom) {
     /*  START RUNNING
     *
     */
-    this.init(target);
+    this.init(selector);
 };
 
 Vinslider.prototype = {
-    init: function(target) {
+    init: function(selector) {
         this.settingOptions();
         /*  CREATE DOM ELEMENT
         *
         */
         this.modeInit();
         this.responsive();
-        this.buildBullet(target);
-        this.buildController(target);
+        this.buildBullet(selector);
+        this.buildController(selector);
         /*  RUN VINSLIDER
         *
         */
@@ -159,10 +159,10 @@ Vinslider.prototype = {
         })(this.preset);
     },
 
-    buildController: function(target) {
+    buildController: function(selector) {
         var ul = document.createElement('ul');
         ul.className = this.classname[1];
-        target.appendChild(ul);
+        selector.appendChild(ul);
 
         for (i=0; i<2; i++) {
             var li = document.createElement('li');
@@ -176,10 +176,10 @@ Vinslider.prototype = {
         if (this.options.controller == false) ul.style.display = 'none';
     },
 
-    buildBullet: function(target) {
+    buildBullet: function(selector) {
         var ul = document.createElement('ul');
         ul.className = this.classname[2];
-        target.appendChild(ul);
+        selector.appendChild(ul);
 
         for (i=0; i<this.itemNum; i++) {
             var li = document.createElement('li');
