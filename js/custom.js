@@ -40,8 +40,8 @@
 	    scrollable: true,
 	};
 
-	new Vinslider(slider1, options1);
-	new Vinslider(slider2, options2);
-	new Vinslider(slider3, options3);
+	new Vinslider(slider1);
+	new Vinslider(slider2, options3);
+	new Vinslider(slider3, options2);
 })();
 

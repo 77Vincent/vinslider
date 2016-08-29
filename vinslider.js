@@ -20,8 +20,8 @@ const Vinslider = function(target, custom) {
         vertical: false,
         moveBy: 1,
     };
-    this.custom = custom;
-    this.options = this.custom ? this.custom : this.preset;
+    this.custom = custom ? custom : this.preset;
+    this.options = custom ? custom : this.preset;
     /*  DOM
     *
     */
