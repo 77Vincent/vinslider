@@ -2,20 +2,28 @@
   "name": "vinslider",
   "version": "1.0.5",
   "description": "A light weight, written in native javascript, powerful slider",
-  "main": "index.js",
+  "main": "vinslider.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/77Vincent/vinslider.git"
+    "url": "https://github.com/77Vincent/vinslider.git"
+  },
+  "repository": {
+    "type": "npm",
+    "url": "https://www.npmjs.com/package/vinslider"
   },
   "keywords": [
     "slider",
     "scroller",
     "native"
   ],
-  "author": "Vincent <wentianqi77@outlook.com> (https://www.77webtech.com)",
+  "author": {
+    "name": "Vincent",
+    "email": "wentianqi77@outlook.com",
+    "url": "https://www.77webtech.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/77Vincent/vinslider/issues"
