@@ -36,12 +36,23 @@
 	    amount: 4,
 	    gutter: 0.04,
 	    percentGutter: true,
-	    vertical: true,
 	    scrollable: true,
 	};
 
-	new Vinslider(slider1);
-	new Vinslider(slider2, options3);
-	new Vinslider(slider3, options2);
+	var vinsliderA = new Vinslider(slider1);
+	var vinsliderB = new Vinslider(slider2, options2);
+	var vinsliderC = new Vinslider(slider3, options3);
+
+	window.onresize = function() {
+		var width = window.innerWidth;
+		if ( width <= 1024 ) {
+			vinsliderC.options.amount = 2;
+			vinsliderC.modeInit();
+		}	else {
+			vinsliderC.options.amount = 4;
+			vinsliderC.modeInit();
+		}
+	}
+
 })();
 

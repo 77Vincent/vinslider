@@ -64,20 +64,20 @@ Vinslider.prototype = {
         /*  CREATE DOM ELEMENT
         *
         */
-        this.modeInit();
+        this.modeInit(this.options);
         this.responsive();
         this.buildBullet(selector);
         this.buildController(selector);
         /*  RUN VINSLIDER
         *
         */
-        this.initFunction(this.options.startFrom);
+        this.start(this.options.startFrom);
         this.lifecircle();
         this.autoPlay(this.options.speed);
         this.userEvent();
     },
 
-    modeInit: function() {
+    modeInit: function(para) {
         /*  LI WIDTH CALCULATION
         *
         */
@@ -138,7 +138,7 @@ Vinslider.prototype = {
         });
 
         function reset() { 
-            self.modeInit();
+            self.modeInit(self.options);
             self.lifecircle();
         }
     },
@@ -230,7 +230,7 @@ Vinslider.prototype = {
         }
     },
 
-    initFunction: function(ind) {
+    start: function(ind) {
         /*  INITIALIZE THE FUNCTION
         *
         */
