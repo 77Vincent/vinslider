@@ -64,7 +64,7 @@ Vinslider.prototype = {
         /*  CREATE DOM ELEMENT
         *
         */
-        this.modeInit(this.options);
+        this.modeInit();
         this.responsive();
         this.buildBullet(selector);
         this.buildController(selector);
@@ -77,7 +77,7 @@ Vinslider.prototype = {
         this.userEvent();
     },
 
-    modeInit: function(para) {
+    modeInit: function() {
         /*  LI WIDTH CALCULATION
         *
         */
@@ -138,7 +138,7 @@ Vinslider.prototype = {
         });
 
         function reset() { 
-            self.modeInit(self.options);
+            self.modeInit();
             self.lifecircle();
         }
     },
