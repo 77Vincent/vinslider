@@ -1,8 +1,4 @@
 const Vinslider = function(selector, custom) {
-    if (selector == undefined) return;
-    /*  DEFAULT SETTINGS AND CUSTOM OPTIONS
-    *
-    */
     this.preset = {
         speed: 5000,
         pager: true,
@@ -19,9 +15,10 @@ const Vinslider = function(selector, custom) {
         scrollable: false,
         vertical: false,
         moveBy: 1,
+        stop: false,
     };
     this.custom = custom ? custom : this.preset;
-    this.options = custom ? custom : this.preset;
+    this.options = this.custom ? this.custom : this.preset;
     /*  DOM
     *
     */
@@ -31,9 +28,6 @@ const Vinslider = function(selector, custom) {
     this.nextBtn;
     this.ul = selector.children[0];
     this.list = this.ul.children;
-    /*  HELPER
-    *
-    */
     this.mode = {
         fade: 'fade',
         slide: 'slide',
@@ -51,7 +45,6 @@ const Vinslider = function(selector, custom) {
     this.nextLi;
     this.itemNum = this.list.length;
     this.size;
-    this.ifwrong = false;
     /*  START RUNNING
     *
     */
@@ -64,7 +57,8 @@ Vinslider.prototype = {
         /*  CREATE DOM ELEMENT
         *
         */
-        this.modeInit();
+        if (this.options.stop) return;
+        this.functionInit();
         this.responsive();
         this.buildBullet(selector);
         this.buildController(selector);
@@ -77,7 +71,7 @@ Vinslider.prototype = {
         this.userEvent();
     },
 
-    modeInit: function() {
+    functionInit: function() {
         /*  LI WIDTH CALCULATION
         *
         */
@@ -87,15 +81,15 @@ Vinslider.prototype = {
         }
         for (e=0; e<this.itemNum; e++) {
             var li = this.list[e];
-            var gut;
 
             if (this.options.mode == this.mode.multiple) {
                 this.options.amount = (this.options.amount <= 1) ? 2 : this.options.amount;
-                this.size = this.ul[this.direction[1]] / this.options.amount;
+                this.size = (this.ul[this.direction[1]] / this.options.amount);
             }   else {
                 this.size = this.ul[this.direction[1]];
             }
 
+            var gut;
             if (this.options.percentGutter) {
                 gut = this.size * this.options.gutter;
             }   else {
@@ -103,8 +97,6 @@ Vinslider.prototype = {
             }
 
             var fix = (this.options.mode == this.mode.multiple) ? gut / (this.options.amount-1) : 1;
-
-            this.size = this.size + fix;
             li.style[this.direction[2]] = this.size - gut + 'px';
         } 
         /*  MODE INIT
@@ -138,7 +130,7 @@ Vinslider.prototype = {
         });
 
         function reset() { 
-            self.modeInit();
+            self.functionInit();
             self.lifecircle();
         }
     },
