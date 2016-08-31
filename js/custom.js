@@ -34,7 +34,7 @@
 	    mode: 'multiple',
 	    auto: false,
 	    amount: 4,
-	    gutter: 0.5,
+	    gutter: 0.05,
 	    percentGutter: true,
 	};
 
@@ -46,10 +46,8 @@
 		var width = window.innerWidth;
 		if ( width <= 1024 ) {
 			vinsliderC.options.amount = 2;
-			vinsliderC.modeInit();
 		}	else {
 			vinsliderC.options.amount = 4;
-			vinsliderC.modeInit();
 		}
 	}
 

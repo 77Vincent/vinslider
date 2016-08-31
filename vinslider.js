@@ -15,7 +15,6 @@ const Vinslider = function(selector, custom) {
         scrollable: false,
         vertical: false,
         moveBy: 1,
-        stop: false,
     };
     this.custom = custom ? custom : this.preset;
     this.options = this.custom ? this.custom : this.preset;
@@ -57,7 +56,6 @@ Vinslider.prototype = {
         /*  CREATE DOM ELEMENT
         *
         */
-        if (this.options.stop) return;
         this.functionInit();
         this.responsive();
         this.buildBullet(selector);
