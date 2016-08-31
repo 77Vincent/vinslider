@@ -79,24 +79,29 @@ Vinslider.prototype = {
         }
         for (e=0; e<this.itemNum; e++) {
             var li = this.list[e];
-
             if (this.options.mode == this.mode.multiple) {
                 this.options.amount = (this.options.amount <= 1) ? 2 : this.options.amount;
                 this.size = (this.ul[this.direction[1]] / this.options.amount);
             }   else {
                 this.size = this.ul[this.direction[1]];
             }
+        }
 
-            var gut;
-            if (this.options.percentGutter) {
-                gut = this.size * this.options.gutter;
-            }   else {
-                gut = this.options.gutter;
-            }
-
-            var fix = (this.options.mode == this.mode.multiple) ? gut / (this.options.amount-1) : 1;
+        var gut;
+        if (this.options.percentGutter) {
+            gut = this.size * this.options.gutter;
+        }   else {
+            gut = this.options.gutter;
+        }
+        var fix = (this.options.mode == this.mode.multiple) ? gut / (this.options.amount-1) : 0;
+        var por = (this.size - gut) / this.size;
+        // gut += (1-por)*fix;
+        // this.size += fix;
+        for (e=0; e<this.itemNum; e++) {
+            var li = this.list[e];
             li.style[this.direction[2]] = this.size - gut + 'px';
-        } 
+        }
+
         /*  MODE INIT
         *
         */
@@ -106,7 +111,6 @@ Vinslider.prototype = {
                 li.style.opacity = 1;
             }
         }
-
         if ( this.options.mode == this.mode.multiple ) {
             for (i=0; i<this.itemNum; i++) {
                 var li = this.list[i];

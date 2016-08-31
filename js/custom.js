@@ -38,8 +38,8 @@
 	    percentGutter: true,
 	};
 
-	var vinsliderA = new Vinslider(slider1, options1);
-	var vinsliderB = new Vinslider(slider2, options2);
+	// var vinsliderA = new Vinslider(slider1, options1);
+	// var vinsliderB = new Vinslider(slider2, options2);
 	var vinsliderC = new Vinslider(slider3, options3);
 
 	window.onresize = function() {
