@@ -1,3 +1,4 @@
+"use strict"
 const Vinslider = function(selector, custom) {
     this.preset = {
         speed: 5000,
@@ -77,7 +78,7 @@ Vinslider.prototype = {
         if (this.options.vertical) {
             this.direction = ['top', 'clientHeight', 'height'];
         }
-        for (e=0; e<this.itemNum; e++) {
+        for (var e=0; e<this.itemNum; e++) {
             var li = this.list[e];
             if (this.options.mode == this.mode.multiple) {
                 this.options.amount = (this.options.amount <= 1) ? 2 : this.options.amount;
@@ -97,7 +98,7 @@ Vinslider.prototype = {
         var por = (this.size - gut) / this.size;
         // gut += (1-por)*fix;
         // this.size += fix;
-        for (e=0; e<this.itemNum; e++) {
+        for (var e=0; e<this.itemNum; e++) {
             var li = this.list[e];
             li.style[this.direction[2]] = this.size - gut + 'px';
         }
@@ -106,13 +107,13 @@ Vinslider.prototype = {
         *
         */
         if ( this.options.mode == this.mode.slide ) {
-            for (i=0; i<this.itemNum; i++) {
+            for (var i=0; i<this.itemNum; i++) {
                 var li = this.list[i];
                 li.style.opacity = 1;
             }
         }
         if ( this.options.mode == this.mode.multiple ) {
-            for (i=0; i<this.itemNum; i++) {
+            for (var i=0; i<this.itemNum; i++) {
                 var li = this.list[i];
                 li.style.opacity = 1;
             }
@@ -158,7 +159,7 @@ Vinslider.prototype = {
         ul.className = this.classname[1];
         selector.appendChild(ul);
 
-        for (i=0; i<2; i++) {
+        for (var i=0; i<2; i++) {
             var li = document.createElement('li');
             ul.appendChild(li);
         }
@@ -175,7 +176,7 @@ Vinslider.prototype = {
         ul.className = this.classname[2];
         selector.appendChild(ul);
 
-        for (i=0; i<this.itemNum; i++) {
+        for (var i=0; i<this.itemNum; i++) {
             var li = document.createElement('li');
             ul.appendChild(li);
         }
@@ -188,7 +189,7 @@ Vinslider.prototype = {
         /*  BASIC LIFECIRCLE OF A SLIDE
         *
         */
-        for (i=0; i<this.itemNum; i++) {
+        for (var i=0; i<this.itemNum; i++) {
             var li = this.list[i];
             var dot = this.dot[i];
             var status = li.className;
@@ -217,7 +218,7 @@ Vinslider.prototype = {
         *
         */
         if ( this.options.mode == this.mode.slide || this.options.mode == this.mode.multiple ) {
-            for (e=0; e<this.itemNum; e++) {
+            for (var e=0; e<this.itemNum; e++) {
                 var ind  = e - this.curIndex;
                 this.list[e].style[this.direction[0]] = this.size * ind + 'px';
             }
@@ -288,11 +289,11 @@ Vinslider.prototype = {
        /*  PAGER NAVIGATION
         *
         */
-        for (i=0; i<this.itemNum; i++) {
+        for (var i=0; i<this.itemNum; i++) {
             this.dot[i].onclick = function () {
                 var ind = Array.prototype.indexOf.call(self.dot, this);
 
-                for (e=0; e<self.itemNum; e++) {
+                for (var e=0; e<self.itemNum; e++) {
                     self.list[e].className = '';
                     self.dot[e].className = '';
                 }

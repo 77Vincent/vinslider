@@ -18,7 +18,7 @@
 	var slider3 = document.querySelector('.slider-3');
 
 	var options1 = {
-	    speed: 1000,
+	    speed: 5000,
 	    mode: 'fade',
 	    scrollable: true,
 	};
@@ -38,8 +38,8 @@
 	    percentGutter: true,
 	};
 
-	// var vinsliderA = new Vinslider(slider1, options1);
-	// var vinsliderB = new Vinslider(slider2, options2);
+	var vinsliderA = new Vinslider(slider1, options1);
+	var vinsliderB = new Vinslider(slider2, options2);
 	var vinsliderC = new Vinslider(slider3, options3);
 
 	window.onresize = function() {
