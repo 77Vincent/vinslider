@@ -42,7 +42,7 @@
 ***************************************************/
 .vinslider ul.vinbullet {
     text-align: center;
-    z-index: 1;
+    z-index: 9;
     margin: 10px 0;
 }
 .vinslider ul.vinbullet li {
@@ -66,7 +66,7 @@
     vinCONTROLLER
 ***************************************************/
 .vinslider ul.vincontroller {
-    z-index: 1;
+    z-index: 9;
     width: 100%;
 }
 .vinslider ul.vincontroller:after {
