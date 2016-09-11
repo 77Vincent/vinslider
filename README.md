@@ -4,7 +4,7 @@
 
 ## CODE EXAMPLE
 
-#### Javascript:
+### Javascript:
 
     var selector = document.querySelector('DOM element');
     
@@ -20,7 +20,7 @@
 * If no custom option is given, Vinslider will be initialized with the default options.
 * You can create several instance of Vinslider within one page with different options by this way.
 
-#### HTML: 
+### HTML: 
 
     <div id="selector" class="vinslider">
       <ul>
@@ -34,7 +34,7 @@
 * The parent wrapper could be of any kinds of tag.
 * The classname "vinslider" is optional, it's for getting the basic style from vinslider.css
 
-#### CSS:
+### CSS:
 
     vinslider.css
 
@@ -67,7 +67,7 @@ Embed them into your project.
 
 > When under carousel mode, this determines how many items will be shown within one row.
 
-> **NOTE**: If no value is specified or the value is greater than the total number of list items, the value will be reset to 2.
+> *NOTE: If no value is specified or the value is greater than the total number of list items, the value will be reset to 2*.
 
 ### duration : Number
 > How much time each slide stays(mini second).
@@ -78,12 +78,12 @@ Embed them into your project.
 ### percentGutter : Number
 > Turn the normal pixel unit gutter into a percentage one.
 
-> *NOTE*: Only works when the gutter is also declared, if not, no effect or error will be met.
+> *NOTE: Only works when the gutter is also declared, if not, no effect or error will be met*.
 
 ### startFrom: Number
 > Determining from which item the slider or carousel starts. 
 
-> NOTE: The first item will be an index of 0 and so on. If the value is greater than the total number of items or less than 0, it will still start from 0.
+> *NOTE: The first item will be an index of 0 and so on. If the value is greater than the total number of items or less than 0, it will still start from 0*.
 
 ### moveBy : Number
 > How many items will be passed by each event: auto playing, controller, scrolling. (By default the value is 1)
@@ -123,26 +123,16 @@ Embed them into your project.
 
 > false: The opposite direction.
 
-> NOTE: This only affects the auto playing. Controller event or scolling will still obey their original direction.
+> *NOTE: This only affects the auto playing. Controller event or scolling will still obey their original direction*.
 
 ## FEATURES
 
 * Vinslider will be immediately stopped if the DOM element is not found or improper.
 * Currently touch event on mobile devices is not supported yet.
 
-## NOTES
-* After successfully initiating a Vinslider, you will normally get three ul elements in the parent wrapper, which are 
-  > vinmain: the main container of the sliders.
-
-  > vinpager: the container of the pagers.
-  
-  > vincontroller: the container of the controllers.
-* All items are absolute positioned in the slider, so that a height for the vinmain or the parent wrapper is needed.
-* All animations are taken care by CSS transition. By default it is 0.75s and ease-in-out, customize it as you wish.
-
 ## TEST
 
-Open the demo.html
+Open the demo.html in the repository to see the demo of Vinslider.
 
 ## CONTRIBUTOR
 
