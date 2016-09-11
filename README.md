@@ -2,7 +2,7 @@
 
 **Vinslider is for creating sliders or carousels. Light weight, responsive, native Javascript. Highly customizable.**
 
-## CODE EXAMPLE
+## Code Example
 
 ### Javascript:
 
@@ -41,7 +41,7 @@
 * This provides the default and basic style for a Vinslider instance.
 * Feel free to override it for a custom style as you want.
 
-## INSTALLATION
+## Installation
 
 What you need are:
 
@@ -50,7 +50,7 @@ What you need are:
 
 Embed them into your project.
     
-## API REFERENCE
+## Configuration Options
 
 ### mode : String
 > **fade**: Each slide fades in and fades out when sliding **(Default)**.
@@ -125,20 +125,20 @@ Embed them into your project.
 
 > This is for changing the active class name of the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
 
-## FEATURES
+## Features
 
 * Vinslider will be immediately stopped if the DOM element is not found or improper and throw an error.
 * Currently touch event on mobile devices is not supported yet.
 
-## TEST
+## Demo
 
 Open the demo.html in the repository to see the demo of Vinslider.
 
-## CONTRIBUTOR
+## Contributor
 
 Vincent Wen
 
-## LICENSE
+## License
 
 Released under the MIT license: http://opensource.org/licenses/MIT
 
