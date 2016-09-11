@@ -1,12 +1,10 @@
 # Vinslider
 
-### Creating sliders or carousels
-### Light weight, responsive, native Javascript
-### Highly customizable.
+**Vinslider is for creating sliders or carousels. Light weight, responsive, native Javascript. Highly customizable.**
 
 ## CODE EXAMPLE
 
-### Javascript: new Vinslider(selector, options);
+#### Javascript:
 
     var selector = document.querySelector('DOM element');
     
@@ -22,7 +20,7 @@
 * If no custom option is given, Vinslider will be initialized with the default options.
 * You can create several instance of Vinslider within one page with different options by this way.
 
-### HTML: 
+#### HTML: 
 
     <div id="selector" class="vinslider">
       <ul>
@@ -35,8 +33,24 @@
 * The ul contains the list of elements that will be converted into a slider. No classname or id is needed.
 * The parent wrapper could be of any kinds of tag.
 * The classname "vinslider" is optional, it's for getting the basic style from vinslider.css
+
+#### CSS:
+
+    vinslider.css
+
+* This provides the default and basic style for a Vinslider instance.
+* Feel free to override it for a custom style as you want.
+
+## INSTALLATION
+
+What you need are:
+
+* vinslider.js or vinslider.min.js
+* vinslider.css (optional)
+
+Embed them into your project.
     
-## API DOCUMENTATIONS
+## API REFERENCE
 
 ### mode : String
 > **fade**: Each slide fades in and fades out when sliding(By default).
@@ -47,7 +61,7 @@
 
 ### enableClass : String
 
-> This is for changing the active class name for the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another class name if you want.
+> This is for changing the active class name for the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another custom classname if you want.
 
 ### amount: Number
 
