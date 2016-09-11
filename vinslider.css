@@ -33,19 +33,19 @@
 .vinslider ul.vinmain li img {
     width: 100%;
 }
-.vinslider ul.vinmain li.active {
+.vinslider ul.vinmain li.vinactive {
     opacity: 1;
     left: 0 !important;
 }
 /***************************************************  
     PAGER
 ***************************************************/
-.vinslider ul.vinbullet {
+.vinslider ul.vinpager {
     text-align: center;
     z-index: 9;
     margin: 10px 0;
 }
-.vinslider ul.vinbullet li {
+.vinslider ul.vinpager li {
     width: 15px;
     height: 15px;
     margin: 0 8px;
@@ -59,7 +59,7 @@
     -moz-transition: all 0.75s ease-in-out;
     -o-transition: all 0.75s ease-in-out;
 }
-.vinslider ul.vinbullet li.active {
+.vinslider ul.vinpager li.vinactive {
     background-color: #000;
 }
 /***************************************************  
