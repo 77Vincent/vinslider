@@ -1,6 +1,6 @@
 # Vinslider
 
-**Vinslider is for creating sliders or carousels. Light weight, responsive, native Javascript. Highly customizable.**
+**Light weight, responsive, native Javascript slider / carousel module. Highly customizable.**
 
 ## Code Example
 
