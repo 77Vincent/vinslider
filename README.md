@@ -1,26 +1,28 @@
 # Vinslider
 
-**Vinslider is a light weight, responsive, native javascript module that could convert a list of elements into a slider or a carousel,  and could be highly customized.**
+### Creating sliders or carousels
+### Light weight, responsive, native Javascript
+### Highly customizable.
 
 ## CODE EXAMPLE
-To create a new instance of Vinslider, simply pass the actual DOM element into the Vinslider() as the first parameter, then an option as the second parameter, which is optional, if no custom option is passed, Vinslider will be initialized with the default options.
 
-In this way of creating the instance, you can have several sliders or carousels in one page with different options and behaviour.
+### Javascript: new Vinslider(selector, options);
 
-    var selectorA = document.querySelector('DOM elementA');
-    var selectorB = document.querySelector('DOM elementB');
+    var selector = document.querySelector('DOM element');
     
-    var option = {
+    var options = {
       mode: slider,
       speed: 3500,
       ......
     };
     
-    var vinsliderA = new Vinslider(selectorA, option);
-    var vinsliderB = new Vinslider(selectorB);
-    var ......
+    var vinslider = new Vinslider(selector, options);
 
-The HTML structure is as shown below: the parent element could be whatever tag you want, giving which an ID or a CLASS to be the idenfier so that you can get it in javascript. Inside which, a plain ul is all it needs. The class "vinslider" is for getting the default CSS of Vinslider, which could also be used as an identifier if you want and optional. The default CSS of Vinslider is pretty plain and simple, for not giving too much inconvenience when users want to customize their vinsliders.
+* The selector needs to be a native DOM element.
+* If no custom option is given, Vinslider will be initialized with the default options.
+* You can create several instance of Vinslider within one page with different options by this way.
+
+### HTML: 
 
     <div id="selector" class="vinslider">
       <ul>
@@ -29,6 +31,10 @@ The HTML structure is as shown below: the parent element could be whatever tag y
         <li>......</li>
       </ul>
     <div>
+
+* The ul contains the list of elements that will be converted into a slider. No classname or id is needed.
+* The parent wrapper could be of any kinds of tag.
+* The classname "vinslider" is optional, it's for getting the basic style from vinslider.css
     
 ## API DOCUMENTATIONS
 
@@ -130,5 +136,5 @@ Vincent Wen
 
 ## LICENSE
 
-
+Released under the MIT license: http://opensource.org/licenses/MIT
 
