@@ -51,32 +51,33 @@ header h1 {
 	margin: 50px auto;
 }
 
-.vinslider ul:first-child li {
+.vinslider .vinmain:first-child li {
 	background-color: gray;
-	color: white;
-	font-size: 50px;
-	font-weight: bold;
 	text-align: center;
 	display: table;
 }
 
-.vinslider ul:first-child li p {
+.vinslider .vinmain:first-child li p {
 	display: table-cell;
 	vertical-align: middle;
+	font-weight: bold;
+	font-size: 50px;
+	color: white;
 }
 
-.vinslider ul:first-child li:nth-child(even) {
+.vinslider .vinmain:first-child li:nth-child(even) {
 	background-color: #62acff;
 }
 
-.vinslider ul:first-child li img {
+.vinslider .vinmain:first-child li img {
 	display: none;
 }
 
-.vinslider ul:first-child li {
+.vinslider .vinmain:first-child li {
 	background-size: cover;
 	background-position: center;
 }
+
 body.lock {
 	overflow: hidden;
 }

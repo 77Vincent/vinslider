@@ -40,7 +40,6 @@ const Vinslider = function(selector, custom) {
         slide: 'slide',
         carousel: 'carousel',
     }
-    this.classname = ['vinmain', 'vincontroller', 'vinpager'];
     this.direction = ['left', 'clientWidth', 'width'];
     this.timer;
     this.end;
@@ -63,7 +62,7 @@ Vinslider.prototype = {
          */
         this.functionInit();
         this.responsive();
-        this.buildBullet(selector);
+        this.buildpager(selector);
         this.buildController(selector);
         /*  RUN VINSLIDER
          *
@@ -78,7 +77,7 @@ Vinslider.prototype = {
         /*  LI WIDTH CALCULATION
          *
          */
-        this.ul.className = this.classname[0];
+        this.ul.className = 'vinmain';
         if (this.options.vertical) {
             this.direction = ['top', 'clientHeight', 'height'];
         }
@@ -131,7 +130,7 @@ Vinslider.prototype = {
 
     responsive: function() {
         var timeout = false;
-        /*  FOR REAL TIME RESPONSIVE
+        /*  FOR RESPONSIVE
          *
          */
         var self = this;
@@ -163,9 +162,11 @@ Vinslider.prototype = {
     },
 
     buildController: function(selector) {
+        var wrapper = document.createElement('div');
         var ul = document.createElement('ul');
-        ul.className = this.classname[1];
-        selector.appendChild(ul);
+        wrapper.className = 'vincontroller';
+        selector.appendChild(wrapper);
+        wrapper.appendChild(ul);
 
         for (var i = 0; i < 2; i++) {
             var li = document.createElement('li');
@@ -179,10 +180,12 @@ Vinslider.prototype = {
         if (this.options.controller == false) ul.style.display = 'none';
     },
 
-    buildBullet: function(selector) {
+    buildpager: function(selector) {
+        var wrapper = document.createElement('div');
         var ul = document.createElement('ul');
-        ul.className = this.classname[2];
-        selector.appendChild(ul);
+        wrapper.className = 'vinpager';
+        selector.appendChild(wrapper);
+        wrapper.appendChild(ul);
 
         for (var i = 0; i < this.itemNum; i++) {
             var li = document.createElement('li');

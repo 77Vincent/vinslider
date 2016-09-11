@@ -18,7 +18,7 @@
 	var slider3 = document.querySelector('.slider-3');
 
 	var options1 = {
-	    duration: 1000,
+	    duration: 10000,
 	    mode: 'fade',
 	    scrollable: true,
 	};
@@ -37,7 +37,6 @@
 	    percentGutter: true,
 	    scrollable: true,
 	    vertical: true,
-	    moveBy: 14
 	};
 
 	var vinsliderA = new Vinslider(slider1, options1);
