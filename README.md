@@ -9,8 +9,8 @@
     var selector = document.querySelector('DOM element');
     
     var options = {
-      mode: slider,
-      speed: 3500,
+      mode: slide,
+      duration: 3500,
       ......
     };
     
@@ -30,9 +30,9 @@
       </ul>
     <div>
 
-* The ul contains the list of elements that will be converted into a slider. No classname or id is needed.
+* The ul contains the list of elements that will be converted into a slider. No additional classname or id is needed.
 * The parent wrapper could be of any kinds of tag.
-* The classname "vinslider" is optional, it's for getting the basic style from vinslider.css
+* The classname "vinslider" is optional, for getting the basic style from vinslider.css
 
 ### CSS:
 
@@ -53,27 +53,23 @@ Embed them into your project.
 ## API REFERENCE
 
 ### mode : String
-> **fade**: Each slide fades in and fades out when sliding(By default).
+> **fade**: Each slide fades in and fades out when sliding **(Default)**.
 
 > **slide**: Normal slides effect.
 
 > **carousel**: Turning the slider into a carousel. 
 
-### enableClass : String
-
-> This is for changing the active class name for the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another custom classname if you want.
-
 ### amount: Number
 
 > When under carousel mode, this determines how many items will be shown within one row.
 
-> *NOTE: If no value is specified or the value is greater than the total number of list items, the value will be reset to 2*.
+> *NOTE: If no value is specified or the value is greater than the total amount of items, the value will be reset to 2*.
 
 ### duration : Number
-> How much time each slide stays(mini second).
+> How much time each slide stays **(mini second)**.
 
 ### gutter : Number
-> Add a gutter in between each items(By default the unit is pixel).
+> Add a gutter in between each items **(pixels)**.
 
 ### percentGutter : Number
 > Turn the normal pixel unit gutter into a percentage one.
@@ -83,10 +79,10 @@ Embed them into your project.
 ### startFrom: Number
 > Determining from which item the slider or carousel starts. 
 
-> *NOTE: The first item will be an index of 0 and so on. If the value is greater than the total number of items or less than 0, it will still start from 0*.
+> *NOTE: The first item will be an index of 0 and so on. If the value is greater than the total amount of items or less than 0, it will still start from 0*.
 
 ### moveBy : Number
-> How many items will be passed by each event: auto playing, controller, scrolling. (By default the value is 1)
+> How many items will pass by with each slide **(1 by default)**
 
 ### pager : Boolean
 > ture: Show the bullet.
@@ -104,30 +100,34 @@ Embed them into your project.
 > false: Do not auto play.
 
 ### infinite : Boolean
-> ture: The slider or carousel will start from the 1st item again when reaching the last item.
+> ture: The slider or carousel will go back to the first item after reaching the last one.
 
-> false: Will be stoped at the end the slide.
+> false: Will be stoped at the end the slide or carousel.
 
 ### scrollable : Boolean
-> ture: Mouse wheel scrolling event could slide the slider or carousel.
+> ture: Mouse wheel scrolling could slide the slider or carousel.
 
-> false: No mouse wheel event applied(By default).
+> false: No mouse wheel event applied **(Default)**.
 
 ### vertical : Boolean
 > ture: The slider or carousel will be shown in vertical mode. 
 
-> false: Horizontal mode(By default). 
+> false: Horizontal mode **(Default)**. 
 
 ### direction : Boolean
-> ture: Goes from left to right, or top to bottom(By default).
+> ture: Goes from left to right, or top to bottom **(Default)**.
 
 > false: The opposite direction.
 
-> *NOTE: This only affects the auto playing. Controller event or scolling will still obey their original direction*.
+> *NOTE: This only affects the auto playing. User events will still obey their original direction*.
+
+### enableClass : String
+
+> This is for changing the active class name of the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
 
 ## FEATURES
 
-* Vinslider will be immediately stopped if the DOM element is not found or improper.
+* Vinslider will be immediately stopped if the DOM element is not found or improper and throw an error.
 * Currently touch event on mobile devices is not supported yet.
 
 ## TEST
