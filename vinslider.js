@@ -1,5 +1,5 @@
 "use strict"
-const Vinslider = function(selector, custom) {
+var Vinslider = function(selector, custom) {
     if (!selector) {
         console.log("ERROR: Didn't find corresponding element");
         return;
