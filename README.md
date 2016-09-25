@@ -66,41 +66,41 @@ Embed them into your project.
 > *NOTE: If no value is specified the value will be 2 by default, or if the value is greater than the total amount of items, the controller will be hidden*.
 
 ### duration : Number
-> How much time each slide stays **(mini second)**.
+> How much time each slide stays **(Default: 5000, mini second)**.
 
 ### gutter : Number
-> Add a gutter in between each items **(pixels)**.
+> Add a gutter in between each items **(Default: 0, pixels)**.
 
-### percentGutter : Number
-> Turn the normal pixel unit gutter into a percentage one.
+### percentGutter : Boolean
+> Turn the normal pixel unit gutter into a percentage one **(Default: false)**.
 
 > *NOTE: Only works when the gutter is also declared, if not, no effect or error will be met*.
 
 ### startFrom: Number
-> Determining from which item the slider or carousel starts. 
+> Determining from which item the slider or carousel starts **(Default: 0)**. 
 
 > *NOTE: The first item will be an index of 0 and so on. If the value is greater than the total amount of items or less than 0, it will still start from 0*.
 
 ### moveBy : Number
-> How many items will pass by with each slide **(1 by default)**
+> How many items will pass by with each slide **(Default: 1)**
 
 ### pager : Boolean
-> ture: Show the bullet.
+> ture: Show the bullet **(Default)**.
 
 > false: Hide the bullet.
 
 ### controller : Boolean
-> ture: Show the controller.
+> ture: Show the controller **(Default)**.
 
 > false: Hide the controller.
 
 ### auto : Boolean
-> ture: Auto play the slider or carousel.
+> ture: Auto play the slider or carousel **(Default)**.
 
 > false: Do not auto play.
 
 ### infinite : Boolean
-> ture: The slider or carousel will go back to the first item after reaching the last one.
+> ture: The slider or carousel will go back to the first item after reaching the last one **(Default)**.
 
 > false: Will be stoped at the end the slide or carousel.
 
@@ -123,7 +123,9 @@ Embed them into your project.
 
 ### enableClass : String
 
-> This is for changing the active class name of the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
+> "vinactive" **(Default)**
+
+> This is for changing the active class name of the current active element. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
 
 ## Dependency
 
