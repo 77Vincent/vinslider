@@ -84,7 +84,7 @@ Vinslider.prototype = {
         for (var e = 0; e < this.itemNum; e++) {
             var li = this.list[e];
             if (this.options.mode == this.mode.carousel) {
-                this.options.amount = (this.options.amount <= 1 || this.options.amount > this.itemNum) ? 2 : this.options.amount;
+                this.options.amount = (this.options.amount <= 1) ? 2 : this.options.amount;
                 this.size = (this.ul[this.direction[1]] / this.options.amount);
             } else {
                 this.size = this.ul[this.direction[1]];
@@ -178,6 +178,7 @@ Vinslider.prototype = {
         this.nextBtn = this.controller.children[1];
 
         if (this.options.controller == false) ul.style.display = 'none';
+        if (this.itemNum <= this.options.amount) ul.style.display = 'none';
     },
 
     buildpager: function(selector) {

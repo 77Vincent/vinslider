@@ -63,7 +63,7 @@ Embed them into your project.
 
 > When under carousel mode, this determines how many items will be shown within one row.
 
-> *NOTE: If no value is specified or the value is greater than the total amount of items, the value will be reset to 2*.
+> *NOTE: If no value is specified the value will be 2 by default, or if the value is greater than the total amount of items, the controller will be hidden*.
 
 ### duration : Number
 > How much time each slide stays **(mini second)**.
