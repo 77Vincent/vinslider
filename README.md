@@ -1,4 +1,4 @@
-# Vinslider
+# Vinslider - documentations
 
 **Light weight, responsive, native Javascript slider / carousel module. Highly customizable.**
 
@@ -45,7 +45,7 @@
 
 What you need are:
 
-* vinslider.js or vinslider.min.js
+* vinslider.js
 * vinslider.css (optional)
 
 Embed them into your project.
@@ -125,14 +125,19 @@ Embed them into your project.
 
 > This is for changing the active class name of the current active element, by default it's 'vinactive'. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
 
+## Dependency
+
+None
+
 ## Features
 
 * Vinslider will be immediately stopped if the DOM element is not found or improper and throw an error.
 * Currently touch event on mobile devices is not supported yet.
+* Pager(or bullet) are able to control the slider or carousel.
 
 ## Demo
 
-Open the demo.html in the repository to see the demo of Vinslider.
+Go to http://www.77webtech.com/vinslider to see the demo.
 
 ## Contributor
 
