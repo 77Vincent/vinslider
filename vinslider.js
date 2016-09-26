@@ -4,6 +4,12 @@ var Vinslider = function(selector, custom) {
         console.log("ERROR: Didn't find corresponding element");
         return;
     }
+    if (selector.clientWidth == 0 || selector.clientHeight == 0) {
+        selector.style.display = 'block';
+        setTimeout(function() {
+            selector.style.display = '';
+        },5);
+    }
     /*  OPTIONS
      *
      */
@@ -98,9 +104,6 @@ Vinslider.prototype = {
             gut = this.options.gutter;
         }
         var fix = (this.options.mode == this.mode.carousel) ? gut / (this.options.amount - 1) : 0;
-        var por = (this.size - gut) / this.size;
-        // gut += (1-por)*fix;
-        // this.size += fix;
         for (var e = 0; e < this.itemNum; e++) {
             var li = this.list[e];
             li.style[this.direction[2]] = this.size - gut + 'px';
