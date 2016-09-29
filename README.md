@@ -1,8 +1,8 @@
-# Vinslider - documentations
+<h1 id="documentation">documentation</h1>
 
-**Light weight, responsive, native Javascript slider / carousel module. Highly customizable.**
+#### Light weight, responsive, native Javascript slider / carousel module. Highly customizable.
 
-## Code Example
+<h2 id="example">Code Example</h2>
 
 ### Javascript:
 
@@ -41,7 +41,7 @@
 * This provides the default and basic style for a Vinslider instance.
 * Feel free to override it for a custom style as you want.
 
-## Installation
+<h2 id="installation">Installation</h2>
 
 What you need are:
 
@@ -49,8 +49,10 @@ What you need are:
 * vinslider.css (optional)
 
 Embed them into your project.
+
+Download here: https://github.com/77Vincent/vinslider
     
-## Configuration Options
+<h2 id="configuration">Configuration Options</h2>
 
 ### mode : String
 > **fade**: Each slide fades in and fades out when sliding **(Default)**.
@@ -127,25 +129,25 @@ Embed them into your project.
 
 > This is for changing the active class name of the current active element. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
 
-## Dependency
+<h2 id="dependency">Dependency</h2>
 
 None
 
-## Features
+<h2 id="features">Features</h2>
 
 * Vinslider will be immediately stopped if the DOM element is not found or improper and throw an error.
 * Currently touch event on mobile devices is not supported yet.
 * Pager(or bullet) are able to control the slider or carousel.
 
-## Demo
+<h2 id="demo">Demo</h2>
 
 Go to http://www.77webtech.com/vinslider to see the demo.
 
-## Contributor
+<h2 id="contributor">Contributor</h2>
 
 Vincent Wen
 
-## License
+<h2 id="license">License</h2>
 
 Released under the MIT license: http://opensource.org/licenses/MIT
 
