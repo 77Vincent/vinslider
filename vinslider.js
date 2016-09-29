@@ -1,14 +1,19 @@
+/**
+*
+*   @Title:     Vinslider
+*   @Descr:     A lightweight slider/carousel module in native Javascript
+*   @Package:   Javascript
+*   @Copyright: Released under the MIT license: http://opensource.org/licenses/MIT
+*   @Author:    Vincent Wen <www.77webtech.com/about> <wentianqi77@outlook.com>
+*
+**/
+
 "use strict"
+
 var Vinslider = function(selector, custom) {
     if (!selector) {
         console.log("ERROR: Didn't find corresponding element");
         return;
-    }
-    if (selector.clientWidth == 0 || selector.clientHeight == 0) {
-        selector.style.display = 'block';
-        setTimeout(function() {
-            selector.style.display = '';
-        },5);
     }
     /*  OPTIONS
      *

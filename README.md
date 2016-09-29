@@ -138,6 +138,7 @@ None
 * Vinslider will be immediately stopped if the DOM element is not found or improper and throw an error.
 * Currently touch event on mobile devices is not supported yet.
 * Pager(or bullet) are able to control the slider or carousel.
+* Controller will be hidden in carousel mode if the actual amount of items is less than the amount of items to be displayed at a time.
 
 <h2 id="demo">Demo</h2>
 
