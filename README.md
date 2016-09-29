@@ -65,7 +65,7 @@ Download here: https://github.com/77Vincent/vinslider
 
 > When under carousel mode, this determines how many items will be shown within one row.
 
-> *NOTE: If no value is specified the value will be 2 by default, or if the value is greater than the total amount of items, the controller will be hidden*.
+> *NOTE: If no value is given then it will be set to 2 by default, or if the value is greater than the total amount of items, the controller will be hidden*.
 
 ### duration : Number
 > How much time each slide stays **(Default: 5000, mini second)**.
