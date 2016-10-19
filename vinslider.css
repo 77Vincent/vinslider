@@ -49,11 +49,10 @@
     padding: 10px;
 }
 
-.vinslider .vinpager ul li {
+.vinslider .vinpager li {
     width: 15px;
     height: 15px;
     margin: 0 8px;
-    background-color: #fff;
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
@@ -81,23 +80,23 @@
     display: block;
     clear: both;
 }
-.vinslider .vincontroller ul li {
+.vinslider .vincontroller li {
     display: inline-block;
     cursor: pointer;
     height: 100%;
 }
-.vinslider .vincontroller ul li:after {
+.vinslider .vincontroller li:after {
     font-size: 30px;
 }
-.vinslider .vincontroller ul li:first-child {
+.vinslider .vincontroller li:first-child {
     float: left;
 }
-.vinslider .vincontroller ul li:first-child:after {
+.vinslider .vincontroller li:first-child:after {
     content: "<";
 }
-.vinslider .vincontroller ul li:last-child {
+.vinslider .vincontroller li:last-child {
     float: right;
 }
-.vinslider .vincontroller ul li:last-child:after {
+.vinslider .vincontroller li:last-child:after {
     content: ">";
 }
