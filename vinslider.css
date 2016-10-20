@@ -41,7 +41,7 @@
     PAGER
 ***************************************************/
 .vinslider .vinpager {
-    z-index: 9;
+    z-index: 1;
 }
 
 .vinslider .vinpager ul {
