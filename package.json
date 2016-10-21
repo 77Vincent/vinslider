@@ -2,7 +2,7 @@
   "name": "vinslider",
   "version": "1.0.5",
   "description": "A light weight, written in native javascript, powerful slider",
-  "main": "vinslider.min.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +16,7 @@
   },
   "keywords": [
     "slider",
-    "scroller",
+    "carousel",
     "native"
   ],
   "author": {
@@ -24,7 +24,7 @@
     "email": "wentianqi77@outlook.com",
     "url": "https://www.77webtech.com"
   },
-  "license": "ISC",
+  "license": "MIT license",
   "bugs": {
     "url": "https://github.com/77Vincent/vinslider/issues"
   },

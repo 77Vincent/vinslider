@@ -1,12 +1,10 @@
 /**
-*
-*   @Title:     Vinslider
-*   @Descr:     A lightweight slider/carousel module in native Javascript
-*   @Package:   Javascript
-*   @Copyright: Released under the MIT license: http://opensource.org/licenses/MIT
-*   @Author:    Vincent Wen <www.77webtech.com/about> <wentianqi77@outlook.com>
-*
-**/
+ *   @Title:     Vinslider
+ *   @Descr:     A lightweight slider/carousel module in native Javascript
+ *   @Package:   Javascript
+ *   @Copyright: Released under the MIT license: http://opensource.org/licenses/MIT
+ *   @Author:    Vincent Wen <www.77webtech.com/about> <wentianqi77@outlook.com>
+ */
 
 "use strict"
 
