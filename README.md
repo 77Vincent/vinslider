@@ -123,11 +123,15 @@ Download here: https://github.com/77Vincent/vinslider
 
 > *NOTE: This only affects the auto playing. User events will still obey their original direction*.
 
-### enableClass : String
+### activeClass : String
 
 > "vinactive" **(Default)**
 
 > This is for changing the active class name of the current active element. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
+
+## Browser Compatibility
+
+IE 8 and above
 
 ## Dependency
 
@@ -135,9 +139,9 @@ None
 
 ## Features
 
-* Vinslider will be immediately stopped if the DOM element is not found or improper and throw an error.
+* Vinslider will be immediately stopped and throw an error message if the element passed in is not found or improper.
 * Currently touch event on mobile devices is not supported yet.
-* Pager(or bullet) are able to control the slider or carousel.
+* Pagers are able to navigate.
 * Controller will be hidden in carousel mode if the actual amount of items is less than the amount of items to be displayed at a time.
 
 ## Demo
