@@ -31,7 +31,7 @@
       </ul>
     <div>
 
-* The outermost <div> should be the element passed into Vinslider(), could be of any tag, with any identifier as you want.
+* The outermost div should be the element passed into Vinslider(), could be of any tag, with any identifier as you want.
 * The ul contains the list of elements that will be converted into the slider. No additional classname or id is needed.
 * The classname "vinslider" is optional, for getting the basic style from vinslider.css
 
@@ -142,24 +142,22 @@ None
 ## Features
 
 * Vinslider will be immediately stopped and throw an error message if the element passed in is not found or improper.
-* Currently touch event on mobile devices is not supported yet.
 * Pagers are able to navigate.
-* Controller will be hidden in carousel mode if the actual amount of items is less than the amount of items to be displayed at a time.
+* In carousel mode, controller will be hidden if the actual amount of items is less than or equal to the amount of items to be displayed at a time.
+* In fade and slide mode, controller and pagers will be hidden if there is only one slide.
+* Currently touch event on mobile devices is not supported yet.
 
 ## Demo
 
 Go to http://www.77webtech.com/vinslider to see the demo.
 
-## Contributor
+## Author
 
 Vincent Wen
+Website: www.77webtech.com
+Email: wentianqi77@outlook.com
 
 ## License
 
 Released under the MIT license: http://opensource.org/licenses/MIT
-
-* 所传递的对象需要是原生DOM对象。
-* 配置参数不是必须要提供的，在没有自定配置参数的情况下，Vinslider会使用默认配置参数。
-* 可以根据需要传递单独的配置信息，不需要一次传递所有的选项。
-* 通过这样的实例化方式，你可以在一个页面里创建多个，使用不同配置的Vinslider对象。
 

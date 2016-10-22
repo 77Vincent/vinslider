@@ -9,10 +9,41 @@
     <title>Vinslider Test Page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-
     <link rel="stylesheet" href="../src/vinslider.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="custom.css">
+    <style type="text/css">
+        body * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .vinslider {
+            width: 50%;
+            float: left;
+            padding: 20px;
+        }
+
+        .vinmain {
+            height: 150px;
+        }
+
+        .vinmain li {
+            background-color: lightgray;
+            font-size: 3em;
+            text-align: center;
+            font-weight: bold;
+            color: gray;
+            line-height: 150px;
+        }
+
+        .vinmain li:nth-child(even) {
+            background-color: lightblue;
+        }
+    </style>
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/ie8.css">
     <![endif]-->
@@ -88,7 +119,52 @@
     </div>
 
     <script type="text/javascript" src="../src/index.js"></script>
-    <script type="text/javascript" src="custom.js"></script>
+    <script type="text/javascript">
+        var slider = document.querySelectorAll('.vinslider');
+
+        var options1 = {
+            duration: 2500
+        };
+
+        var options2 = {
+            duration: 2500,
+            mode: 'slide',
+            isVertical: true,
+            isScrollable: true
+        };
+
+        var options3 = {
+            duration: 2500,
+            mode: 'slide',
+        };
+
+        var options4 = {
+            duration: 2500,
+            mode: 'slide',
+            isForward: false
+        };
+
+        var options5 = {
+            duration: 2500,
+            mode: 'carousel',
+            amount: 4,
+            moveBy: 2
+        };
+
+        var options6 = {
+            duration: 2500,
+            mode: 'carousel',
+            amount: 4,
+            gutter: 10
+        };
+
+        new Vinslider(slider[0], options1);
+        new Vinslider(slider[1], options2);
+        new Vinslider(slider[2], options3);
+        new Vinslider(slider[3], options4);
+        new Vinslider(slider[4], options5);
+        new Vinslider(slider[5], options6);
+    </script>
 </body>
 
 </html>
