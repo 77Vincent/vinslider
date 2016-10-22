@@ -6,18 +6,19 @@
 
 ### Javascript:
 
-    var selector = document.querySelector('DOM element');
+    var object = document.querySelector('DOM element');
     
-    var options = {
+    var config = {
       mode: slide,
       duration: 3500,
       ......
     };
     
-    var vinslider = new Vinslider(selector, options);
+    var vinslider = new Vinslider(object[, config]);
 
-* The selector needs to be a native DOM element.
-* If no custom option is given, Vinslider will be initialized with the default options.
+* The object to be passed needs to be a native DOM element.
+* Config is optional, Vinslider will be initialized with default config if no custom config are given.
+* Can only give certain configs as you need, no to pass all configs listed in the documentations at a time.
 * You can create several instance of Vinslider within one page with different options by this way.
 
 ### HTML: 
@@ -30,16 +31,17 @@
       </ul>
     <div>
 
-* The ul contains the list of elements that will be converted into a slider. No additional classname or id is needed.
-* The parent wrapper could be of any kinds of tag.
+* The outermost <div> should be the element passed into Vinslider(), could be of any tag, with any identifier as you want.
+* The ul contains the list of elements that will be converted into the slider. No additional classname or id is needed.
 * The classname "vinslider" is optional, for getting the basic style from vinslider.css
 
 ### CSS:
 
     vinslider.css
 
-* This provides the default and basic style for a Vinslider instance.
-* Feel free to override it for a custom style as you want.
+* This is optional but recommended.
+* Provides a very basic style for a Vinslider instance.
+* Has been simplified as best as I can in order to let you override it with custom styles as you want with ease.
 
 ## Installation
 
@@ -52,86 +54,86 @@ Embed them into your project.
 
 Download here: https://github.com/77Vincent/vinslider
     
-## Configuration Options
+## Configurations
 
 ### mode : String
-> **fade**: Each slide fades in and fades out when sliding **(Default)**.
+> fade **(Default)**
 
-> **slide**: Normal slides effect.
+> slide
 
-> **carousel**: Turning the slider into a carousel. 
+> carousel
 
-### amount: Number
+### activeClass : String
+> "vinactive" **(Default)**
 
-> When under carousel mode, this determines how many items will be shown within one row.
-
-> *NOTE: If no value is given then it will be set to 2 by default, or if the value is greater than the total amount of items, the controller will be hidden*.
+Tips: Changing the active class name of the current active item. Also the vinslider.css is using this class name by default. You can customize it into another classname if you want.
 
 ### duration : Number
-> How much time each slide stays **(Default: 5000, mini second)**.
+> How much time each slide stays. **(Default: 5000, millisecond)**
+
+### amount: Number
+> How many items will be shown at a time. **(Default: 2)**
+
+Tips: This will only apply to carousel mode. If the value is greater than or equal to the total amount of items, the controller will be hidden.
 
 ### gutter : Number
-> Add a gutter in between each items **(Default: 0, pixels)**.
-
-### percentGutter : Boolean
-> Turn the normal pixel unit gutter into a percentage one **(Default: false)**.
-
-> *NOTE: Only works when the gutter is also declared, if not, no effect or error will be met*.
+> Add a gutter in between each items. **(Default: 0, pixels)**
 
 ### startFrom: Number
-> Determining from which item the slider or carousel starts **(Default: 0)**. 
+> From which item the slider starts. **(Default: 0)**
 
-> *NOTE: The first item will be an index of 0 and so on. If the value is greater than the total amount of items or less than 0, it will still start from 0*.
+Tips: The first item's index is 0 and so on.
 
 ### moveBy : Number
-> How many items will pass by with each slide **(Default: 1)**
+> How many items will pass by with each slide. **(Default: 1)**
 
-### pager : Boolean
-> ture: Show the bullet **(Default)**.
+### isPager : Boolean
+> true: Show the pagers. **(Default)**
 
-> false: Hide the bullet.
+> false: Hide the pagers.
 
-### controller : Boolean
-> ture: Show the controller **(Default)**.
+### isController : Boolean
+> true: Show the controller. **(Default)**
 
 > false: Hide the controller.
 
-### auto : Boolean
-> ture: Auto play the slider or carousel **(Default)**.
+### isAuto : Boolean
+> true: Auto play the slider. **(Default)**
 
 > false: Do not auto play.
 
-### infinite : Boolean
-> ture: The slider or carousel will go back to the first item after reaching the last one **(Default)**.
+### isInfinite : Boolean
+> true: The slider will go back to the first item after reaching the last one. **(Default)**
 
-> false: Will be stoped at the end the slide or carousel.
+> false: Will be stoped at the end the slide.
 
-### scrollable : Boolean
-> ture: Mouse wheel scrolling could slide the slider or carousel.
+### isScrollable : Boolean
+> true: Mouse wheel scrolling could controller the slider.
 
-> false: No mouse wheel event applied **(Default)**.
+> false: Disabled **(Default)**
 
-### vertical : Boolean
-> ture: The slider or carousel will be shown in vertical mode. 
+### isVertical : Boolean
+> true: The slider will be shown in vertical mode. 
 
-> false: Horizontal mode **(Default)**. 
+> false: Horizontal mode **(Default)**
 
-### direction : Boolean
-> ture: Goes from left to right, or top to bottom **(Default)**.
+### isPercentGutter : Boolean
+> true: The unit of gutter will be percentage based on the width of each slide. 
 
-> false: The opposite direction.
+> false: The unit of gutter is pixel. **(Default)**
 
-> *NOTE: This only affects the auto playing. User events will still obey their original direction*.
+Tips: Only works when the gutter is also declared, if not, no effect or error will be met.
 
-### activeClass : String
+### isForward : Boolean
+> true: Goes from left to right, or top to bottom. **(Default)**
 
-> "vinactive" **(Default)**
+> false: Reversed direction.
 
-> This is for changing the active class name of the current active element. Also the vinslider.css is using this class name as the selector. You can customize it into another classname if you want.
+Tips: This only affects the auto playing. User events will still respect the direction according to their navigation.
 
 ## Browser Compatibility
 
-IE 8 and above
+IE 9 and above
 
 ## Dependency
 
@@ -155,4 +157,9 @@ Vincent Wen
 ## License
 
 Released under the MIT license: http://opensource.org/licenses/MIT
+
+* 所传递的对象需要是原生DOM对象。
+* 配置参数不是必须要提供的，在没有自定配置参数的情况下，Vinslider会使用默认配置参数。
+* 可以根据需要传递单独的配置信息，不需要一次传递所有的选项。
+* 通过这样的实例化方式，你可以在一个页面里创建多个，使用不同配置的Vinslider对象。
 

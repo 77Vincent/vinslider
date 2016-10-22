@@ -265,11 +265,7 @@ Vinslider.prototype = {
     startFrom: function(ind) {
 
         // Run the slider
-        if (ind < 0 || ind > this.itemNum) {
-            this.list[0].className = this.options.activeClass;
-        } else {
-            this.list[ind].className = this.options.activeClass;
-        }
+        this.list[ind].className = this.options.activeClass;
     },
 
     lifecircle: function() {
