@@ -352,5 +352,3 @@ Vinslider.prototype = {
         }
     },
 };
-
-exports.vinslider = Vinslider;
