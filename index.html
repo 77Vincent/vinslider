@@ -6,153 +6,147 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vinslider Test Page</title>
+    <title>Vinslider Demo Page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <link rel="stylesheet" href="src/vinslider.css">
-    <style type="text/css">
-        body * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            max-width: 80%;
-            margin: 0 auto;
-        }
-
-        .vinslider {
-            width: 50%;
-            float: left;
-            padding: 20px;
-        }
-
-        .vinmain {
-            height: 150px;
-        }
-
-        .vinmain li {
-            background-color: lightgray;
-            font-size: 3em;
-            text-align: center;
-            font-weight: bold;
-            color: gray;
-            line-height: 150px;
-        }
-
-        .vinmain li:nth-child(even) {
-            background-color: lightblue;
-        }
-    </style>
+    <link rel="stylesheet" href="src/reset.css">
+    <link rel="stylesheet" href="src/common.css">
+    <link rel="stylesheet" href="dist/vinslider.css">
+    <link rel="stylesheet" href="src/custom.css">
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/ie8.css">
     <![endif]-->
 </head>
 
 <body>
-    <div class="vinslider">
-        <h2>fade</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
+    <header>
+        <div class="wrapper">
+            <h1><b>V</b>inslider</h1>
+            <h3>Light weight, native Javascript slider / carousel module. Highly customizable.</h3>
+        </div>
+    </header>
+    <a href="https://github.com/77Vincent/vinslider" class="fork">fork me</a>
+    <div class="wrapper">
+        <div class="clearfix">
+            <div class="vinslider">
+                <h4>fade mode</h4>
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                </ul>
+            </div>
+            <div class="vinslider">
+                <h4>fade mode / scrollable</h4>
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                </ul>
+            </div>
+            <div class="vinslider">
+                <h4>slide mode / forward</h4>
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                </ul>
+            </div>
+            <div class="vinslider">
+                <h4>slide mode / backward</h4>
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                </ul>
+            </div>
+            <div class="vinslider">
+                <h4>carousel mode / moveby: 2</h4>
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                    <li><h4>5</h4></li>
+                    <li><h4>6</h4></li>
+                    <li><h4>7</h4></li>
+                    <li><h4>8</h4></li>
+                </ul>
+            </div>
+            <div class="vinslider">
+                <h4>carousel mode / gutter: 10px</h4>
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                    <li><h4>5</h4></li>
+                    <li><h4>6</h4></li>
+                    <li><h4>7</h4></li>
+                    <li><h4>8</h4></li>
+                </ul>
+            </div>
+        </div>
+
+        <h2><span>Why this one?</span></h2>
+        <ul class="merit">
+            <li>Super lightweight</li>
+            <li>Native Javascript</li>
+            <li>No dependencies. totally independent</li>
+            <li>responsive</li>
+            <li>good performance</li>
+            <li>highly customizable</li>
+            <li>easy to use</li>
         </ul>
+
+        <h2><span>How to use it</span></h2>
+        <p></p>
+
+        <h2><span>motivation</span></h2>
     </div>
 
-    <div class="vinslider">
-        <h2>slide / vertical / scrollable</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-        </ul>
-    </div>
+    <footer>
+        <p>Created by Vincent Wen</p>
+        <p>Released under the MIT license</p>
+    </footer>
 
-    <div class="vinslider">
-        <h2>slide</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-        </ul>
-    </div>
-
-    <div class="vinslider">
-        <h2>slide / backwards</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-        </ul>
-    </div>
-
-    <div class="vinslider">
-        <h2>carousel / moveby-2</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-        </ul>
-    </div>
-
-    <div class="vinslider">
-        <h2>carousel / gutter - 10px</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-        </ul>
-    </div>
-
-    <script type="text/javascript" src="src/index.js"></script>
+    <script type="text/javascript" src="dist/index.js"></script>
     <script type="text/javascript">
         var slider = document.querySelectorAll('.vinslider');
 
         var options1 = {
-            duration: 2500
+            duration: 1800
         };
 
         var options2 = {
-            duration: 2500,
-            mode: 'slide',
-            isVertical: true,
+            duration: 1800,
             isScrollable: true
         };
 
         var options3 = {
-            duration: 2500,
+            duration: 2100,
             mode: 'slide',
         };
 
         var options4 = {
-            duration: 2500,
+            duration: 2100,
             mode: 'slide',
             isForward: false
         };
 
         var options5 = {
-            duration: 2500,
+            duration: 2400,
             mode: 'carousel',
             amount: 4,
             moveBy: 2
         };
 
         var options6 = {
-            duration: 2500,
+            duration: 2400,
             mode: 'carousel',
             amount: 4,
             gutter: 10

@@ -269,6 +269,7 @@ Vinslider.prototype = {
     },
 
     lifecircle: function() {
+        // Get current active element, add active class, and remove all elements active class
         for (var i = 0; i < this.itemNum; i++) {
             var status = this.list[i].className;
             this.list[i].className = '';
@@ -283,9 +284,6 @@ Vinslider.prototype = {
                 // Add active class to the current list and bullet
                 this.list[this.curIndex].className = this.options.activeClass;
                 this.bullet[this.curIndex].className = this.options.activeClass;
-
-                this.list[this.curIndex].style.opacity = 1;
-                this.list[this.curIndex].style.left = 0;
             }
         }
 
@@ -296,12 +294,20 @@ Vinslider.prototype = {
         this.nextIndex = this.curIndex + 1;
         this.nextLi = this.list[this.nextIndex];
 
-        // Calculate position
+        // Set effect to each slide
         if (this.options.mode == this.mode[1] || this.options.mode == this.mode[2]) {
+            // Slide and carousel mode, calculate position
             for (var e = 0; e < this.itemNum; e++) {
                 var ind = e - this.curIndex;
                 this.list[e].style[this.direction[0]] = this.size * ind + 'px';
             }
+        } else {
+            // Fade mode, set opacity
+            for (var r = 0; r < this.itemNum; r++) {
+                this.list[r].style.opacity = 0;
+            }
+            this.list[this.curIndex].style.opacity = 1;
+
         }
     },
 
