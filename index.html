@@ -95,12 +95,12 @@
         <div class="text-center">
             <h2><span>Why this one?</span></h2>
             <ul>
+                <li>No dependencies. totally independent</li>
+                <li>Highly customizable</li>
                 <li>Super lightweight</li>
                 <li>Native Javascript</li>
-                <li>No dependencies. totally independent</li>
-                <li>Responsive</li>
                 <li>Good performance</li>
-                <li>Highly customizable</li>
+                <li>Responsive</li>
                 <li>Easy to use</li>
             </ul>
 
@@ -111,12 +111,14 @@
                 <p>vinslider.css</p>
             </code>
             <p>Create DOM</p>
-            <code>
-                <p>&lt;div&gt;</p>
-                <p>&lt;ul&gt;</p>
-                <p>&lt;/ul&gt;</p>
-                <p>&lt;/div&gt;</p>
-            </code>
+<pre><code><p>&lt;div class="vinslider"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;content&lt;/li&gt;
+        &lt;li&gt;content&lt;/li&gt;
+        &lt;li&gt;content&lt;/li&gt;
+        ...
+    &lt;/ul&gt;
+&lt;/div&gt;</p></code></pre>
             <p>Instantiate in Javascript</p>
             <code>
                 <p>var slider = document.querySelector('.vinslider');</p>
@@ -130,8 +132,8 @@
                 <p>new Vinslider(slider, config);</p>
             </code>
             <a target="_blank" href="https://github.com/77Vincent/vinslider">download & Documentations</a>
-            <h2><span>motivation</span></h2>
-            <p>There are already a lot of similar modules out there,  </p>
+            <h2><span>About </span></h2>
+            <p>Yes, there are already a lot of similar modules out there to accomplish the same functionality, I have used several ones but found that they are not the exact stuff that I want, they either depend on a JS library, or with a not easy-to-use API, or with limited functionality, or has a bad performance. So I decided to create a module myself which could be as much simple, powerful, friendly, versatile as it can be. To achieve these goals, I choose native Javascript, manipulating native DOM element, and give all transition tasks to CSS, as you can see, those are the very basic elements that form a web page. And this is what I understand a basic module should be like. Check out the github repository page for more information, if you like it, feel free to share it with more people.<p>
         </div>
     </div>
 
