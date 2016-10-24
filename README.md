@@ -48,7 +48,7 @@ http://www.77webtech.com/vinslider
 
 ## Installation
 
-Embed those two files into your project:
+Embed these two files into your project:
 
 * vinslider.js
 * vinslider.css
@@ -63,6 +63,7 @@ Get the source code here:https://github.com/77Vincent/vinslider, they are in dis
 > slide
 
 > carousel
+
 Tips: Under carousel mode, pager will be hidden by default.
 
 ### duration : Number
@@ -138,11 +139,9 @@ None
 
 ## Features
 
-* Vinslider will be immediately stopped and throw an error message if the element passed in is not found or improper.
+* Vinslider will be immediately stopped and throw an error message if the element is not found.
 * Pagers are able to navigate.
-* In carousel mode, controller will be hidden if the actual amount of items is less than or equal to the amount of items to be displayed at a time.
 * In fade and slide mode, controller and pagers will be hidden if there is only one slide.
-* Currently touch event on mobile devices is not supported yet.
 
 ## Author
 
