@@ -131,7 +131,9 @@ Tips: This only affects the auto playing. User events will still respect the dir
 
 ## Browser Compatibility
 
-IE 9 and above
+IE 8: Mouse scrolling not supported
+IE 9: No CSS transition effect
+IE 10 and above: Fully supported
 
 ## Dependency
 

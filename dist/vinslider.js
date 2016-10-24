@@ -217,15 +217,15 @@ Vinslider.prototype = {
         var self = this;
 
         // Controller navigate
-        this.nextBtn.addEventListener('click', function() {
+        this.nextBtn.onclick = function() {
             self.forward();
             self.resetAutoPlay();
-        });
+        }
 
-        this.prevBtn.addEventListener('click', function() {
+        this.prevBtn.onclick = function() {
             self.backward();
             self.resetAutoPlay();
-        });
+        }
 
         // Pager navigate
         for (var i = 0; i < this.itemNum; i++) {
@@ -241,12 +241,12 @@ Vinslider.prototype = {
                     self.resetAutoPlay();
                 }
             }
-            this.bullet[i].addEventListener('click', closure(i));
+            this.bullet[i].onclick = closure(i);
         }
 
         // Scroll
         if (this.config.isScrollable) {
-            this.vinmain.addEventListener('wheel', function(event) {
+            this.vinmain.onwheel = function() {
                 event.preventDefault();
                 if (event.deltaY > 0 || event.deltaX > 0) {
                     self.forward();
@@ -255,7 +255,7 @@ Vinslider.prototype = {
                     self.backward();
                     self.resetAutoPlay();
                 }
-            });
+            }
         }
     },
 
