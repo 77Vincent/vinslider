@@ -2,7 +2,26 @@
 
 #### Light weight, responsive, native Javascript slider / carousel module. Highly customizable.
 
+## Demo
+
+http://www.77webtech.com/vinslider
+
 ## Code Example
+
+### HTML: 
+
+    <div class="vinslider">
+      <ul>
+        <li>content</li>
+        <li>content</li>
+        <li>content</li>
+        ...
+      </ul>
+    <div>
+
+* The outermost div should be the element passed into Vinslider(), could be of any tag, with any identifier as you want.
+* The ul contains the actual list of elements that will be converted into the slider. No additional classname or id is needed.
+* The classname "vinslider" is for getting the basic style from vinslider.css
 
 ### Javascript:
 
@@ -11,48 +30,31 @@
     var config = {
       mode: slide,
       duration: 3500,
-      ......
+      ...
     };
     
-    var vinslider = new Vinslider(object[, config]);
+    new Vinslider(object[, config]);
 
 * The object to be passed needs to be a native DOM element.
 * Config is optional, Vinslider will be initialized with default config if no custom config are given.
-* Can only give certain configs as you need, no to pass all configs listed in the documentations at a time.
-* You can create several instance of Vinslider within one page with different options by this way.
-
-### HTML: 
-
-    <div id="selector" class="vinslider">
-      <ul>
-        <li>......</li>
-        <li>......</li>
-        <li>......</li>
-      </ul>
-    <div>
-
-* The outermost div should be the element passed into Vinslider(), could be of any tag, with any identifier as you want.
-* The ul contains the list of elements that will be converted into the slider. No additional classname or id is needed.
-* The classname "vinslider" is optional, for getting the basic style from vinslider.css
+* You can create several instances of Vinslider within one page with different config by this way.
 
 ### CSS:
 
     vinslider.css
 
 * Provides a very basic style for a Vinslider instance.
-* Has been simplified as best as I can in order to let you override it with custom styles as you want with ease.
+* Has been simplified as best as I can in order to let you override it with custom styles with ease.
 
 ## Installation
 
-What you need are:
+Embed those two files into your project:
 
 * vinslider.js
-* vinslider.css (optional)
+* vinslider.css
 
-Embed them into your project.
+Get the source code here:https://github.com/77Vincent/vinslider, they are in dist folder.
 
-Download here: https://github.com/77Vincent/vinslider
-    
 ## Configurations
 
 ### mode : String
@@ -61,19 +63,15 @@ Download here: https://github.com/77Vincent/vinslider
 > slide
 
 > carousel
-
-### activeClass : String
-> "vinactive" **(Default)**
-
-Tips: Changing the active class name of the current active item. Also the vinslider.css is using this class name by default. You can customize it into another classname if you want.
+Tips: Under carousel mode, pager will be hidden by default.
 
 ### duration : Number
 > How much time each slide stays. **(Default: 5000, millisecond)**
 
-### amount: Number
+### amount: Number (carousel mode only)
 > How many items will be shown at a time. **(Default: 2)**
 
-Tips: This will only apply to carousel mode. If the value is greater than or equal to the total amount of items, the controller will be hidden.
+Tips: If the value is greater than or equal to the total amount of items, the controller will be hidden.
 
 ### gutter : Number
 > Add a gutter in between each items. **(Default: 0, pixels)**
@@ -84,7 +82,7 @@ Tips: This will only apply to carousel mode. If the value is greater than or equ
 Tips: The first item's index is 0 and so on.
 
 ### moveBy : Number
-> How many items will pass by with each slide. **(Default: 1)**
+> How many items will pass by each slide. **(Default: 1)**
 
 ### isPager : Boolean
 > true: Show the pagers. **(Default)**
@@ -107,12 +105,12 @@ Tips: The first item's index is 0 and so on.
 > false: Will be stoped at the end the slide.
 
 ### isScrollable : Boolean
-> true: Mouse wheel scrolling could controller the slider.
+> true: Mouse wheel scrolling could control the slider.
 
 > false: Disabled **(Default)**
 
 ### isVertical : Boolean
-> true: The slider will be shown in vertical mode. 
+> true: The slider will turn into vertical mode. 
 
 > false: Horizontal mode **(Default)**
 
@@ -124,7 +122,7 @@ Tips: The first item's index is 0 and so on.
 Tips: Only works when the gutter is also declared, if not, no effect or error will be met.
 
 ### isForward : Boolean
-> true: Goes from left to right, or top to bottom. **(Default)**
+> true: Slider goes from left to right, or top to bottom. **(Default)**
 
 > false: Reversed direction.
 
@@ -146,14 +144,12 @@ None
 * In fade and slide mode, controller and pagers will be hidden if there is only one slide.
 * Currently touch event on mobile devices is not supported yet.
 
-## Demo
-
-Go to http://www.77webtech.com/vinslider to see the demo.
-
 ## Author
 
 Vincent Wen
+
 Website: www.77webtech.com
+
 Email: wentianqi77@outlook.com
 
 ## License
