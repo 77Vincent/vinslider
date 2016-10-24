@@ -39,7 +39,6 @@
 
     vinslider.css
 
-* This is optional but recommended.
 * Provides a very basic style for a Vinslider instance.
 * Has been simplified as best as I can in order to let you override it with custom styles as you want with ease.
 

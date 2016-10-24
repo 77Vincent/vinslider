@@ -9,7 +9,9 @@ h1 {
 h2 {
     font-size: 3em;
     margin-top: 1.75em;
+    margin-bottom: 0.75em;
     text-align: center;
+    text-transform: capitalize;
 }
 
 h3 {
@@ -21,6 +23,28 @@ h4 {
     opacity: 0.5;
 }
 
+a {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid rgb(220,220,220);
+    text-transform: capitalize;
+    color: gray;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: rgb(150,150,150);
+    border: 1px solid rgb(150,150,150);
+    color: white;
+}
+
+article p {
+    margin-bottom: 1em;
+}
+
 ul, p {
     font-size: 1.3em;
     line-height: 1.6;
@@ -28,6 +52,22 @@ ul, p {
 
 h2 span {
     border-bottom: 6px solid #ffecab;
+}
+
+pre {
+    word-wrap: normal;
+    white-space: pre;
+}
+
+code {
+    background-color: rgb(245,245,245);
+    padding: 20px 40px;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+    font-size: 1em;
+    text-align: left;
+    border-radius: 10px;
 }
 
 header {
@@ -48,27 +88,15 @@ footer {
     margin-top: 60px;
     font-size: 0.8em;
 }
-.merit {
-    text-transform: capitalize;
-    text-align: center;
-}
+
 .fork {
     position: fixed;
     right: 15px;
     top: 15px;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 8px 12px;
-    border: 1px solid rgb(220,220,220);
-    text-transform: capitalize;
-    color: gray;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    z-index: 9;
+    font-size: 0.8em;
 }
-.fork:hover {
-    background-color: rgb(150,150,150);
-    border: 1px solid rgb(150,150,150);
-    color: white;
-}
+
 .wrapper {
     width: 90%;
     max-width: 960px;
@@ -116,9 +144,9 @@ footer {
 }
 .vincontroller {
     position: absolute;
-    left: 4%;
-    top: 95px;
-    width: 92%;
+    left: 3%;
+    top: 100px;
+    width: 94%;
 }
 .vincontroller ul:after {
     content: "";
@@ -127,7 +155,7 @@ footer {
 }
 .vincontroller li:after {
     color: rgb(180,180,180);
-    font-size: 1.5em;
+    font-size: 18px;
 }
 .vincontroller li:first-child {
     float: left;
