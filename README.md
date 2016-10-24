@@ -129,21 +129,23 @@ Tips: Only works when the gutter is also declared, if not, no effect or error wi
 
 Tips: This only affects the auto playing. User events will still respect the direction according to their navigation.
 
-## Browser Compatibility
-
-IE 8: Mouse scrolling not supported
-IE 9: No CSS transition effect
-IE 10 and above: Fully supported
-
-## Dependency
-
-None
-
 ## Features
 
 * Vinslider will be immediately stopped and throw an error message if the element is not found.
 * Pagers are able to navigate.
 * In fade and slide mode, controller and pagers will be hidden if there is only one slide.
+
+## Browser Compatibility
+
+IE 8: Mouse scrolling not supported
+
+IE 9: No CSS transition effect
+
+IE 10 and above: Fully supported
+
+## Dependency
+
+None
 
 ## Author
 
