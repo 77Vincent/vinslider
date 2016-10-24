@@ -15,7 +15,7 @@ var Vinslider = function(object, custom) {
         return;
     }
 
-    // Default options
+    // Default config
     this.preset = {
         // String
         mode: 'fade',
@@ -53,11 +53,11 @@ Vinslider.prototype = {
     init: function(object, custom) {
 
         // Basic
-        this.optionsReset(custom);
+        this.configReset(custom);
         this.responsive();
 
         // Initialzation
-        this.optionsInit();
+        this.configInit();
         this.modeInit();
         this.sizeInit();
 
@@ -66,72 +66,74 @@ Vinslider.prototype = {
         this.buildController(object);
 
         // Run
-        this.startFrom(this.options.startFrom);
+        this.startFrom(this.config.startFrom);
         this.lifecircle();
-        this.autoPlay(this.options.duration);
+        this.autoPlay(this.config.duration);
         this.userEvent();
     },
 
-    optionsReset: function(custom) {
+    configReset: function(custom) {
         var self = this;
 
-        // Reset options
+        // Reset config
         if (custom) {
-            this.options = custom;
+            this.config = custom;
             (function(obj) {
                 var ind = 0;
                 var key;
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) {
-                        self.options[key] = custom[key] !== undefined ? custom[key] : self.preset[key];
+                        self.config[key] = custom[key] !== undefined ? custom[key] : self.preset[key];
                     }
                 }
             })(this.preset);
         } else {
-            this.options = this.preset;
+            this.config = this.preset;
         }
     },
 
-    optionsInit: function() {
+    configInit: function() {
 
         // moveBy could not be set less than 0
-        this.options.moveBy = this.options.moveBy < 0 ? 1 : this.options.moveBy;
+        this.config.moveBy = this.config.moveBy < 0 ? 1 : this.config.moveBy;
 
         // amount always starts from 2
-        this.options.amount = this.options.amount <= 1 ? 2 : this.options.amount;
+        this.config.amount = this.config.amount <= 1 ? 2 : this.config.amount;
 
         // direction of slider
-        this.direction = this.options.isVertical ? ['top', 'clientHeight', 'height'] : ['left', 'clientWidth', 'width'];
+        this.direction = this.config.isVertical ? ['top', 'clientHeight', 'height'] : ['left', 'clientWidth', 'width'];
     },
 
     sizeInit: function() {
 
         // Calculate size of each elements
+        if (this.config.mode !== this.mode[0]) {
         var self = this;
-        var gut = this.options.isPercentGutter ? this.size * this.options.gutter : this.options.gutter;
+            var gut = this.config.isPercentGutter ? this.size * this.config.gutter : this.config.gutter;
 
-        this.size = this.options.mode == this.mode[2] ? (this.vinmain[this.direction[1]] / this.options.amount) : this.vinmain[this.direction[1]];
+            this.size = this.config.mode == this.mode[2] ? (this.vinmain[this.direction[1]] / this.config.amount) : this.vinmain[this.direction[1]];
 
-        for (var i = 0; i < this.itemNum; i++) {
-            this.list[i].style[this.direction[2]] = this.size - gut + 'px';
+            for (var i = 0; i < this.itemNum; i++) {
+                this.list[i].style[this.direction[2]] = this.size - gut + 'px';
+            }
         }
     },
 
     modeInit: function() {
 
         // Slide mode
-        if (this.options.mode == this.mode[1]) {
+        if (this.config.mode == this.mode[1]) {
             for (var i = 0; i < this.itemNum; i++) {
                 this.list[i].style.opacity = 1;
             }
         }
 
         // Carousel mode
-        if (this.options.mode == this.mode[2]) {
+        if (this.config.mode == this.mode[2]) {
             for (var i = 0; i < this.itemNum; i++) {
                 this.list[i].style.opacity = 1;
             }
-            this.options.isPager = false;
+            this.config.isPager = false;
         }
     },
 
@@ -172,7 +174,7 @@ Vinslider.prototype = {
         this.nextBtn = ul.children[1];
 
         // Hide controller when
-        ul.style.display = this.itemNum <= this.options.amount || !this.options.isController ? 'none' : '';
+        ul.style.display = this.itemNum <= this.config.amount || !this.config.isController ? 'none' : '';
     },
 
     buildpager: function(object) {
@@ -186,16 +188,16 @@ Vinslider.prototype = {
         this.bullet = ul.children;
 
         // Hide controller when
-        ul.style.display = !this.options.isPager || this.itemNum <= 1 ? 'none' : '';
+        ul.style.display = !this.config.isPager || this.itemNum <= 1 ? 'none' : '';
     },
 
     autoPlay: function(num) {
 
         // Auto play the slider
         var self = this;
-        if (this.options.isAuto) {
+        if (this.config.isAuto) {
             this.timer = setInterval(function() {
-                if (self.options.isForward) {
+                if (self.config.isForward) {
                     self.forward();
                 } else {
                     self.backward();
@@ -208,22 +210,22 @@ Vinslider.prototype = {
 
         // Reset the timer when user navigates the slider
         clearTimeout(this.timer);
-        this.autoPlay(this.options.duration);
+        this.autoPlay(this.config.duration);
     },
 
     userEvent: function() {
         var self = this;
 
         // Controller navigate
-        this.nextBtn.onclick = function() {
+        this.nextBtn.addEventListener('click', function() {
             self.forward();
             self.resetAutoPlay();
-        }
+        });
 
-        this.prevBtn.onclick = function() {
+        this.prevBtn.addEventListener('click', function() {
             self.backward();
             self.resetAutoPlay();
-        }
+        });
 
         // Pager navigate
         for (var i = 0; i < this.itemNum; i++) {
@@ -234,18 +236,17 @@ Vinslider.prototype = {
                         self.bullet[e].className = '';
                     }
 
-                    self.list[ind].className = self.options.activeClass;
+                    self.list[ind].className = self.config.activeClass;
                     self.lifecircle();
                     self.resetAutoPlay();
                 }
             }
-
-            this.bullet[i].onclick = closure(i);
+            this.bullet[i].addEventListener('click', closure(i));
         }
 
         // Scroll
-        if (this.options.isScrollable) {
-            this.vinmain.onwheel = function(event) {
+        if (this.config.isScrollable) {
+            this.vinmain.addEventListener('wheel', function(event) {
                 event.preventDefault();
                 if (event.deltaY > 0 || event.deltaX > 0) {
                     self.forward();
@@ -254,7 +255,7 @@ Vinslider.prototype = {
                     self.backward();
                     self.resetAutoPlay();
                 }
-            };
+            });
         }
     },
 
@@ -265,7 +266,7 @@ Vinslider.prototype = {
     startFrom: function(ind) {
 
         // Run the slider
-        this.list[ind].className = this.options.activeClass;
+        this.list[ind].className = this.config.activeClass;
     },
 
     lifecircle: function() {
@@ -275,15 +276,15 @@ Vinslider.prototype = {
             this.list[i].className = '';
             this.bullet[i].className = '';
 
-            if (status.indexOf(this.options.activeClass) >= 0) {
+            if (status.indexOf(this.config.activeClass) >= 0) {
 
                 // Store current active index and element
                 this.curIndex = i;
                 this.curLi = this.list[this.curIndex];
 
                 // Add active class to the current list and bullet
-                this.list[this.curIndex].className = this.options.activeClass;
-                this.bullet[this.curIndex].className = this.options.activeClass;
+                this.list[this.curIndex].className = this.config.activeClass;
+                this.bullet[this.curIndex].className = this.config.activeClass;
             }
         }
 
@@ -295,7 +296,7 @@ Vinslider.prototype = {
         this.nextLi = this.list[this.nextIndex];
 
         // Set effect to each slide
-        if (this.options.mode == this.mode[1] || this.options.mode == this.mode[2]) {
+        if (this.config.mode == this.mode[1] || this.config.mode == this.mode[2]) {
             // Slide and carousel mode, calculate position
             for (var e = 0; e < this.itemNum; e++) {
                 var ind = e - this.curIndex;
@@ -312,25 +313,25 @@ Vinslider.prototype = {
     },
 
     forward: function() {
-        for (var i = 0; i < this.options.moveBy; i++) {
-            if (this.options.mode !== this.mode[2]) {
+        for (var i = 0; i < this.config.moveBy; i++) {
+            if (this.config.mode !== this.mode[2]) {
                 if (this.nextIndex < this.itemNum) {
                     this.curLi.className = '';
-                    this.nextLi.className = this.options.activeClass;
+                    this.nextLi.className = this.config.activeClass;
                 } else {
-                    if (this.options.isInfinite) {
+                    if (this.config.isInfinite) {
                         this.curLi.className = '';
-                        this.list[0].className = this.options.activeClass;
+                        this.list[0].className = this.config.activeClass;
                     }
                 }
             } else {
                 if (!this.ifStop()) {
                     this.curLi.className = '';
-                    this.nextLi.className = this.options.activeClass;
+                    this.nextLi.className = this.config.activeClass;
                 } else {
-                    if (this.options.isInfinite) {
+                    if (this.config.isInfinite) {
                         this.curLi.className = '';
-                        this.list[0].className = this.options.activeClass;
+                        this.list[0].className = this.config.activeClass;
                     }
                 }
             }
@@ -339,18 +340,18 @@ Vinslider.prototype = {
     },
 
     backward: function() {
-        for (var i = 0; i < this.options.moveBy; i++) {
+        for (var i = 0; i < this.config.moveBy; i++) {
             if (this.prevIndex >= 0) {
                 this.curLi.className = '';
-                this.prevLi.className = this.options.activeClass;
+                this.prevLi.className = this.config.activeClass;
             } else {
-                if (this.options.isInfinite) {
-                    if (this.options.mode == this.mode[2]) {
+                if (this.config.isInfinite) {
+                    if (this.config.mode == this.mode[2]) {
                         this.curLi.className = '';
-                        this.list[this.itemNum - this.options.amount].className = this.options.activeClass;
+                        this.list[this.itemNum - this.config.amount].className = this.config.activeClass;
                     } else {
                         this.curLi.className = '';
-                        this.list[this.itemNum - 1].className = this.options.activeClass;
+                        this.list[this.itemNum - 1].className = this.config.activeClass;
                     }
                 }
             }
