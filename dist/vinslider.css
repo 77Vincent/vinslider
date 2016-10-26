@@ -1,15 +1,3 @@
-
-/************************* general *************************/
-.vinmain, .vinmain *,
-.vinpager, .vinpager *,
-.vincontroller, .vincontroller * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-.vinslider {
-    position: relative;
-}
 /************************* vinmain *************************/
 .vinmain {
     overflow: hidden;

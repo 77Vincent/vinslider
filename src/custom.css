@@ -114,6 +114,10 @@ footer {
 .vinmain {
     height: 150px;
 }
+.vinmain * {
+    margin: 0;
+    padding: 0;
+}
 .vinmain li {
     background-color: rgb(220,220,220);
     font-size: 3em;
@@ -124,6 +128,9 @@ footer {
 }
 .vinmain li:nth-child(even) {
     background-color: #ffecab;
+}
+.vinslider {
+    position: relative;
 }
 .vinpager {
     text-align: center;
