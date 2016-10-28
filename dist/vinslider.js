@@ -228,19 +228,19 @@ Vinslider.prototype = {
         }
 
         // Pager navigate
-        for (var i = 0; i < this.itemNum; i++) {
-            function closure(ind) {
-                return function() {
-                    for (var e = 0; e < self.itemNum; e++) {
-                        self.list[e].className = '';
-                        self.bullet[e].className = '';
-                    }
-
-                    self.list[ind].className = self.config.activeClass;
-                    self.lifecircle();
-                    self.resetAutoPlay();
+        function closure(ind) {
+            return function() {
+                for (var e = 0; e < self.itemNum; e++) {
+                    self.list[e].className = '';
+                    self.bullet[e].className = '';
                 }
+
+                self.list[ind].className = self.config.activeClass;
+                self.lifecircle();
+                self.resetAutoPlay();
             }
+        }
+        for (var i = 0; i < this.itemNum; i++) {
             this.bullet[i].onclick = closure(i);
         }
 
