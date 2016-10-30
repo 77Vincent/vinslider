@@ -97,6 +97,14 @@ footer {
     font-size: 0.8em;
 }
 
+.back {
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    z-index: 9;
+    font-size: 0.8em;
+}
+
 .wrapper {
     width: 90%;
     max-width: 960px;
