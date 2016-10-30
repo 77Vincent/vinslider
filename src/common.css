@@ -1,16 +1,16 @@
 /* Placeholder */
 
 ::-webkit-input-placeholder { /* WebKit browsers */
-    color:$color-gray;
+    color:gray;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:$color-gray;
+    color:gray;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:$color-gray;
+    color:gray;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:$color-gray;
+    color:gray;
 }
 
 /* Selection */
