@@ -72,6 +72,28 @@ Vinslider.prototype = {
         this.userEvent();
     },
 
+    // Basic utilities
+
+    addClass: function(object, classname) {
+        if (object !== undefined && object.className.indexOf(classname) < 0) {
+            object.className += ' ' + classname;
+        }
+    },
+
+    removeClass: function(object, classname) {
+        if (object !== undefined && object.className.indexOf(classname) >= 0) {
+            object.className = object.className.replace(classname, '');
+        }
+    },
+
+    toggleClass: function(object, classname) {
+        if (object !== undefined && object.className.indexOf(classname) >= 0) {
+            object.className = object.className.replace(classname, '');
+        }   else {
+            object.className += ' ' + classname;
+        }
+    },
+
     configReset: function(custom) {
         var self = this;
 
@@ -315,13 +337,12 @@ Vinslider.prototype = {
     forward: function() {
         for (var i = 0; i < this.config.moveBy; i++) {
             if (this.config.mode !== this.mode[2]) {
+                this.removeClass(this.curLi, this.config.activeClass);
                 if (this.nextIndex < this.itemNum) {
-                    this.curLi.className = '';
-                    this.nextLi.className = this.config.activeClass;
+                    this.addClass(this.nextLi, this.config.activeClass);
                 } else {
                     if (this.config.isInfinite) {
-                        this.curLi.className = '';
-                        this.list[0].className = this.config.activeClass;
+                        this.addClass(this.list[0], this.config.activeClass);
                     }
                 }
             } else {
@@ -341,17 +362,15 @@ Vinslider.prototype = {
 
     backward: function() {
         for (var i = 0; i < this.config.moveBy; i++) {
+            this.removeClass(this.curLi, this.config.activeClass);
             if (this.prevIndex >= 0) {
-                this.curLi.className = '';
-                this.prevLi.className = this.config.activeClass;
+                this.addClass(this.prevLi, this.config.activeClass);
             } else {
                 if (this.config.isInfinite) {
                     if (this.config.mode == this.mode[2]) {
-                        this.curLi.className = '';
-                        this.list[this.itemNum - this.config.amount].className = this.config.activeClass;
+                        this.addClass(this.list[this.itemNum - this.config.amount], this.config.activeClass);
                     } else {
-                        this.curLi.className = '';
-                        this.list[this.itemNum - 1].className = this.config.activeClass;
+                        this.addClass(this.list[this.itemNum - 1], this.config.activeClass);
                     }
                 }
             }
