@@ -10,10 +10,7 @@
 
 var Vinslider = function(object, custom) {
     // Stop function if no object is found
-    if (!object) {
-        console.log("ERROR: Didn't find corresponding element");
-        return;
-    }
+    if (!object) return;
 
     // Default config
     this.preset = {
@@ -72,6 +69,23 @@ Vinslider.prototype = {
         this.userEvent();
     },
 
+    // For async callback
+
+    goto: function(idx) {
+        // Go to a certain slide
+        this.startFrom(idx);
+        this.lifecircle();
+    },
+
+    resize: function() {
+        // Resize each slide when the size of the wrapper changes
+        var self = this;
+        setTimeout(function() {
+            self.sizeInit();
+            self.lifecircle();
+        }, 0)
+    },
+
     // Basic utilities
 
     addClass: function(object, classname) {
@@ -86,14 +100,6 @@ Vinslider.prototype = {
         }
     },
 
-    toggleClass: function(object, classname) {
-        if (object !== undefined && object.className.indexOf(classname) >= 0) {
-            object.className = object.className.replace(classname, '');
-        }   else {
-            object.className += ' ' + classname;
-        }
-    },
-
     configReset: function(custom) {
         var self = this;
 
@@ -101,7 +107,6 @@ Vinslider.prototype = {
         if (custom) {
             this.config = custom;
             (function(obj) {
-                var ind = 0;
                 var key;
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) {
@@ -127,7 +132,6 @@ Vinslider.prototype = {
     },
 
     sizeInit: function() {
-
         // Calculate size of each elements
         if (this.config.mode !== this.mode[0]) {
         var self = this;
@@ -196,7 +200,7 @@ Vinslider.prototype = {
         this.nextBtn = ul.children[1];
 
         // Hide controller when
-        ul.style.display = this.itemNum <= this.config.amount || !this.config.isController ? 'none' : '';
+        ul.parentElement.style.display = this.itemNum <= this.config.amount || !this.config.isController ? 'none' : '';
     },
 
     buildpager: function(object) {
@@ -210,7 +214,7 @@ Vinslider.prototype = {
         this.bullet = ul.children;
 
         // Hide controller when
-        ul.style.display = !this.config.isPager || this.itemNum <= 1 ? 'none' : '';
+        ul.parentElement.style.display = !this.config.isPager || this.itemNum <= 1 ? 'none' : '';
     },
 
     autoPlay: function(num) {
@@ -250,14 +254,14 @@ Vinslider.prototype = {
         }
 
         // Pager navigate
-        function closure(ind) {
+        function closure(idx) {
             return function() {
                 for (var e = 0; e < self.itemNum; e++) {
                     self.list[e].className = '';
                     self.bullet[e].className = '';
                 }
 
-                self.list[ind].className = self.config.activeClass;
+                self.list[idx].className = self.config.activeClass;
                 self.lifecircle();
                 self.resetAutoPlay();
             }
@@ -285,18 +289,20 @@ Vinslider.prototype = {
         return parseInt(this.list[this.itemNum - 1].style[this.direction[0]]) < this.vinmain[this.direction[1]];
     },
 
-    startFrom: function(ind) {
-
+    startFrom: function(idx) {
+        for (var i=0; i<this.itemNum; i++) {
+            this.removeClass(this.list[i], this.config.activeClass);
+        }
         // Run the slider
-        this.list[ind].className = this.config.activeClass;
+        this.list[idx].className = this.config.activeClass;
     },
 
     lifecircle: function() {
         // Get current active element, add active class, and remove all elements active class
         for (var i = 0; i < this.itemNum; i++) {
             var status = this.list[i].className;
-            this.list[i].className = '';
-            this.bullet[i].className = '';
+            this.removeClass(this.list[i], this.config.activeClass);
+            this.removeClass(this.bullet[i], this.config.activeClass);
 
             if (status.indexOf(this.config.activeClass) >= 0) {
 
@@ -305,8 +311,8 @@ Vinslider.prototype = {
                 this.curLi = this.list[this.curIndex];
 
                 // Add active class to the current list and bullet
-                this.list[this.curIndex].className = this.config.activeClass;
-                this.bullet[this.curIndex].className = this.config.activeClass;
+                this.addClass(this.list[this.curIndex], this.config.activeClass);
+                this.addClass(this.bullet[this.curIndex], this.config.activeClass);
             }
         }
 
@@ -321,15 +327,17 @@ Vinslider.prototype = {
         if (this.config.mode == this.mode[1] || this.config.mode == this.mode[2]) {
             // Slide and carousel mode, calculate position
             for (var e = 0; e < this.itemNum; e++) {
-                var ind = e - this.curIndex;
-                this.list[e].style[this.direction[0]] = this.size * ind + 'px';
+                var idx = e - this.curIndex;
+                this.list[e].style[this.direction[0]] = this.size * idx + 'px';
             }
         } else {
             // Fade mode, set opacity
             for (var r = 0; r < this.itemNum; r++) {
                 this.list[r].style.opacity = 0;
+                this.list[r].style.zIndex = 1;
             }
             this.list[this.curIndex].style.opacity = 1;
+            this.list[this.curIndex].style.zIndex = 1;
 
         }
     },
@@ -337,22 +345,23 @@ Vinslider.prototype = {
     forward: function() {
         for (var i = 0; i < this.config.moveBy; i++) {
             if (this.config.mode !== this.mode[2]) {
-                this.removeClass(this.curLi, this.config.activeClass);
                 if (this.nextIndex < this.itemNum) {
+                    this.removeClass(this.curLi, this.config.activeClass);
                     this.addClass(this.nextLi, this.config.activeClass);
                 } else {
                     if (this.config.isInfinite) {
+                        this.removeClass(this.curLi, this.config.activeClass);
                         this.addClass(this.list[0], this.config.activeClass);
                     }
                 }
             } else {
                 if (!this.ifStop()) {
-                    this.curLi.className = '';
-                    this.nextLi.className = this.config.activeClass;
+                    this.removeClass(this.curLi, this.config.activeClass);
+                    this.addClass(this.nextLi, this.config.activeClass);
                 } else {
                     if (this.config.isInfinite) {
-                        this.curLi.className = '';
-                        this.list[0].className = this.config.activeClass;
+                        this.removeClass(this.curLi, this.config.activeClass);
+                        this.addClass(this.list[0], this.config.activeClass);
                     }
                 }
             }
