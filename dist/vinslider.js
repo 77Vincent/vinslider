@@ -294,7 +294,7 @@ Vinslider.prototype = {
             this.removeClass(this.list[i], this.config.activeClass);
         }
         // Run the slider
-        this.list[idx].className = this.config.activeClass;
+		this.addClass(this.list[idx], this.config.activeClass);
     },
 
     lifecircle: function() {
