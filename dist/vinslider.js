@@ -56,7 +56,7 @@ Vinslider.prototype = {
         // Initialzation
         this.configInit();
         this.modeInit();
-        this.sizeInit();
+        this.sizeInit(this.config.amount);
 
         // Create DOM
         this.buildpager(object);
@@ -81,9 +81,16 @@ Vinslider.prototype = {
         // Resize each slide when the size of the wrapper changes
         var self = this;
         setTimeout(function() {
-            self.sizeInit();
+            self.sizeInit(self.config.amount);
             self.lifecircle();
         }, 0)
+    },
+
+    reAmount: function(amount) {
+    	// Reset the amount of items
+	this.config.amount = amount;
+	this.sizeInit(amount);
+	this.lifecircle();
     },
 
     // Basic utilities
@@ -131,13 +138,13 @@ Vinslider.prototype = {
         this.direction = this.config.isVertical ? ['top', 'clientHeight', 'height'] : ['left', 'clientWidth', 'width'];
     },
 
-    sizeInit: function() {
+    sizeInit: function(amount) {
         // Calculate size of each elements
         if (this.config.mode !== this.mode[0]) {
         var self = this;
             var gut = this.config.isPercentGutter ? this.size * this.config.gutter : this.config.gutter;
 
-            this.size = this.config.mode == this.mode[2] ? (this.vinmain[this.direction[1]] / this.config.amount) : this.vinmain[this.direction[1]];
+            this.size = this.config.mode == this.mode[2] ? (this.vinmain[this.direction[1]] / amount) : this.vinmain[this.direction[1]];
 
             for (var i = 0; i < this.itemNum; i++) {
                 this.list[i].style[this.direction[2]] = this.size - gut + 'px';
@@ -174,7 +181,7 @@ Vinslider.prototype = {
         });
 
         function reset() {
-            self.sizeInit();
+            self.sizeInit(self.config.amount);
             self.lifecircle();
         }
     },
