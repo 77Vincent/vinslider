@@ -179,6 +179,16 @@ footer {
     float: right;
 }
 
+.text-center {
+	text-align: center;
+}
+
+.clearfix:after {
+	display: block;
+	clear: both;
+	content: "";
+}
+
 @media screen and (max-width: 770) {
 
 }
