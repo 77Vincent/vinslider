@@ -66,6 +66,9 @@ Get the source code here:https://github.com/77Vincent/vinslider, they are in dis
 
 Tips: Under carousel mode, pager will be hidden by default.
 
+### speed : Number
+> The transition speed for switching slides. **(Default: 750, millisecond)**
+
 ### duration : Number
 > How much time each slide stays. **(Default: 5000, millisecond)**
 
@@ -128,6 +131,22 @@ Tips: Only works when the gutter is also declared, if not, no effect or error wi
 > false: Reversed direction.
 
 Tips: This only affects the auto playing. User events will still respect the direction according to their navigation.
+
+## Fallback Functions
+
+Useage: After a Vinslider instance is istantiated, these functions could be called to manipulated the instance anytime when there is a need for callbacks.
+
+Example: vinslider.goto(3);
+> Here means navigating this vinslider instance to goto the 4th slide when this piece of code is called.
+
+### goto(index); 
+> Navigate the slider to a specific slide with the given index.
+
+### resize();
+> Vinslider already has the ability to resize its self under a window.onresize event, but when the size of its wrapper changes but without a window resize event occurring, use this function to resize the size of vinslider to fit its new wrapper. 
+
+### reAmount(value);
+> Reset the amount of items to be displayed based upon the new given value at a time when under carousel mode, mostly for responsive. 
 
 ## Features
 
