@@ -20,6 +20,7 @@ var Vinslider = function (object, custom) {
         activeClass: 'vinactive',
 
         // Number
+		speed: 750,
         duration: 5000,
         gutter: 0,
         startFrom: 0,
@@ -57,6 +58,7 @@ Vinslider.prototype = {
         // Global
         this.configReset(custom);
         this.responsive();
+		this.animation();
 
         // Initialzation
         this.configInit();
@@ -168,7 +170,7 @@ Vinslider.prototype = {
 				if (!self.config.isWrapperSize) {
 					self.vinmain.style.height = self.list[0].clientHeight + 'px';
 				}
-			}, 50);
+			}, self.config.speed);
         }
 	},
 
@@ -191,6 +193,37 @@ Vinslider.prototype = {
             this.config.isPager = false;
         }
     },
+
+	animation: function () {
+		var self = this;
+		var speed = ' ' + this.config.speed / 1000 + 's';	
+		var unit = !this.config.isVertical ? ['width', 'left'] : ['height', 'top'];
+
+		function create(object) {
+
+			// Apply transition to li based on mode
+			if (self.config.mode == self.mode[0]) {
+
+				// Fade unit
+				object.style.WebkitTransition = 'opacity' + speed;
+				object.style.MozTransition = 'opacity' + speed;
+				object.style.OTransition = 'opacity' + speed;
+				object.style.Transition = 'opacity' + speed;
+			} else {
+
+				// Slide or carousel unit
+				object.style.WebkitTransition = unit[0] + speed + ',' + unit[1] + speed;
+				object.style.MozTransition = unit[0] + speed + ',' + unit[1] + speed;
+				object.style.OTransition = unit[0] + speed + ',' + unit[1] + speed;
+				object.style.Transition = unit[0] + speed + ',' + unit[1] + speed;
+			}
+		}
+
+		// Create transition for each list items
+		for (var i=0; i<this.list.length; i++) {
+			create(this.list[i]);
+		}	
+	},
 
     responsive: function () {
 
