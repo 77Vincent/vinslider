@@ -134,7 +134,7 @@ Tips: This only affects the auto playing. User events will still respect the dir
 
 ## Fallback Functions
 
-Useage: After a Vinslider instance is istantiated, these functions could be called to manipulated the instance anytime when there is a need for callbacks.
+Useage: After a Vinslider instance is instantiated, these functions could be called to manipulated the instance anytime when there is a need for callbacks.
 
 Example: vinslider.goto(3);
 > Here means navigating this vinslider instance to goto the 4th slide when this piece of code is called.
@@ -147,6 +147,17 @@ Example: vinslider.goto(3);
 
 ### reAmount(value);
 > Reset the amount of items to be displayed based upon the new given value at a time when under carousel mode, mostly for responsive. 
+	
+	var vinslider = new Vinslider(element, {
+		mode: 'carousel',
+		amount: 4
+	});
+
+	window.addEventListener('resize', function() {
+		if (window.innerWidth < 1024) {
+			vinslider.reAmount(3);
+		}
+	});
 
 ## Features
 
