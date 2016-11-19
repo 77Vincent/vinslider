@@ -1,4 +1,4 @@
-# documentation
+# DOCUMENTATION 
 
 #### Light weight, responsive, native Javascript slider / carousel module. Highly customizable.
 
