@@ -117,6 +117,11 @@ Vinslider.prototype = {
         }
     },
 
+	capitalize: function (object) {
+		
+		return object.charAt(0).toUpperCase() + object.slice(1);
+	},
+
     configReset: function (custom) {
         var self = this;
 
@@ -145,7 +150,7 @@ Vinslider.prototype = {
         this.config.amount = this.config.amount <= 1 ? 2 : this.config.amount;
 
         // direction of slider
-        this.direction = this.config.isVertical ? ['top', 'clientHeight', 'height', 'width'] : ['left', 'clientWidth', 'width', 'height'];
+        this.direction = this.config.isVertical ? ['top', 'height', 'width'] : ['left', 'width', 'height'];
     },
 
     sizeInit: function (amount) {	
@@ -154,21 +159,22 @@ Vinslider.prototype = {
         if (this.config.mode !== this.mode[0]) {
 			var self = this;
             var gut = this.config.isPercentGutter ? this.size * this.config.gutter : this.config.gutter;
-            this.size = this.config.mode == this.mode[2] ? (this.vinmain[this.direction[1]] / amount) : this.vinmain[this.direction[1]];
+			var temp;
+            this.size = this.config.mode == this.mode[2] ? (this.vinmain['client' + this.capitalize(this.direction[1])] / amount) : this.vinmain['client' + this.capitalize(this.direction[1])];
 
             for (var i = 0; i < this.itemNum; i++) {
-                this.list[i].style[this.direction[2]] = this.size - gut + 'px';
+                this.list[i].style[this.direction[1]] = this.size - gut + 'px';
 
 				// Set children items' height to auto;
 				if (!this.config.isWrapperSize) {
-					this.list[i].style[this.direction[3]] = 'auto';
+					this.list[i].style[this.direction[2]] = 'auto';
 				}
             }
 
 			// Set vinmain height based on its children elements' height but not CSS height
 			setTimeout(function () {
 				if (!self.config.isWrapperSize) {
-					self.vinmain.style.height = self.list[0].clientHeight + 'px';
+					self.vinmain.style.height = self.list[0]['client' + self.capitalize(self.direction[2])] + 'px';
 				}
 			}, self.config.speed);
         }
@@ -242,6 +248,12 @@ Vinslider.prototype = {
     },
 
     buildWrapper: function (object, string) {
+
+        // Remove element if it is already built
+        var prevCon = this.vinmain.parentElement.querySelector('.vincontroller');
+        if (prevCon) prevCon.parentElement.removeChild(prevCon);
+        var prevPager = this.vinmain.parentElement.querySelector('.vinpager');
+        if (prevPager) prevPager.parentElement.removeChild(prevPager);
 
 		// Build wrapper for contoller and pager
         var wrapper = document.createElement('div');
@@ -353,7 +365,7 @@ Vinslider.prototype = {
     },
 
     ifStop: function () {
-        return parseInt(this.list[this.itemNum - 1].style[this.direction[0]]) < this.vinmain[this.direction[1]];
+        return parseInt(this.list[this.itemNum - 1].style[this.direction[0]]) < this.vinmain['client' + this.capitalize(this.direction[1])];
     },
 
     startFrom: function (idx) {
