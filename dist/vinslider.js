@@ -36,7 +36,8 @@ var Vinslider = function (object, custom) {
         isPercentGutter: false,
         isScrollable: false,
         isVertical: false,
-		isWrapperSize: true
+		isUseItemSize: false,
+        isFillWrapper: false
     };
 
     // DOM
@@ -45,8 +46,8 @@ var Vinslider = function (object, custom) {
     this.list = this.vinmain.children;
 
     // Meta
+    this.throttle = 300;
     this.itemNum = this.list.length;
-    this.mode = ['fade', 'slide', 'carousel'],
 
 	// Run
     this.init(object, custom);
@@ -60,14 +61,14 @@ Vinslider.prototype = {
         this.responsive();
 		this.animation();
 
+        // Create DOM
+        this.buildpager(object);
+        this.buildController(object);
+
         // Initialzation
         this.configInit();
         this.modeInit();
         this.sizeInit(this.config.amount);
-
-        // Create DOM
-        this.buildpager(object);
-        this.buildController(object);
 
         // Run
         this.startFrom(this.config.startFrom);
@@ -77,28 +78,34 @@ Vinslider.prototype = {
     },
 
     // For async callback
-    goto: function (idx) {
+    goto: function (value) {
 
         // Go to a certain slide
-        this.startFrom(idx);
+        this.startFrom(value);
         this.lifecircle();
     },
 
     resize: function () {
+        var self = this;
 
         // Resize each slide when the size of the wrapper changes
-        var self = this;
         setTimeout(function () {
             self.sizeInit(self.config.amount);
             self.lifecircle();
         }, 0)
     },
 
-    reAmount: function (amount) {
+    reAmount: function (value) {
 
     	// Reset the amount of items
-		this.config.amount = amount;
-		this.sizeInit(amount);
+		this.config.amount = value;
+
+        // Reinit
+        this.modeInit();
+		this.sizeInit(this.config.amount);
+
+        // Rerun
+        this.startFrom(0);
 		this.lifecircle();
     },
 
@@ -113,7 +120,7 @@ Vinslider.prototype = {
     removeClass: function (object, classname) {
 
         if (object !== undefined && object.className.indexOf(classname) >= 0) {
-            object.className = object.className.replace(classname, '');
+            object.className = object.className.replace(' ' + classname, '');
         }
     },
 
@@ -146,57 +153,87 @@ Vinslider.prototype = {
         // moveBy could not be set less than 0
         this.config.moveBy = this.config.moveBy < 0 ? 1 : this.config.moveBy;
 
-        // amount always starts from 2
-        this.config.amount = this.config.amount <= 1 ? 2 : this.config.amount;
-
         // direction of slider
+        // In array:
+        // 1- main direction position
+        // 2- main direction size
+        // 3- orthogonal direction size
         this.direction = this.config.isVertical ? ['top', 'height', 'width'] : ['left', 'width', 'height'];
     },
 
     sizeInit: function (amount) {	
+        var self = this;
 
-        // Calculate size of each elements
-        if (this.config.mode !== this.mode[0]) {
-			var self = this;
-            var gut = this.config.isPercentGutter ? this.size * this.config.gutter : this.config.gutter;
-			var temp;
-            this.size = this.config.mode == this.mode[2] ? (this.vinmain['client' + this.capitalize(this.direction[1])] / amount) : this.vinmain['client' + this.capitalize(this.direction[1])];
+        // Get gutter
+        var gut = this.config.isPercentGutter ? this.size * this.config.gutter : this.config.gutter;
 
-            for (var i = 0; i < this.itemNum; i++) {
-                this.list[i].style[this.direction[1]] = this.size - gut + 'px';
+        // Get main direction size of vinmain
+        this.size = this.vinmain['client' + this.capitalize(this.direction[1])] / amount;
 
-				// Set children items' height to auto;
-				if (!this.config.isWrapperSize) {
-					this.list[i].style[this.direction[2]] = 'auto';
-				}
+        // Get orthogonal direction size 
+        var temp = 0;
+        var max = 0;
+
+        function closure(idx) {
+
+            // Get the largest item's orthogonal size
+            setTimeout(function () {
+                if (self.list[idx]['client' + self.capitalize(self.direction[2])] >= temp) {
+                    max = self.list[idx]['client' + self.capitalize(self.direction[2])]; 
+                }
+                temp = self.list[idx]['client' + self.capitalize(self.direction[2])];
+            }, self.config.speed);
+        }
+
+        // Set size for each item 
+        for (var i = 0; i < this.itemNum; i++) {
+
+            // Subtract gut from each slide size
+            this.list[i].style[this.direction[1]] = this.size - gut + 'px';
+
+            // Set children items' orthogonal size to auto;
+            if (this.config.isUseItemSize) {
+                this.list[i].style[this.direction[2]] = 'auto';
+                closure(i);
+            }
+        }
+
+        // Set vinmain height based on its children elements' height but not CSS height
+        setTimeout(function () {
+
+            // Set vinmain size based on its items size
+            if (self.config.isUseItemSize) {
+                self.vinmain.style[self.direction[2]] = max + 'px';
             }
 
-			// Set vinmain height based on its children elements' height but not CSS height
-			setTimeout(function () {
-				if (!self.config.isWrapperSize) {
-					self.vinmain.style.height = self.list[0]['client' + self.capitalize(self.direction[2])] + 'px';
-				}
-			}, self.config.speed);
-        }
+            // Set items'size to 100% if is set to fill wrapper
+            if (self.config.isFillWrapper) {
+                for (var i = 0; i < self.itemNum; i++) {
+                    self.list[i].style[self.direction[2]] = '100%';
+                }
+            }
+        }, self.config.speed);
 	},
 
     modeInit: function () {
+        var controller = this.vinmain.parentElement.querySelector('.vincontroller');
 
-        // Slide mode
-        if (this.config.mode == this.mode[1]) {
-
-            for (var i = 0; i < this.itemNum; i++) {
-                this.list[i].style.opacity = 1;
-            }
+        // Normal
+        if (!this.config.isController) {
+            controller.style.display = 'none'; 
         }
 
-        // Carousel mode
-        if (this.config.mode == this.mode[2]) {
-
-            for (var i = 0; i < this.itemNum; i++) {
-                this.list[i].style.opacity = 1;
-            }
-            this.config.isPager = false;
+        switch (this.config.mode) {
+            case 'slide':
+                for (var i = 0; i < this.itemNum; i++) {
+                    this.list[i].style.opacity = 1;
+                }
+                if (this.config.amount > 1 && this.config.amount >= this.itemNum) {
+                    controller.style.display = 'none'; 
+                } else {
+                    controller.style.display = ''; 
+                }
+                break;
         }
     },
 
@@ -207,22 +244,22 @@ Vinslider.prototype = {
 
 		function create(object) {
 
-			// Apply transition to li based on mode
-			if (self.config.mode == self.mode[0]) {
+			// Apply transition to item based on mode
+            switch (self.config.mode) {
+                case 'fade':
+                    object.style.WebkitTransition = 'opacity' + speed;
+                    object.style.MozTransition = 'opacity' + speed;
+                    object.style.OTransition = 'opacity' + speed;
+                    object.style.Transition = 'opacity' + speed;
+                    break;
 
-				// Fade unit
-				object.style.WebkitTransition = 'opacity' + speed;
-				object.style.MozTransition = 'opacity' + speed;
-				object.style.OTransition = 'opacity' + speed;
-				object.style.Transition = 'opacity' + speed;
-			} else {
-
-				// Slide or carousel unit
-				object.style.WebkitTransition = unit[0] + speed + ',' + unit[1] + speed;
-				object.style.MozTransition = unit[0] + speed + ',' + unit[1] + speed;
-				object.style.OTransition = unit[0] + speed + ',' + unit[1] + speed;
-				object.style.Transition = unit[0] + speed + ',' + unit[1] + speed;
-			}
+                case 'slide': 
+                    object.style.WebkitTransition = unit[0] + speed + ',' + unit[1] + speed;
+                    object.style.MozTransition = unit[0] + speed + ',' + unit[1] + speed;
+                    object.style.OTransition = unit[0] + speed + ',' + unit[1] + speed;
+                    object.style.Transition = unit[0] + speed + ',' + unit[1] + speed;
+                    break;
+            }
 		}
 
 		// Create transition for each list items
@@ -236,24 +273,17 @@ Vinslider.prototype = {
         // Resize slider size when resizing screen
         var timeout = false;
         var self = this;
+
         window.addEventListener('resize', function () {
             clearTimeout(timeout);
-            timeout = setTimeout(reset, 300);
+            timeout = setTimeout(function () {
+                self.sizeInit(self.config.amount);
+                self.lifecircle();
+            }, self.throttle);
         });
-
-        function reset() {
-            self.sizeInit(self.config.amount);
-            self.lifecircle();
-        }
     },
 
     buildWrapper: function (object, string) {
-
-        // Remove element if it is already built
-        var prevCon = this.vinmain.parentElement.querySelector('.vincontroller');
-        if (prevCon) prevCon.parentElement.removeChild(prevCon);
-        var prevPager = this.vinmain.parentElement.querySelector('.vinpager');
-        if (prevPager) prevPager.parentElement.removeChild(prevPager);
 
 		// Build wrapper for contoller and pager
         var wrapper = document.createElement('div');
@@ -266,6 +296,11 @@ Vinslider.prototype = {
     },
 
     buildController: function (object) {
+
+        // Remove element if it is already built
+        var prevCon = this.vinmain.parentElement.querySelector('.vincontroller');
+        if (prevCon) prevCon.parentElement.removeChild(prevCon);
+
         var ul = this.buildWrapper(object, 'vincontroller');
 
         for (var i = 0; i < 2; i++) {
@@ -274,12 +309,14 @@ Vinslider.prototype = {
         }
         this.prevBtn = ul.children[0];
         this.nextBtn = ul.children[1];
-
-        // Hide controller when the amount of actual slides is less the amount of configuration
-        ul.parentElement.style.display = this.itemNum <= this.config.amount || !this.config.isController ? 'none' : '';
     },
 
     buildpager: function (object) {
+
+        // Remove element if it is already built
+        var prevPager = this.vinmain.parentElement.querySelector('.vinpager');
+        if (prevPager) prevPager.parentElement.removeChild(prevPager);
+
         var ul = this.buildWrapper(object, 'vinpager');
 
         for (var i = 0; i < this.itemNum; i++) {
@@ -289,7 +326,10 @@ Vinslider.prototype = {
         this.bullet = ul.children;
 
         // Hide controller when
-        ul.parentElement.style.display = !this.config.isPager || this.itemNum <= 1 ? 'none' : '';
+        ul.parentElement.style.display = 
+            !this.config.isPager || this.itemNum <= 1 ? 
+            'none' : 
+            '';
     },
 
     autoPlay: function (num) {
@@ -334,11 +374,11 @@ Vinslider.prototype = {
 
             return function () {
 
-                for (var e = 0; e < self.itemNum; e++) {
-                    self.list[e].className = '';
-                    self.bullet[e].className = '';
+                for (var i=0; i<self.itemNum; i++) {
+                    self.removeClass(self.list[i], self.config.activeClass);
+                    self.removeClass(self.bullet[i], self.config.activeClass);
                 }
-                self.list[idx].className = self.config.activeClass;
+                self.addClass(self.list[idx], self.config.activeClass);
                 self.lifecircle();
                 self.resetAutoPlay();
             }
@@ -406,54 +446,54 @@ Vinslider.prototype = {
         this.nextLi = this.list[this.nextIndex];
 
         // Set effect to each slide
-        if (this.config.mode == this.mode[1] || this.config.mode == this.mode[2]) {
+        switch (this.config.mode) {
+            case 'fade':
+                for (var r = 0; r < this.itemNum; r++) {
+                    this.list[r].style.opacity = 0;
+                    this.list[r].style.zIndex = 1;
+                }
+                this.list[this.curIndex].style.opacity = 1;
+                this.list[this.curIndex].style.zIndex = 1;
+                break;
 
-            // Slide and carousel mode, calculate position
-            for (var e = 0; e < this.itemNum; e++) {
-                var idx = e - this.curIndex;
-                this.list[e].style[this.direction[0]] = this.size * idx + 'px';
-            }
-        } else {
-
-            // Fade mode, set opacity
-            for (var r = 0; r < this.itemNum; r++) {
-                this.list[r].style.opacity = 0;
-                this.list[r].style.zIndex = 1;
-            }
-            this.list[this.curIndex].style.opacity = 1;
-            this.list[this.curIndex].style.zIndex = 1;
-
+            case 'slide':
+                for (var e = 0; e < this.itemNum; e++) {
+                    var idx = e - this.curIndex;
+                    this.list[e].style[this.direction[0]] = this.size * idx + 'px';
+                }
+                break;
         }
     },
 
     forward: function () {
 
         for (var i = 0; i < this.config.moveBy; i++) {
-
-            if (this.config.mode !== this.mode[2]) {
-
-                if (this.nextIndex < this.itemNum) {
-                    this.removeClass(this.curLi, this.config.activeClass);
-                    this.addClass(this.nextLi, this.config.activeClass);
-                } else {
-
-                    if (this.config.isInfinite) {
+            switch (this.config.amount == 1) {
+                case true:
+                    if (this.nextIndex < this.itemNum) {
                         this.removeClass(this.curLi, this.config.activeClass);
-                        this.addClass(this.list[0], this.config.activeClass);
+                        this.addClass(this.nextLi, this.config.activeClass);
+                    } else {
+
+                        if (this.config.isInfinite) {
+                            this.removeClass(this.curLi, this.config.activeClass);
+                            this.addClass(this.list[0], this.config.activeClass);
+                        }
                     }
-                }
-            } else {
+                    break;
 
-                if (!this.ifStop()) {
-                    this.removeClass(this.curLi, this.config.activeClass);
-                    this.addClass(this.nextLi, this.config.activeClass);
-                } else {
-
-                    if (this.config.isInfinite) {
+                case false:
+                    if (!this.ifStop()) {
                         this.removeClass(this.curLi, this.config.activeClass);
-                        this.addClass(this.list[0], this.config.activeClass);
+                        this.addClass(this.nextLi, this.config.activeClass);
+                    } else {
+
+                        if (this.config.isInfinite) {
+                            this.removeClass(this.curLi, this.config.activeClass);
+                            this.addClass(this.list[0], this.config.activeClass);
+                        }
                     }
-                }
+                    break;
             }
             this.lifecircle();
         }
@@ -470,10 +510,13 @@ Vinslider.prototype = {
 
                 if (this.config.isInfinite) {
 
-                    if (this.config.mode == this.mode[2]) {
-                        this.addClass(this.list[this.itemNum - this.config.amount], this.config.activeClass);
-                    } else {
-                        this.addClass(this.list[this.itemNum - 1], this.config.activeClass);
+                    switch (this.config.amount == 1) {
+                        case true:
+                            this.addClass(this.list[this.itemNum - this.config.amount], this.config.activeClass);    
+                            break;
+                        case false:
+                            this.addClass(this.list[this.itemNum - 1], this.config.activeClass);
+                            break;
                     }
                 }
             }
