@@ -217,10 +217,20 @@ Vinslider.prototype = {
 
     modeInit: function () {
         var controller = this.vinmain.parentElement.querySelector('.vincontroller');
+        var pager = this.vinmain.parentElement.querySelector('.vinpager');
 
-        // Normal
-        if (!this.config.isController) {
+        // Controller visible
+        if (this.config.amount >= this.itemNum) {
             controller.style.display = 'none'; 
+        } else {
+            controller.style.display = ''; 
+        }
+
+        // Pager visible
+        if (this.config.amount > 1 || this.itemNum == 1) {
+            pager.style.display = 'none'; 
+        } else {
+            pager.style.display = '';
         }
 
         switch (this.config.mode) {
@@ -228,13 +238,18 @@ Vinslider.prototype = {
                 for (var i = 0; i < this.itemNum; i++) {
                     this.list[i].style.opacity = 1;
                 }
-                if (this.config.amount > 1 && this.config.amount >= this.itemNum) {
-                    controller.style.display = 'none'; 
-                } else {
-                    controller.style.display = ''; 
-                }
                 break;
         }
+
+        // Normal
+        if (!this.config.isController) {
+            controller.style.display = 'none'; 
+        }
+
+        if (!this.config.isPager) {
+            pager.style.display = 'none'; 
+        }
+
     },
 
 	animation: function () {
@@ -324,12 +339,6 @@ Vinslider.prototype = {
             ul.appendChild(li);
         }
         this.bullet = ul.children;
-
-        // Hide controller when
-        ul.parentElement.style.display = 
-            !this.config.isPager || this.itemNum <= 1 ? 
-            'none' : 
-            '';
     },
 
     autoPlay: function (num) {
