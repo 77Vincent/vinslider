@@ -129,6 +129,7 @@ Vinslider.prototype = {
 		return object.charAt(0).toUpperCase() + object.slice(1);
 	},
 
+    // Configurations
     configReset: function (custom) {
         var self = this;
 
@@ -496,7 +497,6 @@ Vinslider.prototype = {
                         this.removeClass(this.curLi, this.config.activeClass);
                         this.addClass(this.nextLi, this.config.activeClass);
                     } else {
-
                         if (this.config.isInfinite) {
                             this.removeClass(this.curLi, this.config.activeClass);
                             this.addClass(this.list[0], this.config.activeClass);
@@ -512,19 +512,16 @@ Vinslider.prototype = {
 
         for (var i = 0; i < this.config.moveBy; i++) {
             this.removeClass(this.curLi, this.config.activeClass);
-
             if (this.prevIndex >= 0) {
                 this.addClass(this.prevLi, this.config.activeClass);
             } else {
-
                 if (this.config.isInfinite) {
-
                     switch (this.config.amount == 1) {
                         case true:
-                            this.addClass(this.list[this.itemNum - this.config.amount], this.config.activeClass);    
+                            this.addClass(this.list[this.itemNum - 1], this.config.activeClass);
                             break;
                         case false:
-                            this.addClass(this.list[this.itemNum - 1], this.config.activeClass);
+                            this.addClass(this.list[this.itemNum - this.config.amount], this.config.activeClass);    
                             break;
                     }
                 }
