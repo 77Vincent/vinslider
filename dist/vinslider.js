@@ -16,7 +16,7 @@ var Vinslider = function (object, custom) {
     this.preset = {
 
         // String
-        mode: 'fade',
+        mode: 'slide',
         activeClass: 'vinactive',
 
         // Number
@@ -56,28 +56,45 @@ var Vinslider = function (object, custom) {
 Vinslider.prototype = {
     init: function (object, custom) {
 
-        // Global
-        this.configReset(custom);
-        this.responsive();
-		this.animation();
-
-        // Create DOM
+        // Synchronous 
+        // DOM
         this.buildpager(object);
         this.buildController(object);
 
-        // Initialzation
+        // Config
+        this.configReset(custom);
         this.configInit();
-        this.modeInit();
+
+        // Init 
+		this.animation();
+        this.modeInit(this.config.amount);
         this.sizeInit(this.config.amount);
 
         // Run
         this.startFrom(this.config.startFrom);
         this.lifecircle();
         this.autoPlay(this.config.duration);
+
+        // Asynchronous
+        this.responsive();
         this.userEvent();
+
     },
 
     // For async callback
+    rebuild: function (custom) {
+
+        // Rebuild the Vinslider with new configurations
+        this.configReset(custom);
+        this.configInit();
+		this.animation();
+        this.modeInit(this.config.amount);
+        this.sizeInit(this.config.amount);
+        this.startFrom(this.config.startFrom);
+        this.lifecircle();
+        this.autoPlay(this.config.duration);
+    },
+
     goto: function (value) {
 
         // Go to a certain slide
@@ -101,7 +118,7 @@ Vinslider.prototype = {
 		this.config.amount = value;
 
         // Reinit
-        this.modeInit();
+        this.modeInit(this.config.amount);
 		this.sizeInit(this.config.amount);
 
         // Rerun
@@ -216,19 +233,26 @@ Vinslider.prototype = {
         }, self.config.speed);
 	},
 
-    modeInit: function () {
+    modeInit: function (amount) {
         var controller = this.vinmain.parentElement.querySelector('.vincontroller');
         var pager = this.vinmain.parentElement.querySelector('.vinpager');
 
+        // Correct amount
+        if (amount <= 0 || this.config.mode == 'fade') {
+            amount = this.config.amount = 1;
+        } else if (amount > this.itemNum) {
+            amount = this.config.amount = this.itemNum;
+        }
+
         // Controller visible
-        if (this.config.amount >= this.itemNum) {
+        if (amount >= this.itemNum) {
             controller.style.display = 'none'; 
         } else {
             controller.style.display = ''; 
         }
 
         // Pager visible
-        if (this.config.amount > 1 || this.itemNum == 1) {
+        if (amount > 1 || this.itemNum == 1) {
             pager.style.display = 'none'; 
         } else {
             pager.style.display = '';
@@ -342,19 +366,22 @@ Vinslider.prototype = {
         this.bullet = ul.children;
     },
 
-    autoPlay: function (num) {
+    autoPlay: function (value) {
 
         // Auto play the slider
         var self = this;
 
         if (this.config.isAuto) {
+            if (this.timer) {
+                clearTimeout(this.timer);
+            }
             this.timer = setInterval(function () {
                 if (self.config.isForward) {
                     self.forward();
                 } else {
                     self.backward();
                 }
-            }, num);
+            }, value);
         }
     },
 
@@ -418,14 +445,20 @@ Vinslider.prototype = {
         return parseInt(this.list[this.itemNum - 1].style[this.direction[0]]) < this.vinmain['client' + this.capitalize(this.direction[1])];
     },
 
-    startFrom: function (idx) {
+    startFrom: function (value) {
+        // Correct value
+        if (value < 0) {
+            value = 0;   
+        } else if (value > this.itemNum - this.config.amount) {
+            value = this.itemNum - this.config.amount;
+        }
 
         for (var i=0; i<this.itemNum; i++) {
             this.removeClass(this.list[i], this.config.activeClass);
         }
 
         // Run the slider
-		this.addClass(this.list[idx], this.config.activeClass);
+		this.addClass(this.list[value], this.config.activeClass);
     },
 
     lifecircle: function () {

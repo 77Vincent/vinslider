@@ -21,15 +21,15 @@
     <header>
         <div class="wrapper">
             <h1><b>V</b>inslider</h1>
-            <h3>Light weight, native Javascript slider / carousel module. Highly customizable.</h3>
+            <h3>Light weight, native Javascript slider module. Highly customizable.</h3>
         </div>
     </header>
-        <a href="http://www.77webtech.com" class="back">Back to blog</a>
     <a href="https://github.com/77Vincent/vinslider" target="_blank" class="fork">fork me on github</a>
     <div class="wrapper">
         <div class="clearfix">
+
             <div class="vinslider">
-                <h4>fade mode / scrollable</h4>
+                <h4>Slide Mode</h4>
                 <ul>
                     <li><h4>1</h4></li>
                     <li><h4>2</h4></li>
@@ -37,8 +37,9 @@
                     <li><h4>4</h4></li>
                 </ul>
             </div>
+
             <div class="vinslider">
-                <h4>fade mode / start from: 2</h4>
+                <h4>Fade mode</h4>
                 <ul>
                     <li><h4>1</h4></li>
                     <li><h4>2</h4></li>
@@ -46,26 +47,9 @@
                     <li><h4>4</h4></li>
                 </ul>
             </div>
+
             <div class="vinslider">
-                <h4>slide mode / forward</h4>
-                <ul>
-                    <li><h4>1</h4></li>
-                    <li><h4>2</h4></li>
-                    <li><h4>3</h4></li>
-                    <li><h4>4</h4></li>
-                </ul>
-            </div>
-            <div class="vinslider">
-                <h4>slide mode / backward / vertical</h4>
-                <ul>
-                    <li><h4>1</h4></li>
-                    <li><h4>2</h4></li>
-                    <li><h4>3</h4></li>
-                    <li><h4>4</h4></li>
-                </ul>
-            </div>
-            <div class="vinslider">
-                <h4>carousel mode / moveby: 2</h4>
+                <h4>slide mode / amount: 4</h4>
                 <ul>
                     <li><h4>1</h4></li>
                     <li><h4>2</h4></li>
@@ -77,8 +61,9 @@
                     <li><h4>8</h4></li>
                 </ul>
             </div>
+
             <div class="vinslider">
-                <h4>carousel mode / gutter: 10px</h4>
+                <h4>slide mode / amount: 4 / gutter: 10px</h4>
                 <ul>
                     <li><h4>1</h4></li>
                     <li><h4>2</h4></li>
@@ -89,16 +74,41 @@
                     <li><h4>7</h4></li>
                     <li><h4>8</h4></li>
                 </ul>
+            </div>
+        </div>
+        
+        <div class="text-center callbacks">
+            <h2><span>Asynchronous Callbacks</span></h2>
+            <div class="vinslider">
+                <ul>
+                    <li><h4>1</h4></li>
+                    <li><h4>2</h4></li>
+                    <li><h4>3</h4></li>
+                    <li><h4>4</h4></li>
+                    <li><h4>5</h4></li>
+                    <li><h4>6</h4></li>
+                    <li><h4>7</h4></li>
+                    <li><h4>8</h4></li>
+                </ul>
+            </div>
+            <div class="">
+                <button>Goto the first slide</button>
+                <button>Goto the last slide</button>
+                <button>Increase amount by 1</button>
+                <button>Decrease amount by 1</button>
+                <button>Half size</button>
+                <button>Rebuild slider with new configurations</button>
             </div>
         </div>
 
         <div class="text-center">
             <h2><span>Why this one?</span></h2>
             <ul>
-                <li>No dependencies. totally independent</li>
+                <li>No dependencies</li>
+                <li>Native Javascript</li>
                 <li>Highly customizable</li>
                 <li>Super lightweight</li>
-                <li>Native Javascript</li>
+                <li>Useful callbacks</li>
                 <li>Good performance</li>
                 <li>Responsive</li>
                 <li>Easy to use</li>
@@ -125,7 +135,7 @@
 
                 <p>var config = {
                     duration: 1800,
-                    mode: 'carousel',
+                    mode: 'fade'
                     ....
                 };</p>
 
@@ -133,7 +143,7 @@
             </code>
             <a target="_blank" href="https://github.com/77Vincent/vinslider">download & Documentations</a>
             <h2><span>About </span></h2>
-            <p>Yes, there are already a lot of similar modules out there to accomplish the same functionality, I have used several ones but found that they are not the exact stuff that I want, they either depend on a JS library, or with a not easy-to-use API, or with limited functionality, or has a bad performance. So I decided to create a module myself which could be as much simple, powerful, friendly, versatile as it can be. To achieve these goals, I choose native Javascript, manipulating native DOM element, and give all transition tasks to CSS, as you can see, those are the very basic elements that form a web page. And this is what I understand a basic module should be like. Check out the github repository page for more information, if you like it, feel free to share it with more people.<p>
+            <p>Yes, there are already a lot of similar modules out there to accomplish the same functionality, I have used several ones but found that they are not the exact stuff that I want, they either depend on a Javascript library, or with a not easy-to-use API, or with limited functionalities, or has a bad performance. So I decided to create a module myself which could be as much simple, powerful, friendly, versatile as it can be. To achieve these goals, I choose native Javascript, manipulating native DOM element, and let CSS handle all layout and transition missions, as you can see, those are the very basic elements that form a web page. And this is how I understand a basic module should be like. Check out the github repository page for more information, if you like it, feel free to share it with more people.<p>
         </div>
     </div>
 
@@ -142,53 +152,9 @@
         <p>Released under the MIT license</p>
     </footer>
 
+    <script type="text/javascript" src="demo/vinJs.js"></script>
     <script type="text/javascript" src="dist/vinslider.js"></script>
-    <script type="text/javascript">
-        var slider = document.querySelectorAll('.vinslider');
-
-        var config1 = {
-            duration: 1800,
-            isScrollable: true
-        };
-
-        var config2 = {
-            duration: 1800,
-            startFrom: 1
-        };
-
-        var config3 = {
-            duration: 2100,
-            mode: 'slide',
-        };
-
-        var config4 = {
-            duration: 2100,
-            mode: 'slide',
-            isForward: false,
-            isVertical: true
-        };
-
-        var config5 = {
-            duration: 2400,
-            mode: 'carousel',
-            amount: 4,
-            moveBy: 2
-        };
-
-        var config6 = {
-            duration: 2400,
-            mode: 'carousel',
-            amount: 4,
-            gutter: 10
-        };
-
-        new Vinslider(slider[0], config1);
-        new Vinslider(slider[1], config2);
-        new Vinslider(slider[2], config3);
-        new Vinslider(slider[3], config4);
-        new Vinslider(slider[4], config5);
-        new Vinslider(slider[5], config6);
-    </script>
+    <script type="text/javascript" src="demo/custom.js"></script>
 </body>
 
 </html>

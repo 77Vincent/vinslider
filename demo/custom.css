@@ -23,6 +23,7 @@ h4 {
     opacity: 0.5;
 }
 
+button,
 a {
     background-color: #fff;
     border-radius: 10px;
@@ -35,6 +36,13 @@ a {
     display: inline-block;
 }
 
+.callbacks button {
+    font-size: 1em;
+    margin: 10px;
+    width: 40%;
+}
+
+button:hover,
 a:hover {
     background-color: rgb(150,150,150);
     border: 1px solid rgb(150,150,150);
@@ -115,6 +123,20 @@ footer {
     width: 48%;
     float: left;
     margin: 20px 1%;
+}
+.callbacks .vinslider {
+    width: 98%;
+    float: none;
+    -webkit-transition: width 0.4s ease-in-out;
+    -moz-transition: width 0.4s ease-in-out;
+    -o-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.callbacks .vinslider .vincontroller{
+    top: 60px;
+}
+.callbacks .vinslider.toggle {
+    width: 50%;
 }
 .vinslider h4 {
     text-align: center;
