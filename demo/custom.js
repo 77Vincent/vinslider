@@ -99,6 +99,12 @@ var custom = {
             setTimeout(function () {
                 exam.resize();
             }, 400);
+            if (this.className.indexOf('toggle') < 0) {
+                this.innerHTML = 'Full width';
+            } else {
+                this.innerHTML = 'Half width';
+            }
+            vjs.toggleClass(this, 'toggle');
         }
 
         // Swtich autoplay 
