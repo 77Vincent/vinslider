@@ -138,6 +138,15 @@ footer {
 .callbacks .vinslider.toggle {
     width: 50%;
 }
+.callbacks .vinslider .vinmain {
+    -webkit-transition: height 0.4s ease-in-out;
+    -moz-transition: height 0.4s ease-in-out;
+    -o-transition: height 0.4s ease-in-out;
+    transition: height 0.4s ease-in-out;
+}
+.callbacks .vinslider.taller .vinmain {
+    height: 400px;
+}
 .vinslider h4 {
     text-align: center;
 }

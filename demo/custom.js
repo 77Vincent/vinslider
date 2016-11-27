@@ -25,7 +25,7 @@ var custom = {
                 gutter: 5,
             },
             {
-                duration: 3000,
+                duration: 2000,
                 amount: 4,
             }
         ];
@@ -38,45 +38,111 @@ var custom = {
     callbacks: function () {
         var self = this;
         var button = document.querySelectorAll('button');
+        var exam = this.instance['4'];
 
         // Go to the first one 
         button[0].onclick = function () {
-            self.instance['4'].goto(0);
+            exam.goto(0);
         }
 
         // Go to the last one 
         button[1].onclick = function () {
-            self.instance['4'].goto(999);
+            exam.goto(999);
         }
 
         // Increase amount
         button[2].onclick = function () {
-            var amo = self.instance['4'].config.amount;
-            self.instance['4'].reAmount(++amo); 
+            var cur = exam.config.amount;
+            exam.reAmount(++cur); 
         }
 
         // Decrease amount
         button[3].onclick = function () {
-            var amo = self.instance['4'].config.amount;
-            self.instance['4'].reAmount(--amo); 
+            var cur = exam.config.amount;
+            exam.reAmount(--cur); 
         }
 
-        // Half size 
+        // Speed up transition 
         button[4].onclick = function () {
-            vjs.toggleClass(self.instance['4'].vinmain.parentElement, 'toggle');
+            var cur = exam.config.speed;
+            exam.rebuild({
+                speed: cur - 300 
+            });
+        }
+
+        // Slow down transition 
+        button[5].onclick = function () {
+            var cur = exam.config.speed;
+            exam.rebuild({
+                speed: cur + 300 
+            });
+        }
+
+        // Increase gutter 
+        button[6].onclick = function () {
+            var cur = exam.config.gutter;
+            exam.rebuild({
+                gutter: cur + 5 
+            });
+        }
+
+        // Decrease gutter 
+        button[7].onclick = function () {
+            var cur = exam.config.gutter;
+            exam.rebuild({
+                gutter: cur - 5 
+            });
+        }
+        // Half size 
+        button[8].onclick = function () {
+            vjs.toggleClass(exam.vinmain.parentElement, 'toggle');
             setTimeout(function () {
-                self.instance['4'].resize();
+                exam.resize();
             }, 400);
         }
 
-        // Add gutter 
-        button[5].onclick = function () {
-            self.instance['4'].rebuild({
-                gutter: 10,
-                amount: 3,
-                speed: 1500,
-                isForward: false
-            });
+        // Swtich autoplay 
+        button[9].onclick = function () {
+            if (this.className.indexOf('toggle') < 0) {
+                this.innerHTML = 'resume autoplay';
+                exam.ifAutoplay(false);
+            } else {
+                this.innerHTML = 'Stop autoplay';
+                exam.ifAutoplay(true);
+            }
+            vjs.toggleClass(this, 'toggle');
+        }
+
+        // Backward 
+        button[10].onclick = function () {
+            if (this.className.indexOf('toggle') < 0) {
+                this.innerHTML = 'Forward autoplay';
+                exam.rebuild({
+                    isForward: false
+                });
+            } else {
+                this.innerHTML = 'Backward autoplay';
+                exam.rebuild({
+                    isForward: true 
+                });
+            }
+            vjs.toggleClass(this, 'toggle');
+        }
+
+        // Infinite loop 
+        button[11].onclick = function () {
+            if (this.className.indexOf('toggle') < 0) {
+                this.innerHTML = 'infinite loop';
+                exam.rebuild({
+                    isInfinite: false
+                });
+            } else {
+                this.innerHTML = 'not infinite loop';
+                exam.rebuild({
+                    isInfinite: true 
+                });
+            }
+            vjs.toggleClass(this, 'toggle');
         }
     },
 }

@@ -30,7 +30,7 @@ var Vinslider = function (object, custom) {
         // Boolean
         isPager: true,
         isController: true,
-        isAuto: true,
+        isAutoplay: true,
         isInfinite: true,
         isForward: true,
         isPercentGutter: false,
@@ -83,7 +83,7 @@ Vinslider.prototype = {
 
     // For async callback
     rebuild: function (custom) {
-
+    
         // Rebuild the Vinslider with new configurations
         this.configReset(custom);
         this.configInit();
@@ -92,6 +92,11 @@ Vinslider.prototype = {
         this.sizeInit(this.config.amount);
         this.startFrom(this.config.startFrom);
         this.lifecircle();
+        this.autoPlay(this.config.duration);
+    },
+
+    ifAutoplay: function (value) {
+        this.config.isAutoplay = value;
         this.autoPlay(this.config.duration);
     },
 
@@ -164,6 +169,9 @@ Vinslider.prototype = {
         } else {
             this.config = this.preset;
         }
+
+        // Replace preset with new customized configurations 
+        this.preset = this.config;
     },
 
     configInit: function () {
@@ -371,10 +379,11 @@ Vinslider.prototype = {
         // Auto play the slider
         var self = this;
 
-        if (this.config.isAuto) {
-            if (this.timer) {
-                clearTimeout(this.timer);
-            }
+        if (this.config.isAutoplay) {
+
+            // Clear timer if exists
+            if (this.timer) clearTimeout(this.timer);
+
             this.timer = setInterval(function () {
                 if (self.config.isForward) {
                     self.forward();
@@ -382,6 +391,8 @@ Vinslider.prototype = {
                     self.backward();
                 }
             }, value);
+        } else {
+            if (this.timer) clearTimeout(this.timer);
         }
     },
 
