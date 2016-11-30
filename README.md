@@ -135,6 +135,11 @@ Tips: This only affects the auto playing. User events will still respect the dir
 
 > false: The size of Vinslider will be defined by CSS. **(Default)**
 
+### isFillWrapper : Boolean
+> true: Each slide in Vinslider will have a inline style of height of 100% to fit its wrapper.
+
+> false: Each slide will not have any inline style. **(Default)**
+
 ## Callback Functions
 
 Useage: After a Vinslider instance is instantiated, these functions could be called to manipulated the instance anytime when there is a need for callbacks.
