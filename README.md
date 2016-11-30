@@ -1,6 +1,6 @@
 # DOCUMENTATION 
 
-#### Light weight, responsive, native Javascript slider / carousel module. Highly customizable.
+#### Light weight, responsive, native Javascript slider module. Highly customizable.
 
 ## Demo
 
@@ -28,7 +28,7 @@ http://www.77webtech.com/vinslider
     var object = document.querySelector('DOM element');
     
     var config = {
-      mode: slide,
+      mode: 'fade',
       duration: 3500,
       ...
     };
@@ -58,11 +58,9 @@ Get the source code here:https://github.com/77Vincent/vinslider, they are in dis
 ## Configurations
 
 ### mode : String
-> fade **(Default)**
+> fade 
 
-> slide
-
-> carousel
+> slide **(Default)**
 
 Tips: Under carousel mode, pager will be hidden by default.
 
@@ -98,7 +96,7 @@ Tips: The first item's index is 0 and so on.
 
 > false: Hide the controller.
 
-### isAuto : Boolean
+### isAutoplay : Boolean
 > true: Auto play the slider. **(Default)**
 
 > false: Do not auto play.
@@ -132,7 +130,12 @@ Tips: Only works when the gutter is also declared, if not, no effect or error wi
 
 Tips: This only affects the auto playing. User events will still respect the direction according to their navigation.
 
-## Fallback Functions
+### isUseItemSize : Boolean
+> true: Force vinslider to have the height( width for the vertical mode ) which comes from its biggest slide item.
+
+> false: The size of Vinslider will be defined by CSS. **(Default)**
+
+## Callback Functions
 
 Useage: After a Vinslider instance is instantiated, these functions could be called to manipulated the instance anytime when there is a need for callbacks.
 
@@ -144,6 +147,9 @@ Example: vinslider.goto(3);
 
 ### resize();
 > Vinslider already has the ability to resize its self under a window.onresize event, but when the size of its wrapper changes but without a window resize event occurring, use this function to resize the size of vinslider to fit its new wrapper. 
+
+### ifAutoplay();
+> Make vinslider autoplay or stop it from auto-playing.
 
 ### reAmount(value);
 > Reset the amount of items to be displayed based upon the new given value at a time when under carousel mode, mostly for responsive. 
@@ -158,6 +164,9 @@ Example: vinslider.goto(3);
 			vinslider.reAmount(3);
 		}
 	});
+
+### rebuild();
+> Totally rebuild a Vinslider with new configurations from an existing instance. Old specified configurations will not be removed, adding new configurations wil override the old ones or the default ones otherwise the old configs will still work.
 
 ## Features
 
