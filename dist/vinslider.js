@@ -311,9 +311,11 @@ Vinslider.prototype = {
 		}
 
 		// Create transition for each list items
-		for (var i=0; i<this.list.length; i++) {
-			create(this.list[i]);
-		}	
+        setTimeout(function () {
+            for (var i=0; i<self.list.length; i++) {
+                create(self.list[i]);
+            }	
+        }, self.config.speed);
 	},
 
     responsive: function () {
