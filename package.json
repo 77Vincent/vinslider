@@ -4,7 +4,7 @@
   "description": "A light weight, native javascript slider module.",
   "main": "index.js",
   "scripts": {
-    "babel": "./node_modules/.bin/babel ./src/vinslider.js -w -o ./dist/vinslider.js"
+    "babel": "babel ./src/vinslider.js -w -o ./dist/vinslider.js"
   },
   "repository": {
     "type": "npm",
