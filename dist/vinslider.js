@@ -108,12 +108,12 @@ Vinslider.prototype = {
     },
 
     resize: function resize() {
-        var self = this;
+        var _this = this;
 
         // Resize each slide when the size of the wrapper changes
         setTimeout(function () {
-            self.sizeInit(self.config.amount);
-            self.lifecircle();
+            _this.sizeInit(_this.config.amount);
+            _this.lifecircle();
         }, 0);
     },
 
@@ -153,16 +153,16 @@ Vinslider.prototype = {
 
     // Configurations
     configReset: function configReset(custom) {
-        var self = this;
+        var _this2 = this;
 
         // Reset config
         if (custom) {
             this.config = custom;
             (function (obj) {
-                var key;
+                var key = void 0;
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) {
-                        self.config[key] = custom[key] !== undefined ? custom[key] : self.preset[key];
+                        _this2.config[key] = custom[key] !== undefined ? custom[key] : _this2.preset[key];
                     }
                 }
             })(this.preset);
@@ -188,7 +188,7 @@ Vinslider.prototype = {
     },
 
     sizeInit: function sizeInit(amount) {
-        var self = this;
+        var _this3 = this;
 
         // Get gutter
         var gut = this.config.isPercentGutter ? this.size * this.config.gutter : this.config.gutter;
@@ -200,45 +200,46 @@ Vinslider.prototype = {
         var temp = 0;
         var max = 0;
 
-        function closure(idx) {
-
-            // Get the largest item's orthogonal size
-            setTimeout(function () {
-                if (self.list[idx]['client' + self.capitalize(self.direction[2])] >= temp) {
-                    max = self.list[idx]['client' + self.capitalize(self.direction[2])];
-                }
-                temp = self.list[idx]['client' + self.capitalize(self.direction[2])];
-            }, self.config.speed);
-        }
-
         // Set size for each item 
-        for (var i = 0; i < this.itemNum; i++) {
+
+        var _loop = function _loop(i) {
 
             // Subtract gut from each slide size
-            this.list[i].style[this.direction[1]] = this.size - gut + 'px';
+            _this3.list[i].style[_this3.direction[1]] = _this3.size - gut + 'px';
 
             // Set children items' orthogonal size to auto;
-            if (this.config.isUseItemSize) {
-                this.list[i].style[this.direction[2]] = 'auto';
-                closure(i);
+            if (_this3.config.isUseItemSize) {
+                _this3.list[i].style[_this3.direction[2]] = 'auto';
+
+                // Get the largest item's orthogonal size
+                setTimeout(function () {
+                    if (_this3.list[i]['client' + _this3.capitalize(_this3.direction[2])] >= temp) {
+                        max = _this3.list[i]['client' + _this3.capitalize(_this3.direction[2])];
+                    }
+                    temp = _this3.list[i]['client' + _this3.capitalize(_this3.direction[2])];
+                }, _this3.config.speed);
             }
+        };
+
+        for (var i = 0; i < this.itemNum; i++) {
+            _loop(i);
         }
 
         // Set vinmain height based on its children elements' height but not CSS height
         setTimeout(function () {
 
             // Set vinmain size based on its items size
-            if (self.config.isUseItemSize) {
-                self.vinmain.style[self.direction[2]] = max + 'px';
+            if (_this3.config.isUseItemSize) {
+                _this3.vinmain.style[_this3.direction[2]] = max + 'px';
             }
 
             // Set items'size to 100% if is set to fill wrapper
-            if (self.config.isFillWrapper) {
-                for (var i = 0; i < self.itemNum; i++) {
-                    self.list[i].style[self.direction[2]] = '100%';
+            if (_this3.config.isFillWrapper) {
+                for (var _i = 0; _i < _this3.itemNum; _i++) {
+                    _this3.list[_i].style[_this3.direction[2]] = '100%';
                 }
             }
-        }, self.config.speed);
+        }, this.config.speed);
     },
 
     modeInit: function modeInit(amount) {
@@ -405,17 +406,17 @@ Vinslider.prototype = {
     },
 
     userEvent: function userEvent() {
-        var self = this;
+        var _this4 = this;
 
         // Controller navigate
         this.nextBtn.onclick = function () {
-            self.forward();
-            self.resetAutoPlay();
+            _this4.forward();
+            _this4.resetAutoPlay();
         };
 
         this.prevBtn.onclick = function () {
-            self.backward();
-            self.resetAutoPlay();
+            _this4.backward();
+            _this4.resetAutoPlay();
         };
 
         // Pager navigate
