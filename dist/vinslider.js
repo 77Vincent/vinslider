@@ -235,8 +235,8 @@ Vinslider.prototype = {
 
             // Set items'size to 100% if is set to fill wrapper
             if (_this3.config.isFillWrapper) {
-                for (var _i = 0; _i < _this3.itemNum; _i++) {
-                    _this3.list[_i].style[_this3.direction[2]] = '100%';
+                for (var i = 0; i < _this3.itemNum; i++) {
+                    _this3.list[i].style[_this3.direction[2]] = '100%';
                 }
             }
         }, this.config.speed);
@@ -286,14 +286,15 @@ Vinslider.prototype = {
     },
 
     animation: function animation() {
-        var self = this;
+        var _this4 = this;
+
         var speed = ' ' + this.config.speed / 1000 + 's';
         var unit = !this.config.isVertical ? ['width', 'left'] : ['height', 'top'];
 
         function create(object) {
 
             // Apply transition to item based on mode
-            switch (self.config.mode) {
+            switch (this.config.mode) {
                 case 'fade':
                     object.style.WebkitTransition = 'opacity' + speed;
                     object.style.MozTransition = 'opacity' + speed;
@@ -312,24 +313,24 @@ Vinslider.prototype = {
 
         // Create transition for each list items
         setTimeout(function () {
-            for (var i = 0; i < self.list.length; i++) {
-                create(self.list[i]);
+            for (var i = 0; i < _this4.list.length; i++) {
+                create.call(_this4, _this4.list[i]);
             }
-        }, self.config.speed);
+        }, this.config.speed);
     },
 
     responsive: function responsive() {
+        var _this5 = this;
 
         // Resize slider size when resizing screen
         var timeout = false;
-        var self = this;
 
         window.addEventListener('resize', function () {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
-                self.sizeInit(self.config.amount);
-                self.lifecircle();
-            }, self.throttle);
+                _this5.sizeInit(_this5.config.amount);
+                _this5.lifecircle();
+            }, _this5.throttle);
         });
     },
 
@@ -377,9 +378,9 @@ Vinslider.prototype = {
     },
 
     autoPlay: function autoPlay(value) {
+        var _this6 = this;
 
         // Auto play the slider
-        var self = this;
 
         if (this.config.isAutoplay) {
 
@@ -387,10 +388,10 @@ Vinslider.prototype = {
             if (this.timer) clearTimeout(this.timer);
 
             this.timer = setInterval(function () {
-                if (self.config.isForward) {
-                    self.forward();
+                if (_this6.config.isForward) {
+                    _this6.forward();
                 } else {
-                    self.backward();
+                    _this6.backward();
                 }
             }, value);
         } else {
@@ -406,51 +407,58 @@ Vinslider.prototype = {
     },
 
     userEvent: function userEvent() {
-        var _this4 = this;
+        var _this7 = this;
+
+        function forward() {
+            this.forward();
+            this.resetAutoPlay();
+        }
+
+        function backward() {
+            this.backward();
+            this.resetAutoPlay();
+        }
 
         // Controller navigate
         this.nextBtn.onclick = function () {
-            _this4.forward();
-            _this4.resetAutoPlay();
+            forward.call(_this7);
         };
 
         this.prevBtn.onclick = function () {
-            _this4.backward();
-            _this4.resetAutoPlay();
+            backward.call(_this7);
         };
 
         // Pager navigate
-        function closure(idx) {
 
-            return function () {
-
-                for (var i = 0; i < self.itemNum; i++) {
-                    self.removeClass(self.list[i], self.config.activeClass);
-                    self.removeClass(self.bullet[i], self.config.activeClass);
+        var _loop2 = function _loop2(i) {
+            _this7.bullet[i].addEventListener('click', function () {
+                for (var _i = 0; _i < _this7.itemNum; _i++) {
+                    _this7.removeClass(_this7.list[_i], _this7.config.activeClass);
+                    _this7.removeClass(_this7.bullet[_i], _this7.config.activeClass);
                 }
-                self.addClass(self.list[idx], self.config.activeClass);
-                self.lifecircle();
-                self.resetAutoPlay();
-            };
-        }
+                _this7.addClass(_this7.list[i], _this7.config.activeClass);
+                _this7.lifecircle();
+                _this7.resetAutoPlay();
+            });
+        };
 
         for (var i = 0; i < this.itemNum; i++) {
-            this.bullet[i].onclick = closure(i);
+            _loop2(i);
         }
+
+        // Touch event
 
         // Scroll
         if (this.config.isScrollable) {
-            this.vinmain.onwheel = function () {
+            this.vinmain.addEventListener('wheel', function () {
                 event.preventDefault();
 
                 if (event.deltaY > 0 || event.deltaX > 0) {
-                    self.forward();
-                    self.resetAutoPlay();
+                    forward.call(_this7);
                 } else {
-                    self.backward();
-                    self.resetAutoPlay();
+                    backward.call(_this7);
                 }
-            };
+            });
         }
     },
 

@@ -77,7 +77,6 @@ Vinslider.prototype = {
         // Asynchronous
         this.responsive();
         this.userEvent();
-
     },
 
     // For async callback
@@ -278,14 +277,13 @@ Vinslider.prototype = {
     },
 
 	animation: function () {
-		let self = this;
 		let speed = ' ' + this.config.speed / 1000 + 's';	
 		let unit = !this.config.isVertical ? ['width', 'left'] : ['height', 'top'];
 
 		function create(object) {
 
 			// Apply transition to item based on mode
-            switch (self.config.mode) {
+            switch (this.config.mode) {
                 case 'fade':
                     object.style.WebkitTransition = 'opacity' + speed;
                     object.style.MozTransition = 'opacity' + speed;
@@ -303,25 +301,24 @@ Vinslider.prototype = {
 		}
 
 		// Create transition for each list items
-        setTimeout(function () {
-            for (let i=0; i<self.list.length; i++) {
-                create(self.list[i]);
+        setTimeout(() => {
+            for (let i=0; i<this.list.length; i++) {
+                create.call(this, this.list[i]);
             }	
-        }, self.config.speed);
+        }, this.config.speed);
 	},
 
     responsive: function () {
 
         // Resize slider size when resizing screen
         let timeout = false;
-        let self = this;
 
-        window.addEventListener('resize', function () {
+        window.addEventListener('resize', () => {
             clearTimeout(timeout);
-            timeout = setTimeout(function () {
-                self.sizeInit(self.config.amount);
-                self.lifecircle();
-            }, self.throttle);
+            timeout = setTimeout(() => {
+                this.sizeInit(this.config.amount);
+                this.lifecircle();
+            }, this.throttle);
         });
     },
 
@@ -371,18 +368,17 @@ Vinslider.prototype = {
     autoPlay: function (value) {
 
         // Auto play the slider
-        let self = this;
 
         if (this.config.isAutoplay) {
 
             // Clear timer if exists
             if (this.timer) clearTimeout(this.timer);
 
-            this.timer = setInterval(function () {
-                if (self.config.isForward) {
-                    self.forward();
+            this.timer = setInterval(() => {
+                if (this.config.isForward) {
+                    this.forward();
                 } else {
-                    self.backward();
+                    this.backward();
                 }
             }, value);
         } else {
@@ -398,50 +394,52 @@ Vinslider.prototype = {
     },
 
     userEvent: function () {
-
-        // Controller navigate
-        this.nextBtn.onclick = () => {
+        
+        function forward() {
             this.forward();
             this.resetAutoPlay();
         }
 
-        this.prevBtn.onclick = () => {
+        function backward() {
             this.backward();
             this.resetAutoPlay();
         }
 
+        // Controller navigate
+        this.nextBtn.onclick = () => {
+            forward.call(this);
+        }
+
+        this.prevBtn.onclick = () => {
+            backward.call(this);
+        }
+
         // Pager navigate
-        function closure(idx) {
-
-            return function () {
-
-                for (let i=0; i<self.itemNum; i++) {
-                    self.removeClass(self.list[i], self.config.activeClass);
-                    self.removeClass(self.bullet[i], self.config.activeClass);
-                }
-                self.addClass(self.list[idx], self.config.activeClass);
-                self.lifecircle();
-                self.resetAutoPlay();
-            }
-        }
-
         for (let i = 0; i < this.itemNum; i++) {
-            this.bullet[i].onclick = closure(i);
+            this.bullet[i].addEventListener('click', () => {
+                for (let i=0; i<this.itemNum; i++) {
+                    this.removeClass(this.list[i], this.config.activeClass);
+                    this.removeClass(this.bullet[i], this.config.activeClass);
+                }
+                this.addClass(this.list[i], this.config.activeClass);
+                this.lifecircle();
+                this.resetAutoPlay();
+            });
         }
+
+        // Touch event
 
         // Scroll
         if (this.config.isScrollable) {
-            this.vinmain.onwheel = function () {
+            this.vinmain.addEventListener('wheel', () => {
                 event.preventDefault();
 
                 if (event.deltaY > 0 || event.deltaX > 0) {
-                    self.forward();
-                    self.resetAutoPlay();
+                    forward.call(this);
                 } else {
-                    self.backward();
-                    self.resetAutoPlay();
+                    backward.call(this);
                 }
-            }
+            });
         }
     },
 
