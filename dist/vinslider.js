@@ -446,7 +446,33 @@ Vinslider.prototype = {
             _loop2(i);
         }
 
-        // Touch event
+        // Touch
+        var startX = void 0;
+        var startY = void 0;
+        var endX = void 0;
+        var endY = void 0;
+
+        this.vinmain.addEventListener('touchstart', function (event) {
+            startX = event.touches[0].pageX;
+            startY = event.touches[0].pageY;
+        });
+
+        this.vinmain.addEventListener('touchmove', function (event) {
+            endX = event.touches[0].pageX;
+            endY = event.touches[0].pageY;
+
+            setTimeout(function () {}, 500);
+        });
+
+        this.vinmain.addEventListener('touchend', function (event) {
+            if (startX < endX - 50) {
+                _this7.backward();
+                _this7.resetAutoPlay();
+            } else if (startX - 50 > endX) {
+                _this7.forward();
+                _this7.resetAutoPlay();
+            }
+        });
 
         // Scroll
         if (this.config.isScrollable) {
@@ -527,6 +553,32 @@ Vinslider.prototype = {
                 }
                 break;
         }
+
+        // Hide or show controller
+        if (!this.config.isInfinite) {
+
+            // For nextBtn 
+            if (this.config.amount == 1) {
+                if (this.nextIndex >= this.itemNum) {
+                    this.addClass(this.nextBtn, 'vinhidden');
+                } else {
+                    this.removeClass(this.nextBtn, 'vinhidden');
+                }
+            } else {
+                if (this.ifStop()) {
+                    this.addClass(this.nextBtn, 'vinhidden');
+                } else {
+                    this.removeClass(this.nextBtn, 'vinhidden');
+                }
+            }
+
+            // For prevBtn
+            if (this.prevIndex < 0) {
+                this.addClass(this.prevBtn, 'vinhidden');
+            } else {
+                this.removeClass(this.prevBtn, 'vinhidden');
+            }
+        }
     },
 
     forward: function forward() {
@@ -565,11 +617,12 @@ Vinslider.prototype = {
     backward: function backward() {
 
         for (var i = 0; i < this.config.moveBy; i++) {
-            this.removeClass(this.curLi, this.config.activeClass);
             if (this.prevIndex >= 0) {
+                this.removeClass(this.curLi, this.config.activeClass);
                 this.addClass(this.prevLi, this.config.activeClass);
             } else {
                 if (this.config.isInfinite) {
+                    this.removeClass(this.curLi, this.config.activeClass);
                     switch (this.config.amount == 1) {
                         case true:
                             this.addClass(this.list[this.itemNum - 1], this.config.activeClass);

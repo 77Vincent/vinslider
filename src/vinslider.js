@@ -427,7 +427,34 @@ Vinslider.prototype = {
             });
         }
 
-        // Touch event
+        // Touch
+        let startX;
+        let startY;
+        let endX;
+        let endY;
+
+        this.vinmain.addEventListener('touchstart', (event) => {
+            startX = event.touches[0].pageX;
+            startY = event.touches[0].pageY;
+        });
+
+        this.vinmain.addEventListener('touchmove', (event) => {
+            endX = event.touches[0].pageX;
+            endY = event.touches[0].pageY;
+
+            setTimeout(function() {
+            }, 500);
+        });
+
+        this.vinmain.addEventListener('touchend', (event) => {
+            if (startX < endX - 50) {
+                this.backward();
+                this.resetAutoPlay();
+            } else if (startX - 50 > endX) {
+                this.forward();
+                this.resetAutoPlay();
+            }
+        });
 
         // Scroll
         if (this.config.isScrollable) {
@@ -508,6 +535,32 @@ Vinslider.prototype = {
                 }
                 break;
         }
+
+        // Hide or show controller
+        if (!this.config.isInfinite) {
+
+            // For nextBtn 
+            if (this.config.amount == 1) {
+                if (this.nextIndex >= this.itemNum) {
+                    this.addClass(this.nextBtn, 'vinhidden');
+                } else {
+                    this.removeClass(this.nextBtn, 'vinhidden');
+                }
+            } else {
+                if (this.ifStop()) {
+                    this.addClass(this.nextBtn, 'vinhidden');
+                } else {
+                    this.removeClass(this.nextBtn, 'vinhidden');
+                }
+            }
+
+            // For prevBtn
+            if (this.prevIndex < 0) {
+                this.addClass(this.prevBtn, 'vinhidden');
+            } else {
+                this.removeClass(this.prevBtn, 'vinhidden');
+            }
+        }
     },
 
     forward: function () {
@@ -546,11 +599,12 @@ Vinslider.prototype = {
     backward: function () {
 
         for (let i = 0; i < this.config.moveBy; i++) {
-            this.removeClass(this.curLi, this.config.activeClass);
             if (this.prevIndex >= 0) {
+                this.removeClass(this.curLi, this.config.activeClass);
                 this.addClass(this.prevLi, this.config.activeClass);
             } else {
                 if (this.config.isInfinite) {
+                    this.removeClass(this.curLi, this.config.activeClass);
                     switch (this.config.amount == 1) {
                         case true:
                             this.addClass(this.list[this.itemNum - 1], this.config.activeClass);
