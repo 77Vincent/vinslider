@@ -71,7 +71,7 @@ Tips: Under carousel mode, pager will be hidden by default.
 > How much time each slide stays. **(Default: 5000, millisecond)**
 
 ### amount: Number (carousel mode only)
-> How many items will be shown at a time. **(Default: 2)**
+> How many items will be shown at a time. **(Default: 1)**
 
 Tips: If the value is greater than or equal to the total amount of items, the controller will be hidden.
 
