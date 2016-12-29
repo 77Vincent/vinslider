@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 /**
  * @Title:     Vinslider
  * @Descr:     A lightweight slider/carousel module in native Javascript
@@ -637,3 +640,5 @@ Vinslider.prototype = {
         }
     }
 };
+
+exports.default = Vinslider = Vinslider;

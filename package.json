@@ -2,9 +2,10 @@
   "name": "vinslider",
   "version": "1.0.5",
   "description": "A light weight, native javascript slider module.",
-  "main": "index.js",
+  "main": "vinslider.js",
+  "style": "vinslider.css",
   "scripts": {
-    "babel": "babel ./src/vinslider.js -w -o ./dist/vinslider.js"
+    "start": "babel ./src/vinslider.js -w -o ./dist/vinslider.js"
   },
   "repository": {
     "type": "npm",
@@ -20,7 +21,7 @@
     "email": "wentianqi77@outlook.com",
     "url": "https://www.77webtech.com"
   },
-  "license": "MIT license",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/77Vincent/vinslider/issues"
   },
