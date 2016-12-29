@@ -1,6 +1,6 @@
 {
   "name": "vinslider",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A light weight, native javascript slider module.",
   "main": "vinslider.js",
   "style": "vinslider.css",
