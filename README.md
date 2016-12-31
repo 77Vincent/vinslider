@@ -149,12 +149,6 @@ Example: vinslider.goto(3);
 ### rebuild();
 > Totally rebuild a Vinslider with new configurations from an existing instance. Old specified configurations will not be removed, adding new configurations wil override the old ones or the default ones otherwise the old configs will still work.
 
-## Features
-
-* Vinslider will be immediately stopped and throw an error message if the element is not found.
-* Pagers are able to navigate.
-* In fade and slide mode, controller and pagers will be hidden if there is only one slide.
-
 ## Browser Compatibility
 
 IE 8: Not supported
