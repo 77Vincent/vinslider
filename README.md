@@ -22,7 +22,7 @@ Get HTML ready
         </ul>
     <div>
     
-Instaniate in Javascript
+Instantiate in Javascript
     
     import Vinslider from 'vinslider'
     
