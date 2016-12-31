@@ -15,18 +15,20 @@ Install through npm
 Get HTML ready
 
     <div class="vinslider">
-      <ul>
-        <li>content</li>
-        <li>content</li>
-        ...
-      </ul>
+        <ul>
+            <li>content</li>
+            <li>content</li>
+            ...
+        </ul>
     <div>
     
 Instaniate in Javascript
     
     import Vinslider from 'vinslider'
     
-    new Vinslider(element[, config])
+    let slider = document.querySelector('.vinslider')
+    
+    new Vinslider(slider[, config])
 
 
 ## Configurations
@@ -155,11 +157,11 @@ Example: vinslider.goto(3);
 
 ## Browser Compatibility
 
-IE 8: Mouse scrolling not supported
+IE 8: Not supported
 
 IE 9: No CSS transition effect
 
-IE 10 and above: Fully supported
+IE 10+: Fully supported
 
 ## License
 
