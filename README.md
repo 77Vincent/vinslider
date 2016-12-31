@@ -33,78 +33,113 @@ Instantiate in Javascript
 
 ## Configurations
 
-### mode : String
-> fade 
+#### mode : String
 
-> slide **(Default)**
+    : 'fade' 
 
-Tips: Under carousel mode, pager will be hidden by default.
+    : 'slide' (Default)
 
-### speed : Number
-> The transition speed for switching slides. **(Default: 750, millisecond)**
+Under carousel mode, pager will be hidden by default.
 
-### duration : Number
-> How much time each slide stays. **(Default: 5000, millisecond)**
+#### speed : Number
 
-### amount: Number (carousel mode only)
-> How many items will be shown at a time. **(Default: 1)**
+    : 750 (Default, millisecond)
 
-Tips: If the value is greater than or equal to the total amount of items, the controller will be hidden.
+The transition duration of sliding.
 
-### gutter : Number
-> Add a gutter in between each items. **(Default: 0, pixels)**
+#### duration : Number
 
-### startFrom: Number
-> From which item the slider starts. **(Default: 0)**
+    : 5000 (Default, millisecond)
+    
+How much time each slide stays.
 
-Tips: The first item's index is 0 and so on.
+#### amount: Number
+ 
+    : 1 (Default)
 
-### moveBy : Number
-> How many items will pass by each slide. **(Default: 1)**
+If the value is greater than or equal to the total amount of items, the controller will be hidden.
 
-### isAutoplay : Boolean
-> true: Auto play the slider. **(Default)**
+####  gutter : Number
 
-> false: Do not auto play.
+    : 0 (Default, pixel)
+    
+Add a gutter in between each items.
 
-### isInfinite : Boolean
-> true: The slider will go back to the first item after reaching the last one. **(Default)**
+#### startFrom: Number
 
-> false: Will be stoped at the end the slide.
+    : 0 (Default)
 
-### isScrollable : Boolean
-> true: Mouse wheel scrolling could control the slider.
+From which item the slider starts, the index of the first slide is 0 and so on.
 
-> false: Disabled **(Default)**
+#### moveBy : Number
 
-### isVertical : Boolean
-> true: The slider will turn into vertical mode. 
+    : 1 (Default)
+    
+How many items will pass by each slide.
 
-> false: Horizontal mode **(Default)**
+#### isAutoplay : Boolean
 
-### isPercentGutter : Boolean
-> true: The unit of gutter will be percentage based on the width of each slide. 
+    : true (Default)
 
-> false: The unit of gutter is pixel. **(Default)**
+    : false
+    
+If auto-play the slider
 
-Tips: Only works when the gutter is also declared, if not, no effect or error will be met.
+#### isInfinite : Boolean
 
-### isForward : Boolean
-> true: Slider goes from left to right, or top to bottom. **(Default)**
+    : true (Default)
 
-> false: Reversed direction.
+    : false
 
-Tips: This only affects the auto playing. User events will still respect the direction according to their navigation.
+If the slider will go back to the first item after reaching the last one.
 
-### isUseItemSize : Boolean
-> true: Force vinslider to have the height( width for the vertical mode ) which comes from its biggest slide item.
+#### isScrollable : Boolean
 
-> false: The size of Vinslider will be defined by CSS. **(Default)**
+    : true
 
-### isFillWrapper : Boolean
-> true: Each slide in Vinslider will have a inline style of height of 100% to fit its wrapper.
+    : false (Default)
 
-> false: Each slide will not have any inline style. **(Default)**
+Mouse wheel scrolling could control the slider.
+
+#### isVertical : Boolean
+
+    : true
+
+    : false (Default)
+    
+If slider is displayed vertically
+
+#### isPercentGutter : Boolean
+
+    : true
+
+    : false (Default)
+
+The unit of gutter will be percentage based on the width of each slide. Only works when the gutter is also declared, if not, no effect or error will be met.
+
+#### isForward : Boolean
+
+    : true (Default)
+
+    : false
+
+Slider goes from left to right, or top to bottom. This only affects the auto playing. User events will still respect the direction according to their navigation.
+
+#### isUseItemSize : Boolean
+
+    : true
+
+    : false (Default)
+
+Force vinslider to have the height( width for the vertical mode ) which comes from its biggest slide item.
+
+#### isFillWrapper : Boolean
+
+    : true
+
+    : false (Default)
+    
+Each slide in Vinslider will have a inline style of height of 100% to fit its wrapper.
 
 ## Callback Functions
 
@@ -113,31 +148,37 @@ Useage: After a Vinslider instance is instantiated, these functions could be cal
 Example: vinslider.goto(3);
 > Here means navigating this vinslider instance to goto the 4th slide when this piece of code is called.
 
-### goto(index); 
-> Navigate the slider to a specific slide with the given index.
+#### goto(index); 
 
-### resize();
-> Vinslider already has the ability to resize its self under a window.onresize event, but when the size of its wrapper changes but without a window resize event occurring, use this function to resize the size of vinslider to fit its new wrapper. 
+    instance.goto(0)
 
-### ifAutoplay();
-> Make vinslider autoplay or stop it from auto-playing.
+Navigate a vinslider instance to goto its first slide.
 
-### reAmount(value);
-> Reset the amount of items to be displayed based upon the new given value at a time when under carousel mode, mostly for responsive. 
-	
-	var vinslider = new Vinslider(element, {
-		mode: 'carousel',
-		amount: 4
-	});
+#### resize();
 
-	window.addEventListener('resize', function() {
-		if (window.innerWidth < 1024) {
-			vinslider.reAmount(3);
-		}
-	});
+    instance.resize()
+    
+Vinslider already has the ability to resize its self under a window.onresize event, but when the size of its wrapper changes without a window resize event occurring, use this function to resize the size of vinslider to fit its new wrapper. 
 
-### rebuild();
-> Totally rebuild a Vinslider with new configurations from an existing instance. Old specified configurations will not be removed, adding new configurations wil override the old ones or the default ones otherwise the old configs will still work.
+#### ifAutoplay();
+
+    instance.ifAutoplay(false)
+    
+Stop or resume a vinslider instance.
+
+#### reAmount(value);
+
+    instance.reAmount(3)
+    
+Reset the amount of items to be displayed based upon the new given value at a time when under carousel mode, mostly for responsive. 
+
+#### rebuild();
+
+    instance.rebuild({
+    	// new config goes here
+    })
+    
+Totally rebuild a Vinslider with new configurations from an existing instance. Old specified configurations will not be removed, adding new configurations wil override the old ones or the default ones otherwise the old configs will still work.
 
 ## Browser Compatibility
 
