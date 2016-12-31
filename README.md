@@ -62,16 +62,6 @@ Tips: The first item's index is 0 and so on.
 ### moveBy : Number
 > How many items will pass by each slide. **(Default: 1)**
 
-### isPager : Boolean
-> true: Show the pagers. **(Default)**
-
-> false: Hide the pagers.
-
-### isController : Boolean
-> true: Show the controller. **(Default)**
-
-> false: Hide the controller.
-
 ### isAutoplay : Boolean
 > true: Auto play the slider. **(Default)**
 
