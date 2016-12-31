@@ -1,59 +1,33 @@
-# DOCUMENTATION 
+# Vinslider 
 
-#### Light weight, responsive, native Javascript slider module. Highly customizable.
+Light weight, responsive, native Javascript slider module. Highly customizable.
 
 ## Demo
 
 http://www.77webtech.com/vinslider
 
-## Code Example
+## Installation
 
-### HTML: 
+Install through npm
+
+    npm install --save vinslider
+    
+Get HTML ready
 
     <div class="vinslider">
       <ul>
         <li>content</li>
         <li>content</li>
-        <li>content</li>
         ...
       </ul>
     <div>
-
-* The outermost div should be the element passed into Vinslider(), could be of any tag, with any identifier as you want.
-* The ul contains the actual list of elements that will be converted into the slider. No additional classname or id is needed.
-* The classname "vinslider" is for getting the basic style from vinslider.css
-
-### Javascript:
-
-    var object = document.querySelector('DOM element');
     
-    var config = {
-      mode: 'fade',
-      duration: 3500,
-      ...
-    };
+Instaniate in Javascript
     
-    new Vinslider(object[, config]);
+    import Vinslider from 'vinslider'
+    
+    new Vinslider(element[, config])
 
-* The object to be passed needs to be a native DOM element.
-* Config is optional, Vinslider will be initialized with default config if no custom config are given.
-* You can create several instances of Vinslider within one page with different config by this way.
-
-### CSS:
-
-    vinslider.css
-
-* Provides a very basic style for a Vinslider instance.
-* Has been simplified as best as I can in order to let you override it with custom styles with ease.
-
-## Installation
-
-Embed these two files into your project:
-
-* vinslider.js
-* vinslider.css
-
-Get the source code here:https://github.com/77Vincent/vinslider, they are in dist folder.
 
 ## Configurations
 
@@ -186,18 +160,6 @@ IE 8: Mouse scrolling not supported
 IE 9: No CSS transition effect
 
 IE 10 and above: Fully supported
-
-## Dependency
-
-None
-
-## Author
-
-Vincent Wen
-
-Website: www.77webtech.com
-
-Email: wentianqi77@outlook.com
 
 ## License
 
