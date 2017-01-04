@@ -1,8 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 /**
  * @Title:     Vinslider
  * @Descr:     A lightweight slider/carousel module in native Javascript
@@ -238,8 +235,8 @@ Vinslider.prototype = {
 
             // Set items'size to 100% if is set to fill wrapper
             if (_this3.config.isFillWrapper) {
-                for (var i = 0; i < _this3.itemNum; i++) {
-                    _this3.list[i].style[_this3.direction[2]] = '100%';
+                for (var _i = 0; _i < _this3.itemNum; _i++) {
+                    _this3.list[_i].style[_this3.direction[2]] = '100%';
                 }
             }
         }, this.config.speed);
@@ -435,9 +432,9 @@ Vinslider.prototype = {
 
         var _loop2 = function _loop2(i) {
             _this7.bullet[i].addEventListener('click', function () {
-                for (var _i = 0; _i < _this7.itemNum; _i++) {
-                    _this7.removeClass(_this7.list[_i], _this7.config.activeClass);
-                    _this7.removeClass(_this7.bullet[_i], _this7.config.activeClass);
+                for (var _i2 = 0; _i2 < _this7.itemNum; _i2++) {
+                    _this7.removeClass(_this7.list[_i2], _this7.config.activeClass);
+                    _this7.removeClass(_this7.bullet[_i2], _this7.config.activeClass);
                 }
                 _this7.addClass(_this7.list[i], _this7.config.activeClass);
                 _this7.lifecircle();
@@ -640,5 +637,3 @@ Vinslider.prototype = {
         }
     }
 };
-
-exports.default = Vinslider = Vinslider;
