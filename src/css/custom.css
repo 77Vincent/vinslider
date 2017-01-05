@@ -23,6 +23,16 @@ h4 {
     opacity: 0.5;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 button,
 a {
     background-color: #fff;
