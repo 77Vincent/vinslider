@@ -1,2 +1,2 @@
-import './css/vinslider.css'
-import './js/vinslider.js'
+import './modules/vinslider.css'
+import './modules/vinslider.js'

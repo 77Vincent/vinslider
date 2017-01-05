@@ -27,8 +27,6 @@ let Vinslider = function (object, custom) {
         moveBy: 1,
 
         // Boolean
-        isPager: true,
-        isController: true,
         isAutoplay: true,
         isInfinite: true,
         isForward: true,
@@ -264,16 +262,6 @@ Vinslider.prototype = {
                 }
                 break;
         }
-
-        // Normal
-        if (!this.config.isController) {
-            controller.style.display = 'none'; 
-        }
-
-        if (!this.config.isPager) {
-            pager.style.display = 'none'; 
-        }
-
     },
 
 	animation: function () {

@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Vinslider from './vinslider.js'
+import Vinslider from '../modules/vinslider.js'
 
 var custom = {
     init() {

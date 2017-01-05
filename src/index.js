@@ -1,5 +1,5 @@
 import 'scaffold.css'
-import './css/vinslider.css'
-import './css/custom.css'
+import './modules/vinslider.css'
 
-import './js/custom.js'
+import './site/custom.css'
+import './site/custom.js'
