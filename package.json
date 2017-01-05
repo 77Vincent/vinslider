@@ -2,11 +2,8 @@
   "name": "vinslider",
   "version": "1.1.1",
   "description": "A native javascript slider module.",
-  "main": "./dist/vinslider.js",
-  "style": "./dist/vinslider.css",
-  "scripts": {
-    "start": "babel ./src/vinslider.js -w -o ./dist/vinslider.js"
-  },
+  "main": "./dist/vinslider.build.js",
+  "style": "./dist/vinslider.build.css",
   "repository": {
     "type": "npm",
     "url": "https://www.npmjs.com/package/vinslider"
@@ -26,9 +23,24 @@
     "url": "https://github.com/77Vincent/vinslider/issues"
   },
   "homepage": "https://github.com/77Vincent/vinslider#readme",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "scaffold.css": "^1.0.5"
+  },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "webpack": "^1.14.0"
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.9.0",
+    "node-sass": "^4.1.1",
+    "sass-loader": "^4.1.1",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.9"
   }
 }

@@ -619,3 +619,5 @@ Vinslider.prototype = {
         }
     },
 };
+
+export default Vinslider = Vinslider

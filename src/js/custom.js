@@ -1,3 +1,6 @@
+import Vinslider from './vinslider.js'
+import vjs from './vinJs.js'
+
 var custom = {
     init: function () {
         this.instance = {length: 0};
