@@ -276,14 +276,14 @@ Vinslider.prototype = {
                     object.style.WebkitTransition = 'opacity' + speed;
                     object.style.MozTransition = 'opacity' + speed;
                     object.style.OTransition = 'opacity' + speed;
-                    object.style.Transition = 'opacity' + speed;
+                    object.style.transition = 'opacity' + speed;
                     break;
 
                 case 'slide': 
                     object.style.WebkitTransition = unit[0] + speed + ',' + unit[1] + speed;
                     object.style.MozTransition = unit[0] + speed + ',' + unit[1] + speed;
                     object.style.OTransition = unit[0] + speed + ',' + unit[1] + speed;
-                    object.style.Transition = unit[0] + speed + ',' + unit[1] + speed;
+                    object.style.transition = unit[0] + speed + ',' + unit[1] + speed;
                     break;
             }
 		}
