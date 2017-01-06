@@ -3,14 +3,11 @@ var webpack = require('webpack')
 var extractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-    entry: {
-        index: './src/index.js',
-        vinslider: './src/modules.js'
-    },
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: '[name].build.js'
+        filename: '[name].js'
     },
     module: {
         rules: [{
