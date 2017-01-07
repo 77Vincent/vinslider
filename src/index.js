@@ -1,5 +1,9 @@
 import 'scaffold.css'
-import './modules/vinslider.css'
+import './site.scss'
+import $ from 'jquery'
+import Vinslider from './vinslider/vinslider.js'
 
-import './site/custom.css'
-import './site/custom.js'
+let slider = document.querySelector('.vinslider')
+new Vinslider(slider, {
+    duration: 1000
+})

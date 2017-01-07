@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: '[name].js'
+        filename: 'build.js'
     },
     module: {
         rules: [{
@@ -37,7 +37,7 @@ module.exports = {
     devtool: '#eval-source-map',
     plugins: [
         new extractTextPlugin({
-            filename: '[name].build.css',
+            filename: 'build.css',
             disable: false,
             allChunks: true
         })
