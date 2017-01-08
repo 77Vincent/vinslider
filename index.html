@@ -16,95 +16,36 @@
     <header>
         <div class="wrapper">
             <h1><b>V</b>inslider</h1>
-            <h3>Light weight, native Javascript slider module. Highly customizable.</h3>
+            <h3>Light weight, native Javascript slider module.</h3>
         </div>
+        <a href="https://github.com/77Vincent/vinslider" target="_blank" class=""><img src="/src/assets/logo.svg"></a>
+        <a href="https://github.com/77Vincent/vinslider" target="_blank" class=""><img src="/src/assets/github.png"></a>
     </header>
-    <a href="https://github.com/77Vincent/vinslider" target="_blank" class="fork"></a>
     <div class="wrapper">
-        <div class="clearfix">
-            <h4>Slide Mode</h4>
-            <div class="vinslider">
-                <div><h4>1</h4></div>
-                <div><h4>2</h4></div>
-                <div><h4>3</h4></div>
-                <div><h4>4</h4></div>
-            </div>
+        <div class="vinslider">
+            <div class="slide" style="background-image: url(/src/assets/bg-1.jpg)"></div>
+            <div class="slide" style="background-image: url(/src/assets/bg-2.jpg)"></div>
+            <div class="slide" style="background-image: url(/src/assets/bg-3.jpg)"></div>
+            <div class="slide" style="background-image: url(/src/assets/bg-4.jpg)"></div>
         </div>
-        
-        <div class="text-center callbacks">
-            <h2><span>Callbacks</span></h2>
-            <div class="vinslider">
-                <ul>
-                    <li><h4>1</h4></li>
-                    <li><h4>2</h4></li>
-                    <li><h4>3</h4></li>
-                    <li><h4>4</h4></li>
-                    <li><h4>5</h4></li>
-                    <li><h4>6</h4></li>
-                    <li><h4>7</h4></li>
-                    <li><h4>8</h4></li>
-                </ul>
-            </div>
-            <div class="">
-                <button>Goto the first slide</button>
-                <button>Goto the last slide</button>
-                <button>Increase amount by 1</button>
-                <button>Decrease amount by 1</button>
-                <button>Speed up transition</button>
-                <button>Slow down transition</button>
-                <button>increase gutter</button>
-                <button>Reduce gutter</button>
-                <button>Half width</button>
-                <button>Stop autoplay</button>
-                <button>Backward autoplay</button>
-                <button>not Infinite loop</button>
-            </div>
-        </div>
+        <button id="add">Try to add new slide</button>
 
-        <div class="text-center">
-            <h2><span>Why this one?</span></h2>
-            <ul>
-                <li>No dependencies</li>
-                <li>Native Javascript</li>
-                <li>Highly customizable</li>
-                <li>Super lightweight</li>
-                <li>Useful callbacks</li>
-                <li>Good performance</li>
-                <li>Responsive</li>
-                <li>Easy to use</li>
-            </ul>
+        <h2><span>Why this one?</span></h2>
+        <ul>
+            <li>No dependencies</li>
+            <li>Native Javascript</li>
+            <li>Customizable</li>
+            <li>Super lightweight</li>
+            <li>Easy to use</li>
+        </ul>
 
-            <h2><span>How to use it</span></h2>
-            <p>Embed these two files into your project</p>
-            <code class="text-center">
-                <p>vinslider.js</p>
-                <p>vinslider.css</p>
-            </code>
-            <p>Create DOM</p>
-<pre><code><p>&lt;div class="vinslider"&gt;
-    &lt;ul&gt;
-        &lt;li&gt;content&lt;/li&gt;
-        &lt;li&gt;content&lt;/li&gt;
-        &lt;li&gt;content&lt;/li&gt;
-        ...
-    &lt;/ul&gt;
-&lt;/div&gt;</p></code></pre>
-            <p>Instantiate in Javascript</p>
-            <code>
-                <p>var slider = document.querySelector('.vinslider');</p>
+        <h2><span>How to use it</span></h2>
+        <pre><code>npm install --save vinslider</code></pre>
+        <pre><code>import Vinslider from 'vinslider'</code></pre>
+        <a target="_blank" href="https://github.com/77Vincent/vinslider">Documentations</a>
 
-                <p>var config = {
-                    duration: 1800,
-                    mode: 'fade'
-                    ....
-                };</p>
-
-                <p>new Vinslider(slider, config);</p>
-            </code>
-            <a target="_blank" href="https://github.com/77Vincent/vinslider">download & Documentations</a>
-            <h2><span>About </span></h2>
-            <p>Yes, there are already a lot of similar modules out there to accomplish the same functionality, I have used several ones but found that they are not the exact stuff that I want, they either depend on a Javascript library, or with a not easy-to-use API, or with limited functionalities, or has a bad performance. So I decided to create a module myself which could be as much simple, powerful, friendly, versatile as it can be. To achieve these goals, I choose native Javascript, manipulating native DOM element, and let CSS handle all layout and transition missions, as you can see, those are the very basic elements that form a web page. And this is how I understand a basic module should be like. Check out the github repository page for more information, if you like it, feel free to share it with more people.<p>
-        </div>
+        <h2><span>About </span></h2>
+        <p>Yes, there are already a lot of similar modules out there to accomplish the same functionality, I have used several ones but found that they are not the exact stuff that I want, they either depend on a Javascript library, or with a not easy-to-use API, or with limited functionalities, or has a bad performance. So I decided to create a module myself which could be as much simple, powerful, friendly, versatile as it can be. To achieve these goals, I choose native Javascript, manipulating native DOM element, and let CSS handle all layout and transition missions, as you can see, those are the very basic elements that form a web page. And this is how I understand a basic module should be like. Check out the github repository page for more information, if you like it, feel free to share it with more people.<p>
     </div>
 
     <footer>

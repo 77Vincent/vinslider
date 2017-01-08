@@ -2,8 +2,7 @@
   "name": "vinslider",
   "version": "1.1.2",
   "description": "A native javascript slider module.",
-  "main": "./dist/vinslider.build.js",
-  "style": "./dist/vinslider.build.css",
+  "main": "./vinslider/vinslider.js",
   "repository": {
     "type": "npm",
     "url": "https://www.npmjs.com/package/vinslider"
