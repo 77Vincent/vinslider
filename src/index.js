@@ -6,7 +6,10 @@ import Vinslider from '../vinslider/vinslider.js'
 let $slider = $('.vinslider')
 let counter = 0;
 
-new Vinslider($slider[0])
+new Vinslider($slider[0], {
+    prev: '#prev',
+    next: '#next'
+})
 
 $('#add').on('click', () => {
     if (counter < 4) {
