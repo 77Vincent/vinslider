@@ -120,4 +120,12 @@ class Vinslider {
     }
 }
 
-export default Vinslider = Vinslider
+if (typeof define === "function" && define.amd) {
+    define('Vinslider', [], function() {
+        return Vinslider
+    });
+} else if (typeof module === "object" && exports) {
+    module.exports = Vinslider
+} else {
+    window.Vinslider = Vinslider
+}
