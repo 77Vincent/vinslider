@@ -2,7 +2,7 @@
   "name": "vinslider",
   "version": "2.0.0",
   "description": "A native javascript slider module.",
-  "main": "./vinslider/vinslider.js",
+  "main": "./vinslider/vinslider.min.js",
   "repository": {
     "type": "npm",
     "url": "https://www.npmjs.com/package/vinslider"
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/77Vincent/vinslider#readme",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && babel ./vinslider/vinslider.js -o ./vinslider/vinslider.compiled.js"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && babel ./vinslider/vinslider.js -o ./vinslider/vinslider.compiled.js && uglifyjs ./vinslider/vinslider.compiled.js -o ./vinslider/vinslider.min.js --compress --mangle --screw-ie8"
   },
   "dependencies": {},
   "devDependencies": {
@@ -40,6 +40,7 @@
     "node-sass": "^4.1.1",
     "sass-loader": "^4.1.1",
     "scaffold.css": "^1.0.6",
+    "uglify-js": "^2.7.5",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.9"
   }

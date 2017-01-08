@@ -17,47 +17,57 @@ Markup
         <div>content</div>
         ...
     <div>
+
+    // Items could be any HTML elements
     
 Javascript
     
     import Vinslider from 'vinslider'
     
-    let slider = document.querySelector('.vinslider')
+    var slider = document.querySelector('.vinslider')
     
     new Vinslider(slider[, config])
 
+CSS
+    
+    .vinslider {
+        visibility: hidden;
+        height: ...;
+    }
+
+    // Please add these two lines to your Vinslider wrapper
+    // All items inside will be absolute positioned, so a height is needed
+    // Vinslider will be visible again after its initiating
 
 ## Configurations
 
-#### speed : Number
+#### amount: How many slides being shown at a time
+ 
+    : 1 (Default) 
+
+#### speed : The duration of transition
 
     : 750 (millisecond)
 
-The duration of transition
+#### duration : How much time each slide stays
 
-#### duration : Number
+    : 3000 (millisecond)
 
-    : 5000 (millisecond)
-    
-How much time each slide stays
-
-#### amount: Number
- 
-    : 1 
-
-How many slides being shown at a time
-
-#### isAutoplay : Boolean
+#### isAutoplay : Vinslider will autoplay
 
     : true (Default)
 
-Vinslider will autoplay
-
-#### isInfinite : Boolean
+#### isInfinite : Vinslider doesn't stop when reaching the last slide
 
     : true (Default)
 
-Vinslider doesn't stop when reaching the last slide
+#### prev : Previous slide, pass an element selector
+
+    : '' (Default)
+
+#### next : Next slide, pass an element selector
+
+    : '' (Default)
 
 ## Browser Compatibility
 

@@ -1,7 +1,7 @@
 import 'scaffold.css'
 import './site.scss'
 import $ from 'jquery'
-import Vinslider from '../vinslider/vinslider.js'
+import Vinslider from '../vinslider/vinslider.src.js'
 
 let $slider = $('.vinslider')
 let counter = 0;
