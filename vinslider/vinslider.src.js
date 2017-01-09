@@ -17,45 +17,54 @@ class Vinslider {
         isAutoplay = true,
         isInfinite = true
     } = {}) {
-        let object = document.querySelector(el) 
+        let wrapper = document.querySelector(el) 
+        this.init(wrapper)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
+
         let observer = new MutationObserver(() => {
-            this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
+            this.init(wrapper)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
         })
-        observer.observe(object, {
+        observer.observe(wrapper, {
             attributes: true,
             childList: true,
             characterData: true
         })
-
-        this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
     }
 
-    init(object) {
-        this.items = Array.prototype.slice.call(object.children)
+    init(wrapper) {
+        this.items = Array.prototype.slice.call(wrapper.children)
 
         // Layout 
         return (amount) => {
             let width = 100 / amount
+            let heights = this.items.map((v,i) => {
+                // Clean all transition
+                v.style.WebkitTransition = ''
+                v.style.MozTransition = '' 
+                v.style.OTransition = ''
+                v.style.transition = ''
 
-            this.items.forEach(function(v,i) {
+                // Set translate
                 v.style.width = width + '%'
-                v.style.position = 'absolute'
-                v.style.left = width * i + '%' 
+                v.style.display = 'block'
+                v.style.transform = 'translate(' + width * i + '%,' + (0 - i) + '00%)' 
+                return v.clientHeight
             })
+            let max = Math.max.apply(Math, heights)
 
-            object.style.position = 'relative'
-            object.style.overflow = 'hidden'
-            object.style.visibility = 'visible'
+            // Set style to wrapper
+            wrapper.style.height = max + 'px'
+            wrapper.style.overflow = 'hidden'
+            wrapper.style.visibility = 'visible'
 
             // Set transition 
             return (speed) => {
-                let time = speed / 1000 + 's'
+                let time = speed / 1000 + 's' 
 
                 this.items.forEach(function(v,i) {
-                    v.style.WebkitTransition = 'left ' + time + ' ease'
-                    v.style.MozTransition = 'left ' + time + ' ease'
-                    v.style.OTransition = 'left ' + time + ' ease'
-                    v.style.transition = 'left ' + time + ' ease'
+                    v.style.WebkitTransition = 'transform ' + time + ' ease'
+                    v.style.MozTransition = 'transform ' + time + ' ease'
+                    v.style.OTransition = 'transform ' + time + ' ease'
+                    v.style.transition = 'transform ' + time + ' ease'
                 })
 
                 // Set movement and direction
@@ -64,7 +73,7 @@ class Vinslider {
 
                     let loop = () => {
                         this.items.forEach((v,i) => {
-                            v.style.left = width * (i - this.index) + '%' 
+                            v.style.transform = 'translate(' + width * (i - this.index) + '%,' + (0 - i) + '00%)' 
                             v.className = v.className.replace(' vinactive', '')
                         })
                         this.items[this.index].className += ' vinactive' 

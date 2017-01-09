@@ -38,49 +38,58 @@ var Vinslider = function () {
 
         _classCallCheck(this, Vinslider);
 
-        var object = document.querySelector(el);
+        var wrapper = document.querySelector(el);
+        this.init(wrapper)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
+
         var observer = new MutationObserver(function () {
-            _this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
+            _this.init(wrapper)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
         });
-        observer.observe(object, {
+        observer.observe(wrapper, {
             attributes: true,
             childList: true,
             characterData: true
         });
-
-        this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
     }
 
     _createClass(Vinslider, [{
         key: 'init',
-        value: function init(object) {
+        value: function init(wrapper) {
             var _this2 = this;
 
-            this.items = Array.prototype.slice.call(object.children);
+            this.items = Array.prototype.slice.call(wrapper.children);
 
             // Layout 
             return function (amount) {
                 var width = 100 / amount;
+                var heights = _this2.items.map(function (v, i) {
+                    // Clean all transition
+                    v.style.WebkitTransition = '';
+                    v.style.MozTransition = '';
+                    v.style.OTransition = '';
+                    v.style.transition = '';
 
-                _this2.items.forEach(function (v, i) {
+                    // Set translate
                     v.style.width = width + '%';
-                    v.style.position = 'absolute';
-                    v.style.left = width * i + '%';
+                    v.style.display = 'block';
+                    v.style.transform = 'translate(' + width * i + '%,' + (0 - i) + '00%)';
+                    return v.clientHeight;
                 });
+                var max = Math.max.apply(Math, heights);
 
-                object.style.position = 'relative';
-                object.style.overflow = 'hidden';
-                object.style.visibility = 'visible';
+                // Set style to wrapper
+                wrapper.style.height = max + 'px';
+                wrapper.style.overflow = 'hidden';
+                wrapper.style.visibility = 'visible';
 
                 // Set transition 
                 return function (speed) {
                     var time = speed / 1000 + 's';
 
                     _this2.items.forEach(function (v, i) {
-                        v.style.WebkitTransition = 'left ' + time + ' ease';
-                        v.style.MozTransition = 'left ' + time + ' ease';
-                        v.style.OTransition = 'left ' + time + ' ease';
-                        v.style.transition = 'left ' + time + ' ease';
+                        v.style.WebkitTransition = 'transform ' + time + ' ease';
+                        v.style.MozTransition = 'transform ' + time + ' ease';
+                        v.style.OTransition = 'transform ' + time + ' ease';
+                        v.style.transition = 'transform ' + time + ' ease';
                     });
 
                     // Set movement and direction
@@ -89,7 +98,7 @@ var Vinslider = function () {
 
                         var loop = function loop() {
                             _this2.items.forEach(function (v, i) {
-                                v.style.left = width * (i - _this2.index) + '%';
+                                v.style.transform = 'translate(' + width * (i - _this2.index) + '%,' + (0 - i) + '00%)';
                                 v.className = v.className.replace(' vinactive', '');
                             });
                             _this2.items[_this2.index].className += ' vinactive';
