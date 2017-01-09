@@ -17,6 +17,9 @@ http://www.77webtech.com/vinslider
         <div>content</div>
         ...
     <div>
+    
+    <div id="prev">Prev</div>
+    <div id="next">Next</div>
 
 * Items could be any HTML elements
  
@@ -25,7 +28,9 @@ http://www.77webtech.com/vinslider
     import Vinslider from 'vinslider'
 
     new Vinslider({
-        el: '#vinslider'
+        el: '#vinslider',
+        prev: '#prev',
+        next: '#next'
     })
 
 #### CSS
@@ -41,35 +46,35 @@ Please add these two lines to your Vinslider wrapper
 
 ## Configurations
 
-#### el: Your Vinslider wrapper, pass the element selector
+#### Your Vinslider wrapper, pass the element selector
 
     el: '#vinslider' 
 
-#### prev : Previous slide controller, pass your element selector
+#### Previous slide controller, pass your element selector
 
     prev: '#prev' 
 
-#### next : Next slide controller, pass your element selector
+#### Next slide controller, pass your element selector
 
     next: '#next' 
 
-#### amount: How many slides being shown at a time
+#### How many slides being shown at a time
  
     amount: 1 (Default) 
 
-#### speed : The duration of transition
+#### The duration of transition
 
     speed: 750 (millisecond)
 
-#### duration : How much time each slide stays
+#### How much time each slide stays
 
     duration: 3000 (millisecond)
 
-#### isAutoplay : Vinslider will autoplay
+#### Vinslider will autoplay
 
     isAutoplay: true (Default)
 
-#### isInfinite : Vinslider doesn't stop when reaching the last slide
+#### Vinslider doesn't stop when reaching the last slide
 
     isInfinite: true (Default)
 
