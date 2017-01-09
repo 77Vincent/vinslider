@@ -1,6 +1,6 @@
 # Vinslider 
 
-Light weight, native Javascript slider module. 
+Super lightweight, native Javascript slider module. 
 
 http://www.77webtech.com/vinslider
 
@@ -21,7 +21,7 @@ http://www.77webtech.com/vinslider
     <div id="prev">Prev</div>
     <div id="next">Next</div>
 
-* Items could be any HTML elements
+* All items could be any HTML element
  
 #### Javascript
     
@@ -35,14 +35,9 @@ http://www.77webtech.com/vinslider
 
 #### CSS
     
-    #vinslider {
-        visibility: hidden;
-        height: ...;
-    }
-
-Please add these two lines to your Vinslider wrapper
-* All items inside will be absolute positioned, so a certain height is needed
-* Vinslider will be visible again after initiating
+    #vinslider { visibility: hidden; }
+    
+* Please add this line to your Vinslider element, it will be visible again after initiating
 
 ## Configurations
 
