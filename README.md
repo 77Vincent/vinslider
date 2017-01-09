@@ -43,35 +43,35 @@ Please add these two lines to your Vinslider wrapper
 
 #### el: Your Vinslider wrapper, pass the element selector
 
-    : '#vinslider' 
+    el: '#vinslider' 
 
 #### prev : Previous slide controller, pass your element selector
 
-    : '#prev' 
+    prev: '#prev' 
 
 #### next : Next slide controller, pass your element selector
 
-    : '#next' 
+    next: '#next' 
 
 #### amount: How many slides being shown at a time
  
-    : 1 (Default) 
+    amount: 1 (Default) 
 
 #### speed : The duration of transition
 
-    : 750 (millisecond)
+    speed: 750 (millisecond)
 
 #### duration : How much time each slide stays
 
-    : 3000 (millisecond)
+    duration: 3000 (millisecond)
 
 #### isAutoplay : Vinslider will autoplay
 
-    : true (Default)
+    isAutoplay: true (Default)
 
 #### isInfinite : Vinslider doesn't stop when reaching the last slide
 
-    : true (Default)
+    isInfinite: true (Default)
 
 ## Browser Compatibility
 
