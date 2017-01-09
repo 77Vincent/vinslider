@@ -18,7 +18,7 @@ http://www.77webtech.com/vinslider
         ...
     <div>
 
-*Items could be any HTML elements
+* Items could be any HTML elements
  
 #### Javascript
     
@@ -36,8 +36,8 @@ http://www.77webtech.com/vinslider
     }
 
 Please add these two lines to your Vinslider wrapper
-*All items inside will be absolute positioned, so a certain height is needed
-*Vinslider will be visible again after initiating
+* All items inside will be absolute positioned, so a certain height is needed
+* Vinslider will be visible again after initiating
 
 ## Configurations
 
