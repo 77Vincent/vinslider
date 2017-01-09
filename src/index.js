@@ -3,10 +3,11 @@ import './site.scss'
 import $ from 'jquery'
 import Vinslider from '../vinslider/vinslider.src.js'
 
-let $slider = $('.vinslider')
+let $slider = $('#vinslider')
 let counter = 0;
 
-new Vinslider($slider[0], {
+new Vinslider({
+    el: '#vinslider',
     prev: '#prev',
     next: '#next'
 })

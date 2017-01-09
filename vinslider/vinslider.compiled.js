@@ -15,10 +15,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var Vinslider = function () {
-    function Vinslider(object) {
+    function Vinslider() {
         var _this = this;
 
-        var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            _ref$el = _ref.el,
+            el = _ref$el === undefined ? '' : _ref$el,
+            _ref$prev = _ref.prev,
+            prev = _ref$prev === undefined ? '' : _ref$prev,
+            _ref$next = _ref.next,
+            next = _ref$next === undefined ? '' : _ref$next,
             _ref$amount = _ref.amount,
             amount = _ref$amount === undefined ? 1 : _ref$amount,
             _ref$speed = _ref.speed,
@@ -28,16 +34,11 @@ var Vinslider = function () {
             _ref$isAutoplay = _ref.isAutoplay,
             isAutoplay = _ref$isAutoplay === undefined ? true : _ref$isAutoplay,
             _ref$isInfinite = _ref.isInfinite,
-            isInfinite = _ref$isInfinite === undefined ? true : _ref$isInfinite,
-            _ref$prev = _ref.prev,
-            prev = _ref$prev === undefined ? '' : _ref$prev,
-            _ref$next = _ref.next,
-            next = _ref$next === undefined ? '' : _ref$next;
+            isInfinite = _ref$isInfinite === undefined ? true : _ref$isInfinite;
 
         _classCallCheck(this, Vinslider);
 
-        this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
-
+        var object = document.querySelector(el);
         var observer = new MutationObserver(function () {
             _this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
         });
@@ -46,6 +47,8 @@ var Vinslider = function () {
             childList: true,
             characterData: true
         });
+
+        this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next);
     }
 
     _createClass(Vinslider, [{

@@ -6,40 +6,52 @@ http://www.77webtech.com/vinslider
 
 ## Setup
 
-Install through npm
+#### Installation 
 
     npm install --save vinslider
-    
-Markup
 
-    <div class="vinslider">
+#### Markup
+
+    <div id="vinslider">
         <div>content</div>
         <div>content</div>
         ...
     <div>
 
-    // Items could be any HTML elements
-    
-Javascript
+*Items could be any HTML elements
+ 
+#### Javascript
     
     import Vinslider from 'vinslider'
-    
-    var slider = document.querySelector('.vinslider')
-    
-    new Vinslider(slider[, config])
 
-CSS
+    new Vinslider({
+        el: '#vinslider'
+    })
+
+#### CSS
     
-    .vinslider {
+    #vinslider {
         visibility: hidden;
         height: ...;
     }
 
-    // Please add these two lines to your Vinslider wrapper
-    // All items inside will be absolute positioned, so a height is needed
-    // Vinslider will be visible again after its initiating
+Please add these two lines to your Vinslider wrapper
+*All items inside will be absolute positioned, so a certain height is needed
+*Vinslider will be visible again after initiating
 
 ## Configurations
+
+#### el: Your Vinslider wrapper, pass the element selector
+
+    : '#vinslider' 
+
+#### prev : Previous slide controller, pass your element selector
+
+    : '#prev' 
+
+#### next : Next slide controller, pass your element selector
+
+    : '#next' 
 
 #### amount: How many slides being shown at a time
  
@@ -60,14 +72,6 @@ CSS
 #### isInfinite : Vinslider doesn't stop when reaching the last slide
 
     : true (Default)
-
-#### prev : Previous slide, pass an element selector
-
-    : '' (Default)
-
-#### next : Next slide, pass an element selector
-
-    : '' (Default)
 
 ## Browser Compatibility
 

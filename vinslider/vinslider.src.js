@@ -7,17 +7,17 @@
  */
 
 class Vinslider {
-    constructor(object, {
+    constructor({
+        el = '',
+        prev = '',
+        next = '',
         amount = 1,
         speed = 750,
         duration = 3000,
         isAutoplay = true,
-        isInfinite = true,
-        prev = '',
-        next = ''
+        isInfinite = true
     } = {}) {
-        this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
-
+        let object = document.querySelector(el) 
         let observer = new MutationObserver(() => {
             this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
         })
@@ -26,6 +26,8 @@ class Vinslider {
             childList: true,
             characterData: true
         })
+
+        this.init(object)(amount)(speed)(isInfinite)(duration)(isAutoplay)(prev, next)
     }
 
     init(object) {
