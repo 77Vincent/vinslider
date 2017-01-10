@@ -42,35 +42,35 @@ http://www.77webtech.com/vinslider
 
 #### Your Vinslider wrapper, pass the element selector / 幻灯片容器
 
-    el: '#vinslider' 
+    el: '#vinslider' 
     
 #### Previous slide controller, pass your element selector ／ 幻灯片”上一张“按钮
 
-    prev: '#prev'
+    prev: '#prev'
     
 #### Next slide controller, pass your element selector ／ 幻灯片”下一张“按钮
 
-    next: '#next' 
+    next: '#next' 
     
 #### How many slides being shown at a time ／ 每一轮显示多少张幻灯片
 
-    amount: 1 (Default) 
+    amount: 1 (Default) 
     
 #### The duration of transition ／ 切换动画时间
 
-    speed: 750 (millisecond)
+    speed: 750 (ms)
     
 #### How much time each slide stays ／ 每一张幻灯片停留时间
 
-    duration: 3000 (millisecond)
+    duration: 3000 (ms)
     
 #### Vinslider will autoplay ／ 自动播放
 
-    isAutoplay: true (Default)
+    isAutoplay: true (Default)
     
 #### Vinslider doesn't stop when reaching the last slide ／ 无限循环
 
-    isInfinite: true (Default)
+    isInfinite: true (Default)
     
 ## Browser Compatibility / 浏览器支持
 
