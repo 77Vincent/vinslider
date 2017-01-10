@@ -1,16 +1,16 @@
 # Vinslider 
 
-Super lightweight, native Javascript slider module. 
+Super lightweight, native Javascript slider module / 超轻量，原生JS幻灯片模组
 
 http://www.77webtech.com/vinslider
 
-## Setup
+## Setup ／ 如何使用
 
-#### Installation 
+##### Installation / 安装
 
     npm install --save vinslider
-
-#### Markup
+    
+##### Markup
 
     <div id="vinslider">
         <div>content</div>
@@ -20,11 +20,9 @@ http://www.77webtech.com/vinslider
     
     <div id="prev">Prev</div>
     <div id="next">Next</div>
-
-* All items could be any HTML element
- 
-#### Javascript
     
+##### Javascript
+
     import Vinslider from 'vinslider'
 
     new Vinslider({
@@ -32,54 +30,54 @@ http://www.77webtech.com/vinslider
         prev: '#prev',
         next: '#next'
     })
-
-#### CSS
     
+##### CSS
+
     #vinslider { visibility: hidden; }
     
 * Please add this line to your Vinslider element, it will be visible again after initiating
+* 请在CSS中加上这一行，Vinslider会在初始化完成后重新可见
 
-## Configurations
+## Configurations / 配置
 
-#### Your Vinslider wrapper, pass the element selector
+##### Your Vinslider wrapper, pass the element selector / 幻灯片容器
 
     el: '#vinslider' 
+    
+##### Previous slide controller, pass your element selector ／ 幻灯片”上一张“按钮
 
-#### Previous slide controller, pass your element selector
-
-    prev: '#prev' 
-
-#### Next slide controller, pass your element selector
+    prev: '#prev'
+    
+##### Next slide controller, pass your element selector ／ 幻灯片”下一张“按钮
 
     next: '#next' 
+    
+##### How many slides being shown at a time ／ 每一轮显示多少张幻灯片
 
-#### How many slides being shown at a time
- 
     amount: 1 (Default) 
+    
+##### The duration of transition ／ 切换动画时间
 
-#### The duration of transition
+    speed: 750 (ms)
+    
+##### How much time each slide stays ／ 每一张幻灯片停留时间
 
-    speed: 750 (millisecond)
-
-#### How much time each slide stays
-
-    duration: 3000 (millisecond)
-
-#### Vinslider will autoplay
+    duration: 3000 (ms)
+    
+##### Vinslider will autoplay ／ 自动播放
 
     isAutoplay: true (Default)
-
-#### Vinslider doesn't stop when reaching the last slide
+    
+##### Vinslider doesn't stop when reaching the last slide ／ 无限循环
 
     isInfinite: true (Default)
+    
+## Browser Compatibility / 浏览器支持
 
-## Browser Compatibility
+* IE 9: No CSS transition effect ／ 无动画效果
+* IE 10: Fully supported ／ 完全支持
 
-IE 9: No CSS transition effect
-
-IE 10: Fully supported
-
-## License
+## License / 许可
 
 Released under the MIT license: http://opensource.org/licenses/MIT
 
