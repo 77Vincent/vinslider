@@ -6,11 +6,11 @@ http://www.77webtech.com/vinslider
 
 ## Setup ／ 如何使用
 
-#### Installation / 安装
+##### Installation / 安装
 
     npm install --save vinslider
     
-#### Markup
+##### Markup
 
     <div id="vinslider">
         <div>content</div>
@@ -21,7 +21,7 @@ http://www.77webtech.com/vinslider
     <div id="prev">Prev</div>
     <div id="next">Next</div>
     
-#### Javascript
+##### Javascript
 
     import Vinslider from 'vinslider'
 
@@ -31,44 +31,44 @@ http://www.77webtech.com/vinslider
         next: '#next'
     })
     
-#### CSS
+##### CSS
 
     #vinslider { visibility: hidden; }
     
 * Please add this line to your Vinslider element, it will be visible again after initiating
 * 请在CSS中加上这一行，Vinslider会在初始化完成后重新可见
 
-## Configurations
+## Configurations / 配置
 
-#### Your Vinslider wrapper, pass the element selector / 幻灯片容器
+##### Your Vinslider wrapper, pass the element selector / 幻灯片容器
 
     el: '#vinslider' 
     
-#### Previous slide controller, pass your element selector ／ 幻灯片”上一张“按钮
+##### Previous slide controller, pass your element selector ／ 幻灯片”上一张“按钮
 
     prev: '#prev'
     
-#### Next slide controller, pass your element selector ／ 幻灯片”下一张“按钮
+##### Next slide controller, pass your element selector ／ 幻灯片”下一张“按钮
 
     next: '#next' 
     
-#### How many slides being shown at a time ／ 每一轮显示多少张幻灯片
+##### How many slides being shown at a time ／ 每一轮显示多少张幻灯片
 
     amount: 1 (Default) 
     
-#### The duration of transition ／ 切换动画时间
+##### The duration of transition ／ 切换动画时间
 
     speed: 750 (ms)
     
-#### How much time each slide stays ／ 每一张幻灯片停留时间
+##### How much time each slide stays ／ 每一张幻灯片停留时间
 
     duration: 3000 (ms)
     
-#### Vinslider will autoplay ／ 自动播放
+##### Vinslider will autoplay ／ 自动播放
 
     isAutoplay: true (Default)
     
-#### Vinslider doesn't stop when reaching the last slide ／ 无限循环
+##### Vinslider doesn't stop when reaching the last slide ／ 无限循环
 
     isInfinite: true (Default)
     
