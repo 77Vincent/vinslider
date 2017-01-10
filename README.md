@@ -1,12 +1,13 @@
 # Vinslider 
 
 Super lightweight, native Javascript slider module. 
+超轻便，原生JS幻灯片模组
 
 http://www.77webtech.com/vinslider
 
-## Setup
+## Setup ／ 如何使用
 
-#### Installation 
+#### Installation / 安装
 
     npm install --save vinslider
 
