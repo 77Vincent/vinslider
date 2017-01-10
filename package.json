@@ -24,7 +24,9 @@
   "homepage": "https://github.com/77Vincent/vinslider#readme",
   "scripts": {
     "start": "npm install && cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && babel ./vinslider/vinslider.src.js -o ./vinslider/vinslider.compiled.js && uglifyjs ./vinslider/vinslider.compiled.js -o ./vinslider/vinslider.min.js --compress --mangle --screw-ie8"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "babel": "babel ./vinslider/vinslider.src.js -o ./vinslider/vinslider.compiled.js",
+    "uglify": "uglifyjs ./vinslider/vinslider.compiled.js -o ./vinslider/vinslider.min.js --compress --mangle --screw-ie8"
   },
   "dependencies": {},
   "devDependencies": {

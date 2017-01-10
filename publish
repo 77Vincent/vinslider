@@ -1,0 +1,8 @@
+npm run build
+npm run babel
+npm run uglify
+git add .
+git commit -m "publish"
+git push
+git push origin develop:master
+npm publish
